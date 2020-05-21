@@ -94,22 +94,23 @@ private extension TabBarInteractiveAnimator {
             // touch along the horizontal axis has crossed over the initial
             // position.
             if percentage < 0 {
-                cancelWithDelegate()
+                cancelWithDelegate(percentage: percentage)
             } else {
                 updateWithDelegate(percentage: percentage)
             }
         case .ended:
             if percentage >= 0.5 {
-                finishWithDelegate()
+                finishWithDelegate(percentage: percentage)
             } else {
-                cancelWithDelegate()
+                cancelWithDelegate(percentage: percentage)
             }
         default:
-            cancelWithDelegate()
+            cancelWithDelegate(percentage: percentage)
         }
     }
     
-    func cancelWithDelegate() {
+    func cancelWithDelegate(percentage: CGFloat) {
+        print(duration, completionSpeed, percentage)
         cancel()
         
         // Need to remove our action from the gesture recognizer to
@@ -120,16 +121,17 @@ private extension TabBarInteractiveAnimator {
             let toVC = transitionContext?.viewController(forKey: .to)
             else { return }
         
-        delegate?.swipeInteractorCancel(fromVC: fromVC, toVC: toVC, duration: Double(completionSpeed * (1 - percentComplete)))
+        delegate?.swipeInteractorCancel(fromVC: fromVC, toVC: toVC, duration: Double(completionSpeed * (1 - percentage)))
     }
     
-    func finishWithDelegate() {
+    func finishWithDelegate(percentage: CGFloat) {
+        print(duration, completionSpeed, percentage)
         finish()
         
         guard let fromVC = transitionContext?.viewController(forKey: .from),
             let toVC = transitionContext?.viewController(forKey: .to)
             else { return }
-        delegate?.swipeInteractorFinish(fromVC: fromVC, toVC: toVC, duration: Double(completionSpeed * (1 - percentComplete)))
+        delegate?.swipeInteractorFinish(fromVC: fromVC, toVC: toVC, duration: Double(completionSpeed * (1 - percentage)))
     }
     
     func updateWithDelegate(percentage: CGFloat) {
