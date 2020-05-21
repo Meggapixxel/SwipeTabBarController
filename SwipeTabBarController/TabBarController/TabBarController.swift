@@ -16,9 +16,9 @@ final class TabBarController: UITabBarController {
         
     }
     
-    private lazy var injectView = CardView()
-    private lazy var injectViewLeadingConstaint = injectView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
-    private lazy var injectViewTopConstaint = injectView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
+    private lazy var sharedView = TabBarSharedView()
+    private lazy var sharedViewLeadingConstaint = sharedView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
+    private lazy var sharedViewTopConstaint = sharedView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
     
     /// Animated transition being used currently
     private enum AnimatedTransitioningType {
@@ -81,15 +81,15 @@ private extension TabBarController {
     }
     
     func updateScrollPosition(animated: Bool) {
-        let positionY = -(LocalConstants.cardViewHeight + injectViewTopConstaint.constant)
+        let positionY = -(LocalConstants.cardViewHeight + sharedViewTopConstaint.constant)
         viewControllers?.compactMap { $0 as? TabBarChildViewController }
             .forEach { $0.setScrollContentOffset(y: positionY, animated: animated) }
     }
     
     func updateInjectedView(selectedIndex: Int) {
         switch selectedIndex {
-        case 0: injectView.setPercentage(CGFloat(0))
-        case 1: injectView.setPercentage(CGFloat(1))
+        case 0: sharedView.setPercentage(CGFloat(0))
+        case 1: sharedView.setPercentage(CGFloat(1))
         default: break
         }
     }
@@ -126,12 +126,12 @@ private extension TabBarController {
     }
     
     func setupInjectView() {
-        view.addSubview(injectView)
-        injectView.translatesAutoresizingMaskIntoConstraints = false
-        injectView.heightAnchor.constraint(equalToConstant: LocalConstants.cardViewHeight).isActive = true
-        injectViewLeadingConstaint.isActive = true
-        injectView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        injectViewTopConstaint.isActive = true
+        view.addSubview(sharedView)
+        sharedView.translatesAutoresizingMaskIntoConstraints = false
+        sharedView.heightAnchor.constraint(equalToConstant: LocalConstants.cardViewHeight).isActive = true
+        sharedViewLeadingConstaint.isActive = true
+        sharedView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        sharedViewTopConstaint.isActive = true
     }
     
     func setupScrollDelegateViewControllers() {
@@ -184,8 +184,8 @@ extension TabBarController: TabBarInteractiveAnimatorDelegate, TabBarTransitionA
         guard (0...1).contains(percentage) else { return }
         guard let index = viewControllers?.firstIndex(of: toVC) else { return }
         switch index {
-        case 0: injectView.setPercentage(1 - percentage)
-        case 1: injectView.setPercentage(percentage)
+        case 0: sharedView.setPercentage(1 - percentage)
+        case 1: sharedView.setPercentage(percentage)
         default: break
         }
     }
@@ -254,9 +254,9 @@ extension TabBarController: UITabBarControllerDelegate {
             if transitionCoordinator == nil {
                 updateInjectedView(selectedIndex: selectedIndex)
             }
-            injectView.isHidden = false
+            sharedView.isHidden = false
         } else {
-            injectView.isHidden = true
+            sharedView.isHidden = true
         }
     }
     
@@ -266,9 +266,9 @@ extension TabBarController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y <= 0 {
-            injectViewTopConstaint.constant = -(scrollView.contentOffset.y + LocalConstants.cardViewHeight)
-        } else if injectViewTopConstaint.constant != -LocalConstants.cardViewHeight {
-            injectViewTopConstaint.constant = -LocalConstants.cardViewHeight
+            sharedViewTopConstaint.constant = -(scrollView.contentOffset.y + LocalConstants.cardViewHeight)
+        } else if sharedViewTopConstaint.constant != -LocalConstants.cardViewHeight {
+            sharedViewTopConstaint.constant = -LocalConstants.cardViewHeight
         }
     }
     

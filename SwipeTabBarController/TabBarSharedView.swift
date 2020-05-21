@@ -1,5 +1,5 @@
 //
-//  CardView.swift
+//  TabBarSharedView.swift
 //  SwipeTabBarController
 //
 //  Created by Vadim Zhydenko on 20.05.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardView: UIView {
+class TabBarSharedView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -15,7 +15,7 @@
 		BC969C2B24753E460070A065 /* TabBarTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C2A24753E460070A065 /* TabBarTransitionAnimator.swift */; };
 		BC969C2F24753E7A0070A065 /* TabBarInteractiveAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C2E24753E7A0070A065 /* TabBarInteractiveAnimator.swift */; };
 		BC969C3324753ECB0070A065 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C3224753ECB0070A065 /* TabBarController.swift */; };
-		BCD6B4D82475BBD300731283 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD6B4D72475BBD300731283 /* CardView.swift */; };
+		BCD6B4D82475BBD300731283 /* TabBarSharedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */; };
 		BCFE2C4A2476017600293574 /* TabBarChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE2C492476017600293574 /* TabBarChildViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,7 +30,7 @@
 		BC969C2A24753E460070A065 /* TabBarTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarTransitionAnimator.swift; sourceTree = "<group>"; };
 		BC969C2E24753E7A0070A065 /* TabBarInteractiveAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarInteractiveAnimator.swift; sourceTree = "<group>"; };
 		BC969C3224753ECB0070A065 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		BCD6B4D72475BBD300731283 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSharedView.swift; sourceTree = "<group>"; };
 		BCFE2C492476017600293574 /* TabBarChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarChildViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,7 +71,7 @@
 				BC969C1E24753BE50070A065 /* Assets.xcassets */,
 				BC969C2024753BE50070A065 /* LaunchScreen.storyboard */,
 				BC969C2324753BE50070A065 /* Info.plist */,
-				BCD6B4D72475BBD300731283 /* CardView.swift */,
+				BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */,
 			);
 			path = SwipeTabBarController;
 			sourceTree = "<group>";
@@ -163,7 +163,7 @@
 				BC969C1624753BE20070A065 /* AppDelegate.swift in Sources */,
 				BC969C2F24753E7A0070A065 /* TabBarInteractiveAnimator.swift in Sources */,
 				BCFE2C4A2476017600293574 /* TabBarChildViewController.swift in Sources */,
-				BCD6B4D82475BBD300731283 /* CardView.swift in Sources */,
+				BCD6B4D82475BBD300731283 /* TabBarSharedView.swift in Sources */,
 				BC969C2B24753E460070A065 /* TabBarTransitionAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
