@@ -8,33 +8,45 @@
 
 import UIKit
 
-class BaseScrollDelegateViewController: UIViewController, TabBarChildViewController, UIScrollViewDelegate {
+class BaseScrollDelegateViewController: UIViewController, TabBarChildViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var tableView: UITableView!
     
     weak var scrollDelegate: UIScrollViewDelegate!
     var additionalTopContentInset: CGFloat = 0 {
         didSet {
-            scrollView?.contentInset.top = additionalTopContentInset
-            scrollView?.verticalScrollIndicatorInsets.top = additionalTopContentInset
+            tableView?.contentInset.top = additionalTopContentInset
+            tableView?.verticalScrollIndicatorInsets.top = additionalTopContentInset
         }
     }
     private var restoredScrollViewContentOffset = CGPoint.zero
     func setScrollContentOffset(y: CGFloat, animated: Bool) {
         let contentOffset = CGPoint(x: 0, y: y)
         restoredScrollViewContentOffset = contentOffset
-        scrollView?.setContentOffset(contentOffset, animated: animated)
+        tableView?.setContentOffset(contentOffset, animated: animated)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scrollView.contentInset.top = additionalTopContentInset
-        scrollView.contentOffset = restoredScrollViewContentOffset
-        scrollView.verticalScrollIndicatorInsets.top = additionalTopContentInset
+        tableView.contentInset.top = additionalTopContentInset
+        tableView.contentOffset = restoredScrollViewContentOffset
+        tableView.verticalScrollIndicatorInsets.top = additionalTopContentInset
+        tableView.dataSource = self
+        tableView.delegate = self
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollDelegate?.scrollViewDidScroll?(scrollView)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.textLabel?.text = indexPath.description
+        return cell
     }
     
 }

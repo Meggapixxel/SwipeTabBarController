@@ -8,7 +8,30 @@
 
 import UIKit
 
+extension UIEdgeInsets {
+    
+    var horizontal: CGFloat { left + right }
+    var vertical: CGFloat { top + bottom }
+    
+}
 class TabBarSharedView: UIView {
+    
+    private enum LocalConstants {
+        
+        static var cardContainerInsets: UIEdgeInsets { .init(top: 16, left: 16, bottom: 16, right: 16) }
+        static var cardContainerMinLeading: CGFloat { 16 }
+        static var cardContainerMaxLeading: CGFloat { 150 }
+        
+        static var cardContainerMinColor: UIColor { UIColor.systemGray6 }
+        static var cardContainerMaxColor: UIColor { UIColor.systemGray3 }
+        
+    }
+    
+    private let cardContainer = UIView()
+    private lazy var cardContainerTop = cardContainer.topAnchor.constraint(equalTo: self.topAnchor, constant: LocalConstants.cardContainerInsets.top)
+    private lazy var cardContainerBottom = cardContainer.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -LocalConstants.cardContainerInsets.bottom)
+    private lazy var cardContainerLeading = cardContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: LocalConstants.cardContainerMaxLeading)
+    private lazy var cardContainerWidth = cardContainer.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -LocalConstants.cardContainerInsets.horizontal)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,12 +44,27 @@ class TabBarSharedView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .blue
+        backgroundColor = LocalConstants.cardContainerMaxColor
+        
+        addSubview(cardContainer)
+        cardContainer.translatesAutoresizingMaskIntoConstraints = false
+        cardContainerTop.isActive = true
+        cardContainerBottom.isActive = true
+        cardContainerLeading.isActive = true
+        cardContainerWidth.isActive = true
+        cardContainer.backgroundColor = .white
+        cardContainer.layer.cornerRadius = 8
+        cardContainer.layer.shadowOffset = .zero
+        cardContainer.layer.shadowRadius = 8
+        cardContainer.layer.shadowColor = UIColor.black.cgColor
+        cardContainer.layer.shadowOpacity = 0.5
     }
     
     func setPercentage(_ percentage: CGFloat) {
         guard (0...1).contains(percentage) else { return }
-        backgroundColor = UIColor.blue.toColor(.yellow, percentage: percentage)
+        backgroundColor = LocalConstants.cardContainerMaxColor.toColor(LocalConstants.cardContainerMinColor, percentage: percentage)
+        cardContainerLeading.constant = LocalConstants.cardContainerMaxLeading - (LocalConstants.cardContainerMaxLeading - LocalConstants.cardContainerMinLeading) * percentage
+        layoutIfNeeded()
     }
     
 }

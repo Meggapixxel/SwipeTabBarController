@@ -79,9 +79,9 @@
 		BC969C2924753E370070A065 /* TabBarController */ = {
 			isa = PBXGroup;
 			children = (
+				BC969C3224753ECB0070A065 /* TabBarController.swift */,
 				BC969C2E24753E7A0070A065 /* TabBarInteractiveAnimator.swift */,
 				BC969C2A24753E460070A065 /* TabBarTransitionAnimator.swift */,
-				BC969C3224753ECB0070A065 /* TabBarController.swift */,
 				BCFE2C492476017600293574 /* TabBarChildViewController.swift */,
 			);
 			path = TabBarController;
