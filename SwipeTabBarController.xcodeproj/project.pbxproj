@@ -16,6 +16,7 @@
 		BC969C2F24753E7A0070A065 /* TabBarInteractiveAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C2E24753E7A0070A065 /* TabBarInteractiveAnimator.swift */; };
 		BC969C3324753ECB0070A065 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C3224753ECB0070A065 /* TabBarController.swift */; };
 		BCD6B4D82475BBD300731283 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD6B4D72475BBD300731283 /* CardView.swift */; };
+		BCFE2C4A2476017600293574 /* TabBarChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE2C492476017600293574 /* TabBarChildViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		BC969C2E24753E7A0070A065 /* TabBarInteractiveAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarInteractiveAnimator.swift; sourceTree = "<group>"; };
 		BC969C3224753ECB0070A065 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BCD6B4D72475BBD300731283 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		BCFE2C492476017600293574 /* TabBarChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarChildViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				BC969C2E24753E7A0070A065 /* TabBarInteractiveAnimator.swift */,
 				BC969C2A24753E460070A065 /* TabBarTransitionAnimator.swift */,
 				BC969C3224753ECB0070A065 /* TabBarController.swift */,
+				BCFE2C492476017600293574 /* TabBarChildViewController.swift */,
 			);
 			path = TabBarController;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 				BC969C1A24753BE20070A065 /* ViewController.swift in Sources */,
 				BC969C1624753BE20070A065 /* AppDelegate.swift in Sources */,
 				BC969C2F24753E7A0070A065 /* TabBarInteractiveAnimator.swift in Sources */,
+				BCFE2C4A2476017600293574 /* TabBarChildViewController.swift in Sources */,
 				BCD6B4D82475BBD300731283 /* CardView.swift in Sources */,
 				BC969C2B24753E460070A065 /* TabBarTransitionAnimator.swift in Sources */,
 			);

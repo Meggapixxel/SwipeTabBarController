@@ -41,7 +41,7 @@ private extension TabBarController {
     ///
     /// - Parameter sender: gesture recognizer
     func beginInteractiveTransitionIfPossible(_ sender: UIPanGestureRecognizer) {
-        guard selectedViewController as? ScrollDelegateViewController != nil else { return }
+        guard selectedViewController as? TabBarChildViewController != nil else { return }
 
         let translation = sender.translation(in: view)
         
@@ -69,21 +69,21 @@ private extension TabBarController {
     }
     
     func removeScrollDelegation() {
-        viewControllers?.compactMap { $0 as? ScrollDelegateViewController }
+        viewControllers?.compactMap { $0 as? TabBarChildViewController }
             .forEach { $0.scrollDelegate = nil }
     }
     
     func updateScrollDelegation() {
         viewControllers?.enumerated().forEach { (index, vc) in
-            guard let vc = vc as? ScrollDelegateViewController else { return }
+            guard let vc = vc as? TabBarChildViewController else { return }
             vc.scrollDelegate = selectedIndex == index ? self : nil
         }
     }
     
     func updateScrollPosition(animated: Bool) {
         let positionY = -(LocalConstants.cardViewHeight + injectViewTopConstaint.constant)
-        viewControllers?.compactMap { $0 as? ScrollDelegateViewController }
-            .forEach { $0.setScrollPosition(y: positionY, animated: animated) }
+        viewControllers?.compactMap { $0 as? TabBarChildViewController }
+            .forEach { $0.setScrollContentOffset(y: positionY, animated: animated) }
     }
     
     func updateInjectedView(selectedIndex: Int) {
@@ -135,14 +135,14 @@ private extension TabBarController {
     }
     
     func setupScrollDelegateViewControllers() {
-        viewControllers?.compactMap { $0 as? ScrollDelegateViewController }
+        viewControllers?.compactMap { $0 as? TabBarChildViewController }
             .forEach { vc in
                 vc.loadViewIfNeeded()
                 vc.additionalTopContentInset = LocalConstants.cardViewHeight
-                vc.setScrollPosition(y: -LocalConstants.cardViewHeight, animated: false)
+                vc.setScrollContentOffset(y: -LocalConstants.cardViewHeight, animated: false)
             }
         
-        guard let scrollDelegateViewController = viewControllers?.first as? ScrollDelegateViewController else { return }
+        guard let scrollDelegateViewController = viewControllers?.first as? TabBarChildViewController else { return }
         scrollDelegateViewController.scrollDelegate = self
     }
     
@@ -201,8 +201,8 @@ extension TabBarController: TabBarInteractiveAnimatorDelegate, TabBarTransitionA
 extension TabBarController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        guard fromVC as? ScrollDelegateViewController != nil,
-            toVC as? ScrollDelegateViewController != nil,
+        guard fromVC as? TabBarChildViewController != nil,
+            toVC as? TabBarChildViewController != nil,
             let fromVCIndex = tabBarController.viewControllers?.firstIndex(of: fromVC),
             let toVCIndex = tabBarController.viewControllers?.firstIndex(of: toVC)
             else { return nil }
@@ -239,7 +239,7 @@ extension TabBarController: UITabBarControllerDelegate {
         removeScrollDelegation()
         updateScrollPosition(animated: false)
         
-        if let _ = viewController as? ScrollDelegateViewController {
+        if let _ = viewController as? TabBarChildViewController {
             swipeInteractionPanGestureRecognizer.isEnabled = true
         } else {
             swipeInteractionPanGestureRecognizer.isEnabled = false
@@ -250,7 +250,7 @@ extension TabBarController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         updateScrollDelegation()
-        if let _ = viewController as? ScrollDelegateViewController {
+        if let _ = viewController as? TabBarChildViewController {
             if transitionCoordinator == nil {
                 updateInjectedView(selectedIndex: selectedIndex)
             }
