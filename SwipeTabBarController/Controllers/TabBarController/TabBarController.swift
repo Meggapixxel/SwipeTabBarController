@@ -13,12 +13,14 @@ final class TabBarController: UITabBarController {
     private enum LocalConstants {
         
         static var cardViewHeight: CGFloat { 250 }
+        static var animationCurve: UIView.AnimationCurve { .linear }
+        static var animationPercentToFinish: CGFloat { 0.4 }
         
     }
     
     private lazy var sharedView = TabBarSharedView()
-    private lazy var sharedViewLeadingConstaint = sharedView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
-    private lazy var sharedViewTopConstaint = sharedView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
+    private lazy var sharedViewLeadingConstaint = sharedView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+    private lazy var sharedViewTopConstaint = sharedView.topAnchor.constraint(equalTo: view.topAnchor)
     
     /// Animated transition being used currently
     private enum AnimatedTransitioningType {
@@ -83,7 +85,7 @@ private extension TabBarController {
     func updateScrollPosition(animated: Bool) {
         let positionY = -(LocalConstants.cardViewHeight + sharedViewTopConstaint.constant)
         viewControllers?.compactMap { $0 as? TabBarChildViewController }
-            .forEach { $0.setScrollContentOffset(y: positionY, animated: animated) }
+            .forEach { $0.updateScrollContentOffsetIfNeeded(to: positionY, animated: animated) }
     }
     
     func updateInjectedView(selectedIndex: Int) {
@@ -132,6 +134,10 @@ private extension TabBarController {
         sharedViewLeadingConstaint.isActive = true
         sharedView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         sharedViewTopConstaint.isActive = true
+        
+        // set initial value
+        sharedView.layoutIfNeeded()
+        sharedView.setPercentage(0)
     }
     
     func setupScrollDelegateViewControllers() {
@@ -139,7 +145,7 @@ private extension TabBarController {
             .forEach { vc in
                 vc.loadViewIfNeeded()
                 vc.additionalTopContentInset = LocalConstants.cardViewHeight
-                vc.setScrollContentOffset(y: -LocalConstants.cardViewHeight, animated: false)
+                vc.updateScrollContentOffsetIfNeeded(to: -LocalConstants.cardViewHeight, animated: false)
             }
         
         guard let scrollDelegateViewController = viewControllers?.first as? TabBarChildViewController else { return }
@@ -154,23 +160,39 @@ private extension TabBarController {
 
 extension TabBarController: TabBarInteractiveAnimatorDelegate, TabBarTransitionAnimatorDelegate {
     
-    func swipeInteractorCancel(fromVC: UIViewController, toVC: UIViewController, duration: TimeInterval) {
+    func tabBarInteractiveAnimator(
+        _ tabBarInteractiveAnimator: TabBarInteractiveAnimator,
+        fromVC: UIViewController,
+        toVC: UIViewController,
+        cancelWithDuration duration: TimeInterval,
+        curve: UIView.AnimationCurve
+    ) {
         guard let index = viewControllers?.firstIndex(of: fromVC) else { return }
         UIView.animate(
             withDuration: duration,
+            delay: 0,
+            options: .init(curve: curve),
             animations: {
                 self.updateInjectedView(selectedIndex: index)
+            }, completion: { _ in
+                self.updateScrollPosition(animated: false)
+                self.updateScrollDelegation()
             }
-        ) { (_) in
-            self.updateScrollPosition(animated: false)
-            self.updateScrollDelegation()
-        }
+        )
     }
     
-    func swipeInteractorFinish(fromVC: UIViewController, toVC: UIViewController, duration: TimeInterval) {
+    func tabBarInteractiveAnimator(
+        _ tabBarInteractiveAnimator: TabBarInteractiveAnimator,
+        fromVC: UIViewController,
+        toVC: UIViewController,
+        finishWithDuration duration: TimeInterval,
+        curve: UIView.AnimationCurve
+    ) {
         guard let index = viewControllers?.firstIndex(of: toVC) else { return }
         UIView.animate(
             withDuration: duration,
+            delay: 0,
+            options: .init(curve: curve),
             animations: {
                 self.updateInjectedView(selectedIndex: index)
             }
@@ -180,19 +202,34 @@ extension TabBarController: TabBarInteractiveAnimatorDelegate, TabBarTransitionA
         }
     }
     
-    func swipeInteractorUpdate(fromVC: UIViewController, toVC: UIViewController, percentage: CGFloat) {
-        guard (0...1).contains(percentage) else { return }
+    func tabBarInteractiveAnimator(
+        _ tabBarInteractiveAnimator: TabBarInteractiveAnimator,
+        fromVC: UIViewController,
+        toVC: UIViewController,
+        updateWithPercent percent: CGFloat
+    ) {
         guard let index = viewControllers?.firstIndex(of: toVC) else { return }
         switch index {
-        case 0: sharedView.setPercentage(1 - percentage)
-        case 1: sharedView.setPercentage(percentage)
+        case 0: sharedView.setPercentage(1 - percent)
+        case 1: sharedView.setPercentage(percent)
         default: break
         }
     }
     
-    func swipeTransitionAnimatorUpdate(fromVC: UIViewController, toVC: UIViewController) {
+    func tabBarTransitionAnimatorUpdate(
+        _ tabBarTransitionAnimator: TabBarTransitionAnimator,
+        fromVC: UIViewController,
+        toVC: UIViewController,
+        updateWithDuration duration: TimeInterval,
+        curve: UIView.AnimationCurve
+    ) {
         guard let index = viewControllers?.firstIndex(of: toVC) else { return }
-        self.updateInjectedView(selectedIndex: index)
+        UIView.animate(
+            withDuration: duration,
+            delay: 0,
+            options: .init(curve: curve),
+            animations: { self.updateInjectedView(selectedIndex: index) }
+        )
     }
     
 }
@@ -210,16 +247,18 @@ extension TabBarController: UITabBarControllerDelegate {
         removeScrollDelegation()
         updateScrollPosition(animated: false)
         
-        let animationType: TabBarTransitionAnimator.SwipeAnimationType = (fromVCIndex > toVCIndex) ? .fromLeft : .fromRight
+        let swipeAnimationType: TabBarTransitionAnimator.SwipeAnimationType = (fromVCIndex > toVCIndex) ? .fromLeft : .fromRight
         switch animatedTransitioningType {
         case .tap:
             return TabBarTransitionAnimator(
-                animationType: animationType,
+                curve: LocalConstants.animationCurve,
+                swipeAnimationType: swipeAnimationType,
                 delegate: self
             )
         case .swipe:
             return TabBarTransitionAnimator(
-                animationType: animationType,
+                curve: LocalConstants.animationCurve,
+                swipeAnimationType: swipeAnimationType,
                 delegate: nil
             )
         }
@@ -231,6 +270,8 @@ extension TabBarController: UITabBarControllerDelegate {
             else { return nil }
         return TabBarInteractiveAnimator(
             gestureRecognizer: swipeInteractionPanGestureRecognizer,
+            completionCurve: LocalConstants.animationCurve,
+            percentToFinish: LocalConstants.animationPercentToFinish,
             delegate: self
         )
     }

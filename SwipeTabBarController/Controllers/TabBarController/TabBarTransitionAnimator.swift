@@ -9,7 +9,15 @@
 import UIKit
 
 protocol TabBarTransitionAnimatorDelegate: class {
-    func swipeTransitionAnimatorUpdate(fromVC: UIViewController, toVC: UIViewController)
+    
+    func tabBarTransitionAnimatorUpdate(
+        _ tabBarTransitionAnimator: TabBarTransitionAnimator,
+        fromVC: UIViewController,
+        toVC: UIViewController,
+        updateWithDuration duration: TimeInterval,
+        curve: UIView.AnimationCurve
+    )
+    
 }
 
 /// Swipe animation conforming to `UIViewControllerAnimatedTransitioning`
@@ -17,24 +25,27 @@ protocol TabBarTransitionAnimatorDelegate: class {
 /// on your `SwipeableTabBarController` subclass.
 final class TabBarTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
-    // MARK: - SwipeTransitioningProtocol
-    let animationDuration: TimeInterval
-    let animationType: SwipeAnimationType
+    let duration: TimeInterval
+    let curve: UIView.AnimationCurve
+    let swipeAnimationType: SwipeAnimationType
     weak var delegate: TabBarTransitionAnimatorDelegate?
 
 
     /// Init with injectable parameters
     ///
     /// - Parameters:
-    ///   - animationDuration: time the transitioning animation takes to complete
-    ///   - animationType: animation type to perform while transitioning
+    ///   - duration: time the transitioning animation takes to complete
+    ///   - curve: curve to perform transitioning
+    ///   - swipeAnimationType: animation type to perform while transitioning
     init(
-        animationDuration: TimeInterval = 0.33,
-        animationType: SwipeAnimationType,
+        duration: TimeInterval = 0.33,
+        curve: UIView.AnimationCurve = .linear,
+        swipeAnimationType: SwipeAnimationType,
         delegate: TabBarTransitionAnimatorDelegate?
     ) {
-        self.animationDuration = animationDuration
-        self.animationType = animationType
+        self.duration = duration
+        self.curve = curve
+        self.swipeAnimationType = swipeAnimationType
         
         super.init()
         
@@ -45,7 +56,7 @@ final class TabBarTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         guard let transitionContext = transitionContext else { return 0 }
-        return transitionContext.isAnimated ? animationDuration : 0
+        return transitionContext.isAnimated ? duration : 0
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -57,21 +68,26 @@ final class TabBarTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
             let toView = transitionContext.view(forKey: .to)
             else { return transitionContext.completeTransition(false) }
 
-        animationType.addTo(containerView: containerView, fromView: fromView, toView: toView)
-        animationType.prepare(fromView: fromView, toView: toView)
+        swipeAnimationType.addTo(containerView: containerView, fromView: fromView, toView: toView)
+        swipeAnimationType.prepare(fromView: fromView, toView: toView)
         
         let duration = transitionDuration(using: transitionContext)
-        
         UIView.animate(
             withDuration: duration,
             delay: 0,
-            options: [.curveLinear],
+            options: .init(curve: curve),
             animations: {
-                self.delegate?.swipeTransitionAnimatorUpdate(fromVC: fromVC, toVC: toVC)
-                self.animationType.animation(fromView: fromView, toView: toView)
+                self.swipeAnimationType.animation(fromView: fromView, toView: toView)
             }, completion: { _ in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
+        )
+        delegate?.tabBarTransitionAnimatorUpdate(
+            self,
+            fromVC: fromVC,
+            toVC: toVC,
+            updateWithDuration: duration,
+            curve: curve
         )
     }
     
@@ -96,10 +112,7 @@ extension TabBarTransitionAnimator {
         ///   - fromView: Previously selected tab view.
         ///   - toView: New selected tab view.
         func addTo(containerView: UIView, fromView: UIView, toView: UIView) {
-            switch self {
-            default:
-                containerView.addSubview(toView)
-            }
+            containerView.addSubview(toView)
         }
         
         /// Setup the views position prior to the animation start.

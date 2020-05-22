@@ -19,19 +19,17 @@ class TabBarSharedView: UIView {
     private enum LocalConstants {
         
         static var cardContainerInsets: UIEdgeInsets { .init(top: 16, left: 16, bottom: 16, right: 16) }
-        static var cardContainerMinLeading: CGFloat { 16 }
-        static var cardContainerMaxLeading: CGFloat { 150 }
         
-        static var cardContainerMinColor: UIColor { UIColor.systemGray6 }
-        static var cardContainerMaxColor: UIColor { UIColor.systemGray3 }
-        
+        static var cardContainerMinLeading: CGFloat { LocalConstants.cardContainerInsets.left }
+        static var cardContainerMaxLeadingAspectRatin: CGFloat { 0.7 }
+
     }
     
-    private let cardContainer = UIView()
-    private lazy var cardContainerTop = cardContainer.topAnchor.constraint(equalTo: self.topAnchor, constant: LocalConstants.cardContainerInsets.top)
-    private lazy var cardContainerBottom = cardContainer.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -LocalConstants.cardContainerInsets.bottom)
-    private lazy var cardContainerLeading = cardContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: LocalConstants.cardContainerMaxLeading)
-    private lazy var cardContainerWidth = cardContainer.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -LocalConstants.cardContainerInsets.horizontal)
+    private let cardContainer = CreditCardView.loadFromXib()
+    private lazy var cardContainerTop = cardContainer.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: LocalConstants.cardContainerInsets.top)
+    private lazy var cardContainerBottom = cardContainer.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -LocalConstants.cardContainerInsets.bottom)
+    private lazy var cardContainerLeading = cardContainer.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: frame.size.width * LocalConstants.cardContainerMaxLeadingAspectRatin)
+    private lazy var cardContainerWidth = cardContainer.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, constant: -LocalConstants.cardContainerInsets.horizontal)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,7 +42,7 @@ class TabBarSharedView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = LocalConstants.cardContainerMaxColor
+        backgroundColor = .systemBackground
         
         addSubview(cardContainer)
         cardContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -52,19 +50,24 @@ class TabBarSharedView: UIView {
         cardContainerBottom.isActive = true
         cardContainerLeading.isActive = true
         cardContainerWidth.isActive = true
-        cardContainer.backgroundColor = .white
-        cardContainer.layer.cornerRadius = 8
-        cardContainer.layer.shadowOffset = .zero
-        cardContainer.layer.shadowRadius = 8
-        cardContainer.layer.shadowColor = UIColor.black.cgColor
-        cardContainer.layer.shadowOpacity = 0.5
     }
     
     func setPercentage(_ percentage: CGFloat) {
         guard (0...1).contains(percentage) else { return }
-        backgroundColor = LocalConstants.cardContainerMaxColor.toColor(LocalConstants.cardContainerMinColor, percentage: percentage)
-        cardContainerLeading.constant = LocalConstants.cardContainerMaxLeading - (LocalConstants.cardContainerMaxLeading - LocalConstants.cardContainerMinLeading) * percentage
+        cardContainerTop.constant = LocalConstants.cardContainerInsets.top * (1 + percentage)
+        cardContainerBottom.constant = -LocalConstants.cardContainerInsets.bottom * (1 + percentage)
+        
+        let cardContainerMaxLeading = safeAreaLayoutGuide.layoutFrame.width * LocalConstants.cardContainerMaxLeadingAspectRatin
+        let cardContainerLeadingConstant = cardContainerMaxLeading - (cardContainerMaxLeading - LocalConstants.cardContainerMinLeading) * percentage
+        cardContainerLeading.constant = cardContainerLeadingConstant
         layoutIfNeeded()
+        
+        cardContainer.updateAlphaForDigits(alpha: percentage)
+    }
+    
+    override func updateConstraintsIfNeeded() {
+        super.updateConstraintsIfNeeded()
+        print(#function)
     }
     
 }

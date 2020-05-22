@@ -9,9 +9,30 @@
 import UIKit
 
 protocol TabBarInteractiveAnimatorDelegate: class {
-    func swipeInteractorCancel(fromVC: UIViewController, toVC: UIViewController, duration: TimeInterval)
-    func swipeInteractorFinish(fromVC: UIViewController, toVC: UIViewController, duration: TimeInterval)
-    func swipeInteractorUpdate(fromVC: UIViewController, toVC: UIViewController, percentage: CGFloat)
+    
+    func tabBarInteractiveAnimator(
+        _ tabBarInteractiveAnimator: TabBarInteractiveAnimator,
+        fromVC: UIViewController,
+        toVC: UIViewController,
+        cancelWithDuration duration: TimeInterval,
+        curve: UIView.AnimationCurve
+    )
+    
+    func tabBarInteractiveAnimator(
+        _ tabBarInteractiveAnimator: TabBarInteractiveAnimator,
+        fromVC: UIViewController,
+        toVC: UIViewController,
+        finishWithDuration duration: TimeInterval,
+        curve: UIView.AnimationCurve
+    )
+    
+    func tabBarInteractiveAnimator(
+        _ tabBarInteractiveAnimator: TabBarInteractiveAnimator,
+        fromVC: UIViewController,
+        toVC: UIViewController,
+        updateWithPercent percent: CGFloat
+    )
+    
 }
 
 final class TabBarInteractiveAnimator: UIPercentDrivenInteractiveTransition {
@@ -19,20 +40,23 @@ final class TabBarInteractiveAnimator: UIPercentDrivenInteractiveTransition {
     // MARK: - Private
     private weak var transitionContext: UIViewControllerContextTransitioning?
     private let gestureRecognizer: UIPanGestureRecognizer
-
-    private var initialLocationInContainerView = CGPoint()
+    private let percentToFinish: CGFloat
     private var initialTranslationInContainerView = CGPoint()
     
     weak var delegate: TabBarInteractiveAnimatorDelegate?
     
     init(
         gestureRecognizer: UIPanGestureRecognizer,
+        completionCurve: UIView.AnimationCurve = .linear,
+        percentToFinish: CGFloat = 0.5,
         delegate: TabBarInteractiveAnimatorDelegate?
     ) {
         self.gestureRecognizer = gestureRecognizer
-
+        self.percentToFinish = percentToFinish
+        
         super.init()
         
+        self.completionCurve = completionCurve
         self.delegate = delegate
         
         // Add self as an observer of the gesture recognizer so that this
@@ -48,7 +72,6 @@ final class TabBarInteractiveAnimator: UIPercentDrivenInteractiveTransition {
         // Save the transitionContext, initial location, and the translation within
         // the containing view.
         self.transitionContext = transitionContext
-        initialLocationInContainerView = gestureRecognizer.location(in: transitionContext.containerView)
         initialTranslationInContainerView = gestureRecognizer.translation(in: transitionContext.containerView)
 
         super.startInteractiveTransition(transitionContext)
@@ -64,7 +87,8 @@ private extension TabBarInteractiveAnimator {
     /// - Parameter gesture: swiping gesture
     /// - Returns: percent completed for the interactive transition
     func percentForGesture(_ gesture: UIPanGestureRecognizer) -> CGFloat {
-        let transitionContainerView = transitionContext?.containerView
+        guard let transitionContext = transitionContext else { return 0 }
+        let transitionContainerView = transitionContext.containerView
         
         let translationInContainerView = gesture.translation(in: transitionContainerView)
         
@@ -77,12 +101,11 @@ private extension TabBarInteractiveAnimator {
         }
         
         // Figure out what percentage we've traveled.
-        return abs(translationInContainerView.x) / (transitionContainerView?.bounds ?? CGRect()).width
+        return abs(translationInContainerView.x) / (transitionContainerView.bounds).width
     }
     
     @objc func gestureRecognizeDidUpdate(_ gestureRecognizer: UIScreenEdgePanGestureRecognizer) {
         let percentage = percentForGesture(gestureRecognizer)
-        print(percentage)
         switch gestureRecognizer.state {
         case .began:
             // The Began state is handled by AAPLSlideTransitionDelegate.  In
@@ -94,23 +117,26 @@ private extension TabBarInteractiveAnimator {
             // touch along the horizontal axis has crossed over the initial
             // position.
             if percentage < 0 {
-                cancelWithDelegate(percentage: percentage)
+                cancelWithDelegate(percentComplete: percentage)
             } else {
-                updateWithDelegate(percentage: percentage)
+                updateWithDelegate(percent: percentage)
             }
         case .ended:
-            if percentage >= 0.5 {
-                finishWithDelegate(percentage: percentage)
+            if percentage >= percentToFinish {
+                finishWithDelegate(percentComplete: percentage)
             } else {
-                cancelWithDelegate(percentage: percentage)
+                cancelWithDelegate(percentComplete: percentage)
             }
         default:
-            cancelWithDelegate(percentage: percentage)
+            cancelWithDelegate(percentComplete: percentage)
         }
     }
     
-    func cancelWithDelegate(percentage: CGFloat) {
-        print(duration, completionSpeed, percentage)
+}
+
+private extension TabBarInteractiveAnimator {
+    
+    func cancelWithDelegate(percentComplete: CGFloat) {
         cancel()
         
         // Need to remove our action from the gesture recognizer to
@@ -120,27 +146,43 @@ private extension TabBarInteractiveAnimator {
         guard let fromVC = transitionContext?.viewController(forKey: .from),
             let toVC = transitionContext?.viewController(forKey: .to)
             else { return }
-        
-        delegate?.swipeInteractorCancel(fromVC: fromVC, toVC: toVC, duration: Double(completionSpeed * (1 - percentage)))
+        delegate?.tabBarInteractiveAnimator(
+            self,
+            fromVC: fromVC,
+            toVC: toVC,
+            cancelWithDuration: Double(duration * (1 - percentComplete)),
+            curve: completionCurve
+        )
     }
     
-    func finishWithDelegate(percentage: CGFloat) {
-        print(duration, completionSpeed, percentage)
+    func finishWithDelegate(percentComplete: CGFloat) {
         finish()
         
         guard let fromVC = transitionContext?.viewController(forKey: .from),
             let toVC = transitionContext?.viewController(forKey: .to)
             else { return }
-        delegate?.swipeInteractorFinish(fromVC: fromVC, toVC: toVC, duration: Double(completionSpeed * (1 - percentage)))
+        delegate?.tabBarInteractiveAnimator(
+            self,
+            fromVC: fromVC,
+            toVC: toVC,
+            finishWithDuration: Double(duration * (1 - percentComplete)),
+            curve: completionCurve
+        )
     }
     
-    func updateWithDelegate(percentage: CGFloat) {
-        update(percentage)
+    func updateWithDelegate(percent: CGFloat) {
+        update(percent)
         
         guard let fromVC = transitionContext?.viewController(forKey: .from),
             let toVC = transitionContext?.viewController(forKey: .to)
             else { return }
-        delegate?.swipeInteractorUpdate(fromVC: fromVC, toVC: toVC, percentage: percentage)
+        let percentApproximated = min(max(0, percent), 1)
+        delegate?.tabBarInteractiveAnimator(
+            self,
+            fromVC: fromVC,
+            toVC: toVC,
+            updateWithPercent: percentApproximated
+        )
     }
     
 }

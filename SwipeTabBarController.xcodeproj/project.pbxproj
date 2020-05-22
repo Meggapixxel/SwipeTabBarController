@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC6B96FB2477BE9B00764C6C /* CreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B96FA2477BE9B00764C6C /* CreditCardView.swift */; };
+		BC6B97012477BF0500764C6C /* CreditCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC6B97002477BF0500764C6C /* CreditCardView.xib */; };
+		BC6B97062477C17400764C6C /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B97052477C17400764C6C /* UIView.swift */; };
+		BC6B97082477C19600764C6C /* CGColor+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B97072477C19600764C6C /* CGColor+UIColor.swift */; };
+		BC6B970A2477C1D900764C6C /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B97092477C1D900764C6C /* UIButton.swift */; };
+		BC6B970C2477C1EC00764C6C /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B970B2477C1EC00764C6C /* UIImageView.swift */; };
+		BC6B970E2477C20400764C6C /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B970D2477C20400764C6C /* UITextField.swift */; };
+		BC6B97102477C24E00764C6C /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B970F2477C24E00764C6C /* UILabel.swift */; };
+		BC6B97122477C26B00764C6C /* UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B97112477C26B00764C6C /* UISegmentedControl.swift */; };
+		BC6B97152477C7C600764C6C /* P_XibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B97142477C7C600764C6C /* P_XibLoadableView.swift */; };
 		BC969C1624753BE20070A065 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C1524753BE20070A065 /* AppDelegate.swift */; };
 		BC969C1A24753BE20070A065 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C1924753BE20070A065 /* ViewController.swift */; };
 		BC969C1D24753BE20070A065 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC969C1B24753BE20070A065 /* Main.storyboard */; };
@@ -16,10 +26,21 @@
 		BC969C2F24753E7A0070A065 /* TabBarInteractiveAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C2E24753E7A0070A065 /* TabBarInteractiveAnimator.swift */; };
 		BC969C3324753ECB0070A065 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C3224753ECB0070A065 /* TabBarController.swift */; };
 		BCD6B4D82475BBD300731283 /* TabBarSharedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */; };
+		BCEB51BE24769736001E366D /* AnimationOptions+AnimationCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEB51BD24769736001E366D /* AnimationOptions+AnimationCurve.swift */; };
 		BCFE2C4A2476017600293574 /* TabBarChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE2C492476017600293574 /* TabBarChildViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC6B96FA2477BE9B00764C6C /* CreditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardView.swift; sourceTree = "<group>"; };
+		BC6B97002477BF0500764C6C /* CreditCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreditCardView.xib; sourceTree = "<group>"; };
+		BC6B97052477C17400764C6C /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		BC6B97072477C19600764C6C /* CGColor+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGColor+UIColor.swift"; sourceTree = "<group>"; };
+		BC6B97092477C1D900764C6C /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		BC6B970B2477C1EC00764C6C /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		BC6B970D2477C20400764C6C /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		BC6B970F2477C24E00764C6C /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		BC6B97112477C26B00764C6C /* UISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControl.swift; sourceTree = "<group>"; };
+		BC6B97142477C7C600764C6C /* P_XibLoadableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P_XibLoadableView.swift; sourceTree = "<group>"; };
 		BC969C1224753BE20070A065 /* SwipeTabBarController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeTabBarController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC969C1524753BE20070A065 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC969C1924753BE20070A065 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31,6 +52,7 @@
 		BC969C2E24753E7A0070A065 /* TabBarInteractiveAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarInteractiveAnimator.swift; sourceTree = "<group>"; };
 		BC969C3224753ECB0070A065 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSharedView.swift; sourceTree = "<group>"; };
+		BCEB51BD24769736001E366D /* AnimationOptions+AnimationCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimationOptions+AnimationCurve.swift"; sourceTree = "<group>"; };
 		BCFE2C492476017600293574 /* TabBarChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarChildViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -45,6 +67,69 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC6B96FC2477BEA200764C6C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BC6B97132477C7BE00764C6C /* Protocols */,
+				BC6B97042477C16C00764C6C /* IBDesignableViews */,
+				BC6B96FF2477BEFB00764C6C /* CreditCardView */,
+				BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BC6B96FD2477BEB000764C6C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BC969C1B24753BE20070A065 /* Main.storyboard */,
+				BC969C1E24753BE50070A065 /* Assets.xcassets */,
+				BC969C2024753BE50070A065 /* LaunchScreen.storyboard */,
+				BC969C2324753BE50070A065 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BC6B96FE2477BEB600764C6C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BC969C1524753BE20070A065 /* AppDelegate.swift */,
+				BC969C1924753BE20070A065 /* ViewController.swift */,
+				BC969C2924753E370070A065 /* TabBarController */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		BC6B96FF2477BEFB00764C6C /* CreditCardView */ = {
+			isa = PBXGroup;
+			children = (
+				BC6B96FA2477BE9B00764C6C /* CreditCardView.swift */,
+				BC6B97002477BF0500764C6C /* CreditCardView.xib */,
+			);
+			path = CreditCardView;
+			sourceTree = "<group>";
+		};
+		BC6B97042477C16C00764C6C /* IBDesignableViews */ = {
+			isa = PBXGroup;
+			children = (
+				BC6B97072477C19600764C6C /* CGColor+UIColor.swift */,
+				BC6B97052477C17400764C6C /* UIView.swift */,
+				BC6B97092477C1D900764C6C /* UIButton.swift */,
+				BC6B970B2477C1EC00764C6C /* UIImageView.swift */,
+				BC6B970D2477C20400764C6C /* UITextField.swift */,
+				BC6B970F2477C24E00764C6C /* UILabel.swift */,
+				BC6B97112477C26B00764C6C /* UISegmentedControl.swift */,
+			);
+			path = IBDesignableViews;
+			sourceTree = "<group>";
+		};
+		BC6B97132477C7BE00764C6C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				BC6B97142477C7C600764C6C /* P_XibLoadableView.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		BC969C0924753BE20070A065 = {
 			isa = PBXGroup;
 			children = (
@@ -64,14 +149,9 @@
 		BC969C1424753BE20070A065 /* SwipeTabBarController */ = {
 			isa = PBXGroup;
 			children = (
-				BC969C2924753E370070A065 /* TabBarController */,
-				BC969C1524753BE20070A065 /* AppDelegate.swift */,
-				BC969C1924753BE20070A065 /* ViewController.swift */,
-				BC969C1B24753BE20070A065 /* Main.storyboard */,
-				BC969C1E24753BE50070A065 /* Assets.xcassets */,
-				BC969C2024753BE50070A065 /* LaunchScreen.storyboard */,
-				BC969C2324753BE50070A065 /* Info.plist */,
-				BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */,
+				BC6B96FE2477BEB600764C6C /* Controllers */,
+				BC6B96FD2477BEB000764C6C /* Resources */,
+				BC6B96FC2477BEA200764C6C /* Views */,
 			);
 			path = SwipeTabBarController;
 			sourceTree = "<group>";
@@ -83,6 +163,7 @@
 				BC969C2E24753E7A0070A065 /* TabBarInteractiveAnimator.swift */,
 				BC969C2A24753E460070A065 /* TabBarTransitionAnimator.swift */,
 				BCFE2C492476017600293574 /* TabBarChildViewController.swift */,
+				BCEB51BD24769736001E366D /* AnimationOptions+AnimationCurve.swift */,
 			);
 			path = TabBarController;
 			sourceTree = "<group>";
@@ -148,6 +229,7 @@
 				BC969C2224753BE50070A065 /* LaunchScreen.storyboard in Resources */,
 				BC969C1F24753BE50070A065 /* Assets.xcassets in Resources */,
 				BC969C1D24753BE20070A065 /* Main.storyboard in Resources */,
+				BC6B97012477BF0500764C6C /* CreditCardView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,12 +241,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC969C3324753ECB0070A065 /* TabBarController.swift in Sources */,
+				BC6B970A2477C1D900764C6C /* UIButton.swift in Sources */,
+				BC6B970C2477C1EC00764C6C /* UIImageView.swift in Sources */,
 				BC969C1A24753BE20070A065 /* ViewController.swift in Sources */,
 				BC969C1624753BE20070A065 /* AppDelegate.swift in Sources */,
+				BC6B97062477C17400764C6C /* UIView.swift in Sources */,
+				BC6B97102477C24E00764C6C /* UILabel.swift in Sources */,
 				BC969C2F24753E7A0070A065 /* TabBarInteractiveAnimator.swift in Sources */,
+				BCEB51BE24769736001E366D /* AnimationOptions+AnimationCurve.swift in Sources */,
+				BC6B96FB2477BE9B00764C6C /* CreditCardView.swift in Sources */,
 				BCFE2C4A2476017600293574 /* TabBarChildViewController.swift in Sources */,
+				BC6B970E2477C20400764C6C /* UITextField.swift in Sources */,
+				BC6B97082477C19600764C6C /* CGColor+UIColor.swift in Sources */,
 				BCD6B4D82475BBD300731283 /* TabBarSharedView.swift in Sources */,
+				BC6B97152477C7C600764C6C /* P_XibLoadableView.swift in Sources */,
 				BC969C2B24753E460070A065 /* TabBarTransitionAnimator.swift in Sources */,
+				BC6B97122477C26B00764C6C /* UISegmentedControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,7 +402,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U2HP968M4R;
-				INFOPLIST_FILE = SwipeTabBarController/Info.plist;
+				INFOPLIST_FILE = SwipeTabBarController/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -328,7 +420,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U2HP968M4R;
-				INFOPLIST_FILE = SwipeTabBarController/Info.plist;
+				INFOPLIST_FILE = SwipeTabBarController/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

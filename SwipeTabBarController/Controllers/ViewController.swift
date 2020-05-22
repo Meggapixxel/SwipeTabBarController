@@ -20,10 +20,33 @@ class BaseScrollDelegateViewController: UIViewController, TabBarChildViewControl
         }
     }
     private var restoredScrollViewContentOffset = CGPoint.zero
-    func setScrollContentOffset(y: CGFloat, animated: Bool) {
-        let contentOffset = CGPoint(x: 0, y: y)
-        restoredScrollViewContentOffset = contentOffset
-        tableView?.setContentOffset(contentOffset, animated: animated)
+    func updateScrollContentOffsetIfNeeded(to y: CGFloat, animated: Bool) {
+        let currentContentOffsetY = tableView?.contentOffset.y ?? 0
+        
+        // TODO: - remove hardcoded values
+        if currentContentOffsetY == y || (currentContentOffsetY > y && y >= 0) {
+            return
+        } else {
+            let contentOffset = CGPoint(x: 0, y: y)
+            restoredScrollViewContentOffset = contentOffset
+            tableView?.setContentOffset(contentOffset, animated: animated)
+        }
+        
+//        if currentContentOffsetY < y && y >= 0 {
+//            let contentOffset = CGPoint(x: 0, y: y)
+//            restoredScrollViewContentOffset = contentOffset
+//            tableView?.setContentOffset(contentOffset, animated: animated)
+//        } else if currentContentOffsetY > y && y >= 0 {
+//            return print("\(currentContentOffsetY) > \(y) && \(y) >= 0")
+//        } else if currentContentOffsetY >= 0 && y < 0 {
+//            let contentOffset = CGPoint(x: 0, y: y)
+//            restoredScrollViewContentOffset = contentOffset
+//            tableView?.setContentOffset(contentOffset, animated: animated)
+//        } else {
+//            let contentOffset = CGPoint(x: 0, y: y)
+//            restoredScrollViewContentOffset = contentOffset
+//            tableView?.setContentOffset(contentOffset, animated: animated)
+//        }
     }
     
     override func viewDidLoad() {
