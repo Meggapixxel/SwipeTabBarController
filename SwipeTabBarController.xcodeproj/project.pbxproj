@@ -25,6 +25,7 @@
 		BC969C2B24753E460070A065 /* TabBarTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C2A24753E460070A065 /* TabBarTransitionAnimator.swift */; };
 		BC969C2F24753E7A0070A065 /* TabBarInteractiveAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C2E24753E7A0070A065 /* TabBarInteractiveAnimator.swift */; };
 		BC969C3324753ECB0070A065 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C3224753ECB0070A065 /* TabBarController.swift */; };
+		BCC8977124793C3300060CF9 /* String+App Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC8977024793C3300060CF9 /* String+App Version.swift */; };
 		BCD6B4D82475BBD300731283 /* TabBarSharedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */; };
 		BCEB51BE24769736001E366D /* AnimationOptions+AnimationCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEB51BD24769736001E366D /* AnimationOptions+AnimationCurve.swift */; };
 		BCFE2C4A2476017600293574 /* TabBarChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE2C492476017600293574 /* TabBarChildViewController.swift */; };
@@ -51,6 +52,7 @@
 		BC969C2A24753E460070A065 /* TabBarTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarTransitionAnimator.swift; sourceTree = "<group>"; };
 		BC969C2E24753E7A0070A065 /* TabBarInteractiveAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarInteractiveAnimator.swift; sourceTree = "<group>"; };
 		BC969C3224753ECB0070A065 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		BCC8977024793C3300060CF9 /* String+App Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+App Version.swift"; sourceTree = "<group>"; };
 		BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSharedView.swift; sourceTree = "<group>"; };
 		BCEB51BD24769736001E366D /* AnimationOptions+AnimationCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimationOptions+AnimationCurve.swift"; sourceTree = "<group>"; };
 		BCFE2C492476017600293574 /* TabBarChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarChildViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 		BC969C1424753BE20070A065 /* SwipeTabBarController */ = {
 			isa = PBXGroup;
 			children = (
+				BCC8976F24793C1C00060CF9 /* Extensions */,
 				BC6B96FE2477BEB600764C6C /* Controllers */,
 				BC6B96FD2477BEB000764C6C /* Resources */,
 				BC6B96FC2477BEA200764C6C /* Views */,
@@ -166,6 +169,14 @@
 				BCEB51BD24769736001E366D /* AnimationOptions+AnimationCurve.swift */,
 			);
 			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		BCC8976F24793C1C00060CF9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BCC8977024793C3300060CF9 /* String+App Version.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +253,7 @@
 			files = (
 				BC969C3324753ECB0070A065 /* TabBarController.swift in Sources */,
 				BC6B970A2477C1D900764C6C /* UIButton.swift in Sources */,
+				BCC8977124793C3300060CF9 /* String+App Version.swift in Sources */,
 				BC6B970C2477C1EC00764C6C /* UIImageView.swift in Sources */,
 				BC969C1A24753BE20070A065 /* ViewController.swift in Sources */,
 				BC969C1624753BE20070A065 /* AppDelegate.swift in Sources */,
