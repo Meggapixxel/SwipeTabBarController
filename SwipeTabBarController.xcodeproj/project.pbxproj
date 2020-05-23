@@ -27,6 +27,9 @@
 		BC969C3324753ECB0070A065 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C3224753ECB0070A065 /* TabBarController.swift */; };
 		BCC8977124793C3300060CF9 /* String+App Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC8977024793C3300060CF9 /* String+App Version.swift */; };
 		BCC8977424793D4A00060CF9 /* Reflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC8977324793D4A00060CF9 /* Reflection.swift */; };
+		BCC8977624793FD900060CF9 /* TypeSafeIndentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC8977524793FD900060CF9 /* TypeSafeIndentifiers.swift */; };
+		BCC89778247942B800060CF9 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC89777247942B800060CF9 /* UIImage+Color.swift */; };
+		BCC8977B247942E200060CF9 /* UIImage+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC8977A247942E200060CF9 /* UIImage+CornerRadius.swift */; };
 		BCD6B4D82475BBD300731283 /* TabBarSharedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */; };
 		BCEB51BE24769736001E366D /* AnimationOptions+AnimationCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEB51BD24769736001E366D /* AnimationOptions+AnimationCurve.swift */; };
 		BCFE2C4A2476017600293574 /* TabBarChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE2C492476017600293574 /* TabBarChildViewController.swift */; };
@@ -55,6 +58,9 @@
 		BC969C3224753ECB0070A065 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BCC8977024793C3300060CF9 /* String+App Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+App Version.swift"; sourceTree = "<group>"; };
 		BCC8977324793D4A00060CF9 /* Reflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reflection.swift; sourceTree = "<group>"; };
+		BCC8977524793FD900060CF9 /* TypeSafeIndentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSafeIndentifiers.swift; sourceTree = "<group>"; };
+		BCC89777247942B800060CF9 /* UIImage+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
+		BCC8977A247942E200060CF9 /* UIImage+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+CornerRadius.swift"; sourceTree = "<group>"; };
 		BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSharedView.swift; sourceTree = "<group>"; };
 		BCEB51BD24769736001E366D /* AnimationOptions+AnimationCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimationOptions+AnimationCurve.swift"; sourceTree = "<group>"; };
 		BCFE2C492476017600293574 /* TabBarChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarChildViewController.swift; sourceTree = "<group>"; };
@@ -115,7 +121,7 @@
 		BC6B97042477C16C00764C6C /* IBDesignableViews */ = {
 			isa = PBXGroup;
 			children = (
-				BC6B97072477C19600764C6C /* CGColor+UIColor.swift */,
+				BCC8977C247943A500060CF9 /* Extensions */,
 				BC6B97052477C17400764C6C /* UIView.swift */,
 				BC6B97092477C1D900764C6C /* UIButton.swift */,
 				BC6B970B2477C1EC00764C6C /* UIImageView.swift */,
@@ -177,6 +183,7 @@
 		BCC8976F24793C1C00060CF9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BCC89779247942D900060CF9 /* UIImage */,
 				BCC8977024793C3300060CF9 /* String+App Version.swift */,
 			);
 			path = Extensions;
@@ -186,8 +193,26 @@
 			isa = PBXGroup;
 			children = (
 				BCC8977324793D4A00060CF9 /* Reflection.swift */,
+				BCC8977524793FD900060CF9 /* TypeSafeIndentifiers.swift */,
 			);
 			path = Samples;
+			sourceTree = "<group>";
+		};
+		BCC89779247942D900060CF9 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				BCC8977A247942E200060CF9 /* UIImage+CornerRadius.swift */,
+				BCC89777247942B800060CF9 /* UIImage+Color.swift */,
+			);
+			path = UIImage;
+			sourceTree = "<group>";
+		};
+		BCC8977C247943A500060CF9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BC6B97072477C19600764C6C /* CGColor+UIColor.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,12 +292,14 @@
 				BCC8977124793C3300060CF9 /* String+App Version.swift in Sources */,
 				BC6B970C2477C1EC00764C6C /* UIImageView.swift in Sources */,
 				BC969C1A24753BE20070A065 /* ViewController.swift in Sources */,
+				BCC89778247942B800060CF9 /* UIImage+Color.swift in Sources */,
 				BC969C1624753BE20070A065 /* AppDelegate.swift in Sources */,
 				BCC8977424793D4A00060CF9 /* Reflection.swift in Sources */,
 				BC6B97062477C17400764C6C /* UIView.swift in Sources */,
 				BC6B97102477C24E00764C6C /* UILabel.swift in Sources */,
 				BC969C2F24753E7A0070A065 /* TabBarInteractiveAnimator.swift in Sources */,
 				BCEB51BE24769736001E366D /* AnimationOptions+AnimationCurve.swift in Sources */,
+				BCC8977B247942E200060CF9 /* UIImage+CornerRadius.swift in Sources */,
 				BC6B96FB2477BE9B00764C6C /* CreditCardView.swift in Sources */,
 				BCFE2C4A2476017600293574 /* TabBarChildViewController.swift in Sources */,
 				BC6B970E2477C20400764C6C /* UITextField.swift in Sources */,
@@ -280,6 +307,7 @@
 				BCD6B4D82475BBD300731283 /* TabBarSharedView.swift in Sources */,
 				BC6B97152477C7C600764C6C /* P_XibLoadableView.swift in Sources */,
 				BC969C2B24753E460070A065 /* TabBarTransitionAnimator.swift in Sources */,
+				BCC8977624793FD900060CF9 /* TypeSafeIndentifiers.swift in Sources */,
 				BC6B97122477C26B00764C6C /* UISegmentedControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

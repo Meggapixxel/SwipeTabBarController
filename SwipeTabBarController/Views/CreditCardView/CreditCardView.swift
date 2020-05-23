@@ -1,11 +1,3 @@
-//
-//  CreditCardView.swift
-//  SwipeTabBarController
-//
-//  Created by Vadim Zhydenko on 22.05.2020.
-//  Copyright © 2020 Vadym Zhydenko. All rights reserved.
-//
-
 import UIKit
 
 @IBDesignable class CreditCardView: DesignableView, P_XibLoadableView {

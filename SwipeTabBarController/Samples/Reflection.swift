@@ -1,11 +1,3 @@
-//
-//  Reflection.swift
-//  SwipeTabBarController
-//
-//  Created by Vadim Zhydenko on 23.05.2020.
-//  Copyright © 2020 Vadym Zhydenko. All rights reserved.
-//
-
 import Foundation
 
 struct Reflection {
