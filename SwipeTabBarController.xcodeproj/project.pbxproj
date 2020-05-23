@@ -30,6 +30,7 @@
 		BCC8977624793FD900060CF9 /* TypeSafeIndentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC8977524793FD900060CF9 /* TypeSafeIndentifiers.swift */; };
 		BCC89778247942B800060CF9 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC89777247942B800060CF9 /* UIImage+Color.swift */; };
 		BCC8977B247942E200060CF9 /* UIImage+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC8977A247942E200060CF9 /* UIImage+CornerRadius.swift */; };
+		BCC8977E2479493B00060CF9 /* P_KeyboardObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC8977D2479493B00060CF9 /* P_KeyboardObservable.swift */; };
 		BCD6B4D82475BBD300731283 /* TabBarSharedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */; };
 		BCEB51BE24769736001E366D /* AnimationOptions+AnimationCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEB51BD24769736001E366D /* AnimationOptions+AnimationCurve.swift */; };
 		BCFE2C4A2476017600293574 /* TabBarChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE2C492476017600293574 /* TabBarChildViewController.swift */; };
@@ -61,6 +62,7 @@
 		BCC8977524793FD900060CF9 /* TypeSafeIndentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSafeIndentifiers.swift; sourceTree = "<group>"; };
 		BCC89777247942B800060CF9 /* UIImage+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
 		BCC8977A247942E200060CF9 /* UIImage+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+CornerRadius.swift"; sourceTree = "<group>"; };
+		BCC8977D2479493B00060CF9 /* P_KeyboardObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = P_KeyboardObservable.swift; sourceTree = "<group>"; };
 		BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSharedView.swift; sourceTree = "<group>"; };
 		BCEB51BD24769736001E366D /* AnimationOptions+AnimationCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimationOptions+AnimationCurve.swift"; sourceTree = "<group>"; };
 		BCFE2C492476017600293574 /* TabBarChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarChildViewController.swift; sourceTree = "<group>"; };
@@ -160,10 +162,11 @@
 			isa = PBXGroup;
 			children = (
 				BCC8977224793D3B00060CF9 /* Samples */,
-				BCC8976F24793C1C00060CF9 /* Extensions */,
 				BC6B96FE2477BEB600764C6C /* Controllers */,
-				BC6B96FD2477BEB000764C6C /* Resources */,
 				BC6B96FC2477BEA200764C6C /* Views */,
+				BCC8977F2479495200060CF9 /* Protocols */,
+				BC6B96FD2477BEB000764C6C /* Resources */,
+				BCC8976F24793C1C00060CF9 /* Extensions */,
 			);
 			path = SwipeTabBarController;
 			sourceTree = "<group>";
@@ -213,6 +216,14 @@
 				BC6B97072477C19600764C6C /* CGColor+UIColor.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BCC8977F2479495200060CF9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				BCC8977D2479493B00060CF9 /* P_KeyboardObservable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +307,7 @@
 				BC969C1624753BE20070A065 /* AppDelegate.swift in Sources */,
 				BCC8977424793D4A00060CF9 /* Reflection.swift in Sources */,
 				BC6B97062477C17400764C6C /* UIView.swift in Sources */,
+				BCC8977E2479493B00060CF9 /* P_KeyboardObservable.swift in Sources */,
 				BC6B97102477C24E00764C6C /* UILabel.swift in Sources */,
 				BC969C2F24753E7A0070A065 /* TabBarInteractiveAnimator.swift in Sources */,
 				BCEB51BE24769736001E366D /* AnimationOptions+AnimationCurve.swift in Sources */,
