@@ -25,6 +25,7 @@
 		BC969C2B24753E460070A065 /* TabBarTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C2A24753E460070A065 /* TabBarTransitionAnimator.swift */; };
 		BC969C2F24753E7A0070A065 /* TabBarInteractiveAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C2E24753E7A0070A065 /* TabBarInteractiveAnimator.swift */; };
 		BC969C3324753ECB0070A065 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C3224753ECB0070A065 /* TabBarController.swift */; };
+		BCBF7A0A24795963007EA76E /* P_ClosureSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBF7A0924795963007EA76E /* P_ClosureSelector.swift */; };
 		BCC8977124793C3300060CF9 /* String+App Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC8977024793C3300060CF9 /* String+App Version.swift */; };
 		BCC8977424793D4A00060CF9 /* Reflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC8977324793D4A00060CF9 /* Reflection.swift */; };
 		BCC8977624793FD900060CF9 /* TypeSafeIndentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC8977524793FD900060CF9 /* TypeSafeIndentifiers.swift */; };
@@ -57,6 +58,7 @@
 		BC969C2A24753E460070A065 /* TabBarTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarTransitionAnimator.swift; sourceTree = "<group>"; };
 		BC969C2E24753E7A0070A065 /* TabBarInteractiveAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarInteractiveAnimator.swift; sourceTree = "<group>"; };
 		BC969C3224753ECB0070A065 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		BCBF7A0924795963007EA76E /* P_ClosureSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = P_ClosureSelector.swift; sourceTree = "<group>"; };
 		BCC8977024793C3300060CF9 /* String+App Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+App Version.swift"; sourceTree = "<group>"; };
 		BCC8977324793D4A00060CF9 /* Reflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reflection.swift; sourceTree = "<group>"; };
 		BCC8977524793FD900060CF9 /* TypeSafeIndentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSafeIndentifiers.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 		BCC8977F2479495200060CF9 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				BCBF7A0924795963007EA76E /* P_ClosureSelector.swift */,
 				BCC8977D2479493B00060CF9 /* P_KeyboardObservable.swift */,
 			);
 			path = Protocols;
@@ -320,6 +323,7 @@
 				BC6B97152477C7C600764C6C /* P_XibLoadableView.swift in Sources */,
 				BC969C2B24753E460070A065 /* TabBarTransitionAnimator.swift in Sources */,
 				BCC8977624793FD900060CF9 /* TypeSafeIndentifiers.swift in Sources */,
+				BCBF7A0A24795963007EA76E /* P_ClosureSelector.swift in Sources */,
 				BC6B97122477C26B00764C6C /* UISegmentedControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

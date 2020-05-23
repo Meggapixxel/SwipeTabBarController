@@ -79,178 +79,21 @@ final class ViewController1: BaseScrollDelegateViewController {
 
 final class ViewController2: UIViewController {
 
+    private(set) lazy var keyboardDismissGestureRecognizer: UIGestureRecognizer = UITapGestureRecognizer()
     
-
-}
-
-
-
-
-
-
-
-
-
-
-class KeyboardView: UIView {
-
-    // MARK: Properties
-
-    /// 1
-    private(set) lazy var keyboardHeightConstraint = keyboardLayoutGuide.heightAnchor.constraint(equalToConstant: 0)
-
-    /// 2
-    let keyboardLayoutGuide = UILayoutGuide()
-
-    // MARK: Initializer
-
-    init() {
-        /// 3
-        super.init(frame: .zero)
-        translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .white
-
-        /// 4
-        addLayoutGuide(keyboardLayoutGuide)
-        NSLayoutConstraint.activate([
-            keyboardHeightConstraint,
-            keyboardLayoutGuide.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        beginKeyboardObserving()
     }
- 
-    /// 5
-    @available(*, unavailable, message: "Use init() method instead.")
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    // MARK: Overrides
-
-    /// 6
-    override static var requiresConstraintBasedLayout: Bool {
-        true
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        endKeyboardObserving()
     }
 }
 
-class KeyboardViewController<CustomView: KeyboardView>: UIViewController {
-
-    // MARK: Properties
-
-    /// 1
-    var automaticallyAdjustKeyboardLayoutGuide = false {
-        willSet {
-            newValue ? registerForKeyboardNotifications() : stopObservingKeyboardNotifications()
-        }
-    }
-
-    /// 2
-    let customView: CustomView
-
-    // MARK: Initializer
-
-    /// 3
-    init(view: CustomView) {
-        customView = view
-        customView.translatesAutoresizingMaskIntoConstraints = false
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    /// 4
-    @available(*, unavailable, message: "Use init() method instead.")
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    /// 5
-    deinit {
-        stopObservingKeyboardNotifications()
-    }
-
-    // MARK: Overrides
-
-    /// 6
-    override func loadView() {
-        super.loadView()
-
-        view.addSubview(customView)
-        NSLayoutConstraint.activate([
-            customView.topAnchor.constraint(equalTo: view.topAnchor),
-            customView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            customView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            customView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    }
-}
-
-private extension Notification {
-
-    var keyboardAnimationDuration: TimeInterval? {
-        (userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
-    }
-
-    var keyboardRect: CGRect? {
-        userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
-    }
-}
-
-private extension KeyboardViewController {
-
-    func registerForKeyboardNotifications() {
-        /// 1
-        let center = NotificationCenter.default
-
-        /// 2
-        center.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { [weak self] notification in
-            guard let self = self else {
-                return
-            }
-            /// 3
-            if self.automaticallyAdjustKeyboardLayoutGuide {
-                let offset = notification.keyboardRect?.height ?? 0
-                let animationDuration = notification.keyboardAnimationDuration ?? 0.25
-                self.adjustKeyboardHeightConstraint(byOffset: offset, animationDuration: animationDuration)
-            }
-        }
-        /// 4
-        center.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { [weak self] notification in
-            guard let self = self else {
-                return
-            }
-            /// 5
-            if self.automaticallyAdjustKeyboardLayoutGuide {
-                let animationDuration = notification.keyboardAnimationDuration ?? 0.25
-                self.adjustKeyboardHeightConstraint(byOffset: 0, animationDuration: animationDuration)
-            }
-        }
-        /// 6
-        center.addObserver(forName: UIResponder.keyboardWillChangeFrameNotification, object: nil, queue: nil) { [weak self] notification in
-            guard let self = self else {
-                return
-            }
-            /// 7
-            if self.automaticallyAdjustKeyboardLayoutGuide, let offset = notification.keyboardRect?.height {
-                let animationDuration = notification.keyboardAnimationDuration ?? 0.25
-                self.adjustKeyboardHeightConstraint(byOffset: offset, animationDuration: animationDuration)
-            }
-        }
-    }
-
-    func stopObservingKeyboardNotifications() {
-        /// 8
-        [
-            UIResponder.keyboardWillHideNotification,
-            UIResponder.keyboardWillShowNotification,
-            UIResponder.keyboardWillChangeFrameNotification
-        ].forEach {
-            NotificationCenter.default.removeObserver(self, name: $0, object: nil)
-        }
-    }
-
-    func adjustKeyboardHeightConstraint(byOffset offset: CGFloat, animationDuration: TimeInterval) {
-        /// 9
-        customView.keyboardHeightConstraint.constant = offset
-        UIView.animate(withDuration: animationDuration) {
-            self.customView.layoutIfNeeded()
-        }
-    }
+extension ViewController2: P_KeyboardObservableWithDismiss {
+    
+    var keyboardObserveOptions: KeyboardObservableOptions { .showHide }
+    
 }
