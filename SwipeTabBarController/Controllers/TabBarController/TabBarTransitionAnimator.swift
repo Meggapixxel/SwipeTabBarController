@@ -83,7 +83,7 @@ final class TabBarTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
         swipeAnimationType.addTo(containerView: containerView, fromView: fromView, toView: toView)
         swipeAnimationType.prepare(fromView: fromView, toView: toView)
        
-        let topConst = sharedView.globalFrame(baseView: nil).origin.y
+        let topConst = fromTabBarChildViewController.view.convert(sharedView.frame, to: nil).origin.y
         sharedView.removeFromSuperview()
         containerView.addSubview(sharedView)
         sharedView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
@@ -184,32 +184,6 @@ extension TabBarTransitionAnimator {
             }
         }
         
-    }
-
-}
-
-private extension UIView {
-
-    func globalPoint(baseView: UIView?) -> CGPoint {
-        var pnt = self.frame.origin
-        guard var superView = self.superview else { return pnt }
-        while superView != baseView {
-            pnt = superView.convert(pnt, to: superView.superview)
-            guard let superSuperview = superView.superview else { break }
-            superView = superSuperview
-        }
-        return superView.convert(pnt, to: baseView)
-    }
-
-    func globalFrame(baseView: UIView?) -> CGRect {
-        var pnt = self.frame
-        guard var superView = self.superview else { return pnt }
-        while superView != baseView {
-            pnt = superView.convert(pnt, to: superView.superview)
-            guard let superSuperview = superView.superview else { break }
-            superView = superSuperview
-        }
-        return superView.convert(pnt, to: baseView)
     }
 
 }

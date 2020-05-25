@@ -267,7 +267,6 @@ extension TabBarController: UITabBarControllerDelegate {
     }
 
     func tabBarController(_ tabBarController: UITabBarController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        print(#function)
         guard swipeInteractionPanGestureRecognizer.isEnabled,
             swipeInteractionPanGestureRecognizer.state == .began || swipeInteractionPanGestureRecognizer.state == .changed
             else { return nil }
@@ -280,7 +279,6 @@ extension TabBarController: UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        print(#function)
         removeScrollDelegation()
         updateScrollPosition(animated: false)
         
@@ -294,8 +292,8 @@ extension TabBarController: UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print(#function)
         updateScrollDelegation()
+        updateScrollPosition(animated: false)
         if let _ = viewController.tabBarChildViewController {
             if transitionCoordinator == nil {
                 updateInjectedView(selectedIndex: selectedIndex)

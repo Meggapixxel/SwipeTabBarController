@@ -41,17 +41,3 @@ extension UIViewController {
     }
     
 }
-//protocol P_TabBarChildContainer {
-//    var tabBarChildViewController: P_TabBarChildViewController? { get }
-//}
-//extension P_TabBarChildContainer where Self: UIViewController {
-//    var tabBarChildViewController: P_TabBarChildViewController? {
-//        self as? P_TabBarChildViewController
-//    }
-//}
-//extension P_TabBarChildContainer where Self: UINavigationController {
-//    var tabBarChildViewController: P_TabBarChildViewController? {
-//        viewControllers.first(where: { $0.tabBarChildViewController != nil }) as? P_TabBarChildViewController
-//    }
-//}
-//extension UIViewController: P_TabBarChildContainer { }
