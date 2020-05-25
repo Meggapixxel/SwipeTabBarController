@@ -3,20 +3,20 @@ import UIKit
 protocol P_TabBarChildViewControllerDelegate: class {
     func tabBarChildViewController(
         _ tabBarChildViewController: P_TabBarChildViewController,
-        scrollViewDidScroll scrollView: UIScrollView)
+        scrollViewDidScroll scrollView: UIScrollView
+    )
     
 }
+
 protocol P_TabBarChildViewController: UIViewController, UIScrollViewDelegate {
     var scrollDelegate: P_TabBarChildViewControllerDelegate! { get set }
-    var additionalTopContentInset: CGFloat { get set }
-    var contentOffsetY: CGFloat { get }
     func updateScrollContentOffsetIfNeeded(to y: CGFloat, animated: Bool)
 }
 extension P_TabBarChildViewController {
     
     func prepare(additionalTopContentInset: CGFloat, contentOffsetY: CGFloat) {
         self.loadViewIfNeeded()
-        self.additionalTopContentInset = additionalTopContentInset
+        additionalSafeAreaInsets.top = additionalTopContentInset
     }
     
     func inserSharedView(_ sharedView: UIView) {

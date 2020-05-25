@@ -6,13 +6,6 @@ class BaseScrollDelegateViewController: UIViewController, P_TabBarChildViewContr
     
     // MARK: - P_TabBarChildViewController
     weak var scrollDelegate: P_TabBarChildViewControllerDelegate!
-    var additionalTopContentInset: CGFloat = 0 {
-        didSet {
-            self.loadViewIfNeeded()
-            additionalSafeAreaInsets.top = additionalTopContentInset
-        }
-    }
-    var contentOffsetY: CGFloat { tableView?.contentOffset.y ?? 0 }
     func updateScrollContentOffsetIfNeeded(to y: CGFloat, animated: Bool) {
         let contentOffset = CGPoint(x: 0, y: y)
         tableView?.setContentOffset(contentOffset, animated: animated)

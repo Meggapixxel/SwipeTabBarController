@@ -1,6 +1,6 @@
 import UIKit
 
-protocol TabBarInteractiveAnimatorDelegate: class {
+protocol P_TabBarInteractiveAnimatorDelegate: class {
     
     func tabBarInteractiveAnimator(
         _ tabBarInteractiveAnimator: TabBarInteractiveAnimator,
@@ -35,13 +35,13 @@ final class TabBarInteractiveAnimator: UIPercentDrivenInteractiveTransition {
     private let percentToFinish: CGFloat
     private var initialTranslationInContainerView = CGPoint()
     
-    weak var delegate: TabBarInteractiveAnimatorDelegate?
+    weak var delegate: P_TabBarInteractiveAnimatorDelegate?
     
     init(
         gestureRecognizer: UIPanGestureRecognizer,
         completionCurve: UIView.AnimationCurve = .linear,
         percentToFinish: CGFloat = 0.5,
-        delegate: TabBarInteractiveAnimatorDelegate?
+        delegate: P_TabBarInteractiveAnimatorDelegate?
     ) {
         self.gestureRecognizer = gestureRecognizer
         self.percentToFinish = percentToFinish

@@ -1,6 +1,6 @@
 import UIKit
 
-protocol TabBarTransitionAnimatorDelegate: class {
+protocol P_TabBarTransitionAnimatorDelegate: class {
     
     func tabBarTransitionAnimatorUpdate(
         _ tabBarTransitionAnimator: TabBarTransitionAnimator,
@@ -23,7 +23,7 @@ final class TabBarTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
     let sharedView: UIView
     private(set) weak var fromTabBarChildViewController: P_TabBarChildViewController?
     private(set) weak var toTabBarChildViewController: P_TabBarChildViewController?
-    weak var delegate: TabBarTransitionAnimatorDelegate?
+    weak var delegate: P_TabBarTransitionAnimatorDelegate?
 
 
     /// Init with injectable parameters
@@ -39,7 +39,7 @@ final class TabBarTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
         sharedView: UIView,
         fromTabBarChildViewController: P_TabBarChildViewController,
         toTabBarChildViewController: P_TabBarChildViewController,
-        delegate: TabBarTransitionAnimatorDelegate?
+        delegate: P_TabBarTransitionAnimatorDelegate?
     ) {
         self.duration = duration
         self.curve = curve
