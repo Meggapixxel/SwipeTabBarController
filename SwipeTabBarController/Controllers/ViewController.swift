@@ -1,59 +1,31 @@
 import UIKit
 
-class BaseScrollDelegateViewController: UIViewController, TabBarChildViewController, UITableViewDataSource, UITableViewDelegate {
+class BaseScrollDelegateViewController: UIViewController, P_TabBarChildViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet private weak var tableView: UITableView!
     
-    weak var scrollDelegate: UIScrollViewDelegate!
+    // MARK: - P_TabBarChildViewController
+    weak var scrollDelegate: P_TabBarChildViewControllerDelegate!
     var additionalTopContentInset: CGFloat = 0 {
         didSet {
-            tableView?.contentInset.top = additionalTopContentInset
-            tableView?.verticalScrollIndicatorInsets.top = additionalTopContentInset
+            self.loadViewIfNeeded()
+            additionalSafeAreaInsets.top = additionalTopContentInset
         }
     }
-    private var restoredScrollViewContentOffset = CGPoint.zero
+    var contentOffsetY: CGFloat { tableView?.contentOffset.y ?? 0 }
     func updateScrollContentOffsetIfNeeded(to y: CGFloat, animated: Bool) {
-        let currentContentOffsetY = tableView?.contentOffset.y ?? 0
-        
-        // TODO: - remove hardcoded values
-        if currentContentOffsetY == y || (currentContentOffsetY > y && y >= 0) {
-            return
-        } else {
-            let contentOffset = CGPoint(x: 0, y: y)
-            restoredScrollViewContentOffset = contentOffset
-            tableView?.setContentOffset(contentOffset, animated: animated)
-        }
-        
-//        if currentContentOffsetY < y && y >= 0 {
-//            let contentOffset = CGPoint(x: 0, y: y)
-//            restoredScrollViewContentOffset = contentOffset
-//            tableView?.setContentOffset(contentOffset, animated: animated)
-//        } else if currentContentOffsetY > y && y >= 0 {
-//            return print("\(currentContentOffsetY) > \(y) && \(y) >= 0")
-//        } else if currentContentOffsetY >= 0 && y < 0 {
-//            let contentOffset = CGPoint(x: 0, y: y)
-//            restoredScrollViewContentOffset = contentOffset
-//            tableView?.setContentOffset(contentOffset, animated: animated)
-//        } else {
-//            let contentOffset = CGPoint(x: 0, y: y)
-//            restoredScrollViewContentOffset = contentOffset
-//            tableView?.setContentOffset(contentOffset, animated: animated)
-//        }
+        let contentOffset = CGPoint(x: 0, y: y)
+        tableView?.setContentOffset(contentOffset, animated: animated)
     }
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.contentInset.top = additionalTopContentInset
-        tableView.contentOffset = restoredScrollViewContentOffset
-        tableView.verticalScrollIndicatorInsets.top = additionalTopContentInset
         tableView.dataSource = self
         tableView.delegate = self
     }
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollDelegate?.scrollViewDidScroll?(scrollView)
-    }
-    
+    // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 100
     }
@@ -62,6 +34,11 @@ class BaseScrollDelegateViewController: UIViewController, TabBarChildViewControl
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.textLabel?.text = indexPath.description
         return cell
+    }
+    
+    // MARK: - UIScrollViewDelegate
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollDelegate?.tabBarChildViewController(self, scrollViewDidScroll: scrollView)
     }
     
 }

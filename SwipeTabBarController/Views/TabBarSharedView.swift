@@ -18,10 +18,10 @@ class TabBarSharedView: UIView {
     }
     
     private let cardContainer = CreditCardView.loadFromXib()
-    private lazy var cardContainerTop = cardContainer.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: LocalConstants.cardContainerInsets.top)
-    private lazy var cardContainerBottom = cardContainer.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -LocalConstants.cardContainerInsets.bottom)
-    private lazy var cardContainerLeading = cardContainer.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: frame.size.width * LocalConstants.cardContainerMaxLeadingAspectRatin)
-    private lazy var cardContainerWidth = cardContainer.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, constant: -LocalConstants.cardContainerInsets.horizontal)
+    private lazy var cardContainerTop = cardContainer.topAnchor.constraint(equalTo: self.topAnchor, constant: LocalConstants.cardContainerInsets.top)
+    private lazy var cardContainerBottom = cardContainer.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -LocalConstants.cardContainerInsets.bottom)
+    private lazy var cardContainerLeading = cardContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: frame.size.width * LocalConstants.cardContainerMaxLeadingAspectRatin)
+    private lazy var cardContainerWidth = cardContainer.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -LocalConstants.cardContainerInsets.horizontal)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,7 +34,11 @@ class TabBarSharedView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .systemBackground
+        if #available(iOS 13.0, *) {
+            backgroundColor = .systemBackground
+        } else {
+            backgroundColor = .white
+        }
         
         addSubview(cardContainer)
         cardContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -56,12 +60,7 @@ class TabBarSharedView: UIView {
         
         cardContainer.updateAlphaForDigits(alpha: percentage)
     }
-    
-    override func updateConstraintsIfNeeded() {
-        super.updateConstraintsIfNeeded()
-        print(#function)
-    }
-    
+
 }
 
 private extension UIColor {
@@ -85,3 +84,4 @@ private extension UIColor {
         }
     }
 }
+

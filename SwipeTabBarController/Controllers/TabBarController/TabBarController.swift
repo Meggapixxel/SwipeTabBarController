@@ -11,8 +11,6 @@ final class TabBarController: UITabBarController {
     }
     
     private lazy var sharedView = TabBarSharedView()
-    private lazy var sharedViewLeadingConstaint = sharedView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-    private lazy var sharedViewTopConstaint = sharedView.topAnchor.constraint(equalTo: view.topAnchor)
     
     /// Animated transition being used currently
     private enum AnimatedTransitioningType {
@@ -25,7 +23,7 @@ final class TabBarController: UITabBarController {
         super.viewDidLoad()
         setup()
     }
-    
+
 }
 
 private extension TabBarController {
@@ -35,7 +33,7 @@ private extension TabBarController {
     ///
     /// - Parameter sender: gesture recognizer
     func beginInteractiveTransitionIfPossible(_ sender: UIPanGestureRecognizer) {
-        guard selectedViewController as? TabBarChildViewController != nil else { return }
+        guard let _ = selectedViewController?.tabBarChildViewController else { return }
 
         let translation = sender.translation(in: view)
         
@@ -63,21 +61,28 @@ private extension TabBarController {
     }
     
     func removeScrollDelegation() {
-        viewControllers?.compactMap { $0 as? TabBarChildViewController }
-            .forEach { $0.scrollDelegate = nil }
+        viewControllers?.forEach { $0.tabBarChildViewController?.scrollDelegate = nil }
     }
     
     func updateScrollDelegation() {
         viewControllers?.enumerated().forEach { (index, vc) in
-            guard let vc = vc as? TabBarChildViewController else { return }
-            vc.scrollDelegate = selectedIndex == index ? self : nil
+            vc.tabBarChildViewController?.scrollDelegate = selectedIndex == index ? self : nil
         }
     }
     
     func updateScrollPosition(animated: Bool) {
-        let positionY = -(LocalConstants.cardViewHeight + sharedViewTopConstaint.constant)
-        viewControllers?.compactMap { $0 as? TabBarChildViewController }
-            .forEach { $0.updateScrollContentOffsetIfNeeded(to: positionY, animated: animated) }
+        let sharedAdditionalTopContentInset: CGFloat
+        if let currentTabBarChildViewController = viewControllers?[selectedIndex].tabBarChildViewController {
+            sharedAdditionalTopContentInset = currentTabBarChildViewController.additionalTopContentInset
+        } else {
+            sharedAdditionalTopContentInset = LocalConstants.cardViewHeight
+        }
+        viewControllers?.compactMap { $0.tabBarChildViewController }.forEach { tabBarChildViewController in
+            if sharedAdditionalTopContentInset == LocalConstants.cardViewHeight {
+                tabBarChildViewController.updateScrollContentOffsetIfNeeded(to: 0, animated: false)
+            }
+            tabBarChildViewController.additionalTopContentInset = sharedAdditionalTopContentInset
+        }
     }
     
     func updateInjectedView(selectedIndex: Int) {
@@ -114,34 +119,33 @@ private extension TabBarController {
     
     func setup() {
         delegate = self
-        setupInjectView()
-        setupPanGestureRecognizer()
         setupScrollDelegateViewControllers()
+        setupPanGestureRecognizer()
+        setupInjectView()
+        
+        
+//        viewControllers?.enumerated().forEach { (index, vc) in
+//            if vc.tabBarChildViewController != nil {
+//                selectedIndex = index
+//                vc.loadViewIfNeeded()
+//            }
+//        }
+//        selectedIndex = 0
     }
     
     func setupInjectView() {
-        view.addSubview(sharedView)
+        guard let tabBarChildViewController = viewControllers?.first?.tabBarChildViewController else { return }
         sharedView.translatesAutoresizingMaskIntoConstraints = false
         sharedView.heightAnchor.constraint(equalToConstant: LocalConstants.cardViewHeight).isActive = true
-        sharedViewLeadingConstaint.isActive = true
-        sharedView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        sharedViewTopConstaint.isActive = true
-        
+        tabBarChildViewController.inserSharedView(sharedView)
         // set initial value
         sharedView.layoutIfNeeded()
         sharedView.setPercentage(0)
     }
     
     func setupScrollDelegateViewControllers() {
-        viewControllers?.compactMap { $0 as? TabBarChildViewController }
-            .forEach { vc in
-                vc.loadViewIfNeeded()
-                vc.additionalTopContentInset = LocalConstants.cardViewHeight
-                vc.updateScrollContentOffsetIfNeeded(to: -LocalConstants.cardViewHeight, animated: false)
-            }
-        
-        guard let scrollDelegateViewController = viewControllers?.first as? TabBarChildViewController else { return }
-        scrollDelegateViewController.scrollDelegate = self
+        viewControllers?.forEach { $0.tabBarChildViewController?.additionalTopContentInset = LocalConstants.cardViewHeight }
+        viewControllers?.first?.tabBarChildViewController?.scrollDelegate = self
     }
     
     func setupPanGestureRecognizer() {
@@ -230,8 +234,8 @@ extension TabBarController: TabBarInteractiveAnimatorDelegate, TabBarTransitionA
 extension TabBarController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        guard fromVC as? TabBarChildViewController != nil,
-            toVC as? TabBarChildViewController != nil,
+        guard let fromTabBarChildViewController = fromVC.tabBarChildViewController,
+            let toTabBarChildViewController = toVC.tabBarChildViewController,
             let fromVCIndex = tabBarController.viewControllers?.firstIndex(of: fromVC),
             let toVCIndex = tabBarController.viewControllers?.firstIndex(of: toVC)
             else { return nil }
@@ -245,18 +249,25 @@ extension TabBarController: UITabBarControllerDelegate {
             return TabBarTransitionAnimator(
                 curve: LocalConstants.animationCurve,
                 swipeAnimationType: swipeAnimationType,
+                sharedView: sharedView,
+                fromTabBarChildViewController: fromTabBarChildViewController,
+                toTabBarChildViewController: toTabBarChildViewController,
                 delegate: self
             )
         case .swipe:
             return TabBarTransitionAnimator(
                 curve: LocalConstants.animationCurve,
                 swipeAnimationType: swipeAnimationType,
+                sharedView: sharedView,
+                fromTabBarChildViewController: fromTabBarChildViewController,
+                toTabBarChildViewController: toTabBarChildViewController,
                 delegate: nil
             )
         }
     }
 
     func tabBarController(_ tabBarController: UITabBarController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        print(#function)
         guard swipeInteractionPanGestureRecognizer.isEnabled,
             swipeInteractionPanGestureRecognizer.state == .began || swipeInteractionPanGestureRecognizer.state == .changed
             else { return nil }
@@ -269,10 +280,11 @@ extension TabBarController: UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        print(#function)
         removeScrollDelegation()
         updateScrollPosition(animated: false)
         
-        if let _ = viewController as? TabBarChildViewController {
+        if let _ = viewController.tabBarChildViewController {
             swipeInteractionPanGestureRecognizer.isEnabled = true
         } else {
             swipeInteractionPanGestureRecognizer.isEnabled = false
@@ -282,8 +294,9 @@ extension TabBarController: UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        print(#function)
         updateScrollDelegation()
-        if let _ = viewController as? TabBarChildViewController {
+        if let _ = viewController.tabBarChildViewController {
             if transitionCoordinator == nil {
                 updateInjectedView(selectedIndex: selectedIndex)
             }
@@ -295,14 +308,57 @@ extension TabBarController: UITabBarControllerDelegate {
     
 }
 
-extension TabBarController: UIScrollViewDelegate {
+extension TabBarController: P_TabBarChildViewControllerDelegate {
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y <= 0 {
-            sharedViewTopConstaint.constant = -(scrollView.contentOffset.y + LocalConstants.cardViewHeight)
-        } else if sharedViewTopConstaint.constant != -LocalConstants.cardViewHeight {
-            sharedViewTopConstaint.constant = -LocalConstants.cardViewHeight
+    func tabBarChildViewController(
+        _ tabBarChildViewController: P_TabBarChildViewController,
+        scrollViewDidScroll scrollView: UIScrollView
+    ) {
+        let contentOffsetY = scrollView.contentOffset.y
+        let additionalTopContentInset = tabBarChildViewController.additionalTopContentInset
+        
+        tabBarChildViewController.scrollDelegate = nil
+        
+        // Scrolling up, Card hidding
+        if contentOffsetY > 0 && additionalTopContentInset > 0 && additionalTopContentInset - contentOffsetY < 0 {
+            scrollView.contentOffset.y -= LocalConstants.cardViewHeight - additionalTopContentInset + contentOffsetY
+            tabBarChildViewController.additionalTopContentInset = 0
+        } else if contentOffsetY > 0 && additionalTopContentInset > 0 {
+            scrollView.contentOffset.y = 0
+            tabBarChildViewController.additionalTopContentInset -= contentOffsetY
         }
+        // Scrolling down, Card showing
+        else if contentOffsetY < 0 && additionalTopContentInset < LocalConstants.cardViewHeight && additionalTopContentInset - contentOffsetY > LocalConstants.cardViewHeight {
+            scrollView.contentOffset.y -= LocalConstants.cardViewHeight - additionalTopContentInset + contentOffsetY
+            tabBarChildViewController.additionalTopContentInset = LocalConstants.cardViewHeight
+        } else if contentOffsetY < 0 && additionalTopContentInset < LocalConstants.cardViewHeight {
+            scrollView.contentOffset.y = 0
+            tabBarChildViewController.additionalTopContentInset -= contentOffsetY
+        }
+        
+        tabBarChildViewController.scrollDelegate = self
+        
+        
+//        // Scrolling up, Card hidding
+//        if contentOffsetY > 0 && additionalTopContentInset > 0 {
+//            if additionalTopContentInset - contentOffsetY < 0 {
+//                scrollView.contentOffset.y -= LocalConstants.cardViewHeight - additionalTopContentInset + contentOffsetY
+//                tabBarChildViewController.additionalTopContentInset = 0
+//            } else {
+//                scrollView.contentOffset.y = 0
+//                tabBarChildViewController.additionalTopContentInset -= contentOffsetY
+//            }
+//        }
+//        // Scrolling down, Card showing
+//        else if contentOffsetY < 0 && additionalTopContentInset < LocalConstants.cardViewHeight {
+//            if additionalTopContentInset - contentOffsetY > LocalConstants.cardViewHeight {
+//                scrollView.contentOffset.y -= LocalConstants.cardViewHeight - additionalTopContentInset + contentOffsetY
+//                tabBarChildViewController.additionalTopContentInset = LocalConstants.cardViewHeight
+//            } else {
+//                scrollView.contentOffset.y = 0
+//                tabBarChildViewController.additionalTopContentInset -= contentOffsetY
+//            }
+//        }
     }
     
 }

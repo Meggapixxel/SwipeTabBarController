@@ -106,7 +106,7 @@ protocol P_KeyboardObservableWithDismiss: P_KeyboardObservable {
     var keyboardDismissGestureRecognizer: UIGestureRecognizer { get } // must be stored because must be removed on keyboard hide
     var keyboardDismissTargetView: UIView { get }
 }
-fileprivate extension P_KeyboardObservableWithDismiss {
+private extension P_KeyboardObservableWithDismiss {
     
     func addGestureRecognizer() {
         let gestureRecognizer = keyboardDismissGestureRecognizer
@@ -129,7 +129,7 @@ extension P_KeyboardObservableWithDismiss where Self: UIViewController {
 }
 
 
-fileprivate extension NSObject {
+private extension NSObject {
     
     @objc func willShow(_ notification: Notification) {
         guard let keyboardObservable = self as? P_KeyboardObservable,

@@ -20,6 +20,9 @@ final class TabBarTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
     let duration: TimeInterval
     let curve: UIView.AnimationCurve
     let swipeAnimationType: SwipeAnimationType
+    let sharedView: UIView
+    private(set) weak var fromTabBarChildViewController: P_TabBarChildViewController?
+    private(set) weak var toTabBarChildViewController: P_TabBarChildViewController?
     weak var delegate: TabBarTransitionAnimatorDelegate?
 
 
@@ -33,11 +36,17 @@ final class TabBarTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
         duration: TimeInterval = 0.33,
         curve: UIView.AnimationCurve = .linear,
         swipeAnimationType: SwipeAnimationType,
+        sharedView: UIView,
+        fromTabBarChildViewController: P_TabBarChildViewController,
+        toTabBarChildViewController: P_TabBarChildViewController,
         delegate: TabBarTransitionAnimatorDelegate?
     ) {
         self.duration = duration
         self.curve = curve
         self.swipeAnimationType = swipeAnimationType
+        self.sharedView = sharedView
+        self.fromTabBarChildViewController = fromTabBarChildViewController
+        self.toTabBarChildViewController = toTabBarChildViewController
         
         super.init()
         
@@ -53,15 +62,37 @@ final class TabBarTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView
-
-        guard let fromVC = transitionContext.viewController(forKey: .from),
+        
+        guard let fromTabBarChildViewController = fromTabBarChildViewController,
+            let toTabBarChildViewController = toTabBarChildViewController,
+            let fromVC = transitionContext.viewController(forKey: .from),
             let toVC = transitionContext.viewController(forKey: .to),
             let fromView = transitionContext.view(forKey: .from),
             let toView = transitionContext.view(forKey: .to)
             else { return transitionContext.completeTransition(false) }
-
+        
+        let snapshotFrame = CGRect(
+            x: 0,
+            y: 0,
+            width: fromTabBarChildViewController.view.frame.width,
+            height: fromTabBarChildViewController.view.frame.origin.y
+        )
+        let fromSnapshot = fromVC.view.snapshotViewImageView(cgRect: snapshotFrame)
+        let toSnapshot = fromVC.view.snapshotViewImageView(cgRect: snapshotFrame)
+        
         swipeAnimationType.addTo(containerView: containerView, fromView: fromView, toView: toView)
         swipeAnimationType.prepare(fromView: fromView, toView: toView)
+       
+        let topConst = sharedView.globalFrame(baseView: nil).origin.y
+        sharedView.removeFromSuperview()
+        containerView.addSubview(sharedView)
+        sharedView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
+        sharedView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
+        sharedView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: topConst).isActive = true
+
+        containerView.addSubview(fromSnapshot)
+        containerView.addSubview(toSnapshot)
+        swipeAnimationType.prepare(fromView: fromSnapshot, toView: toSnapshot)
         
         let duration = transitionDuration(using: transitionContext)
         UIView.animate(
@@ -70,8 +101,18 @@ final class TabBarTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
             options: .init(curve: curve),
             animations: {
                 self.swipeAnimationType.animation(fromView: fromView, toView: toView)
+                self.swipeAnimationType.animation(fromView: fromSnapshot, toView: toSnapshot)
             }, completion: { _ in
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+                self.sharedView.removeFromSuperview()
+                if transitionContext.transitionWasCancelled {
+                    fromTabBarChildViewController.inserSharedView(self.sharedView)
+                    transitionContext.completeTransition(false)
+                } else {
+                    toTabBarChildViewController.inserSharedView(self.sharedView)
+                    transitionContext.completeTransition(true)
+                }
+                fromSnapshot.removeFromSuperview()
+                toSnapshot.removeFromSuperview()
             }
         )
         delegate?.tabBarTransitionAnimatorUpdate(
@@ -143,6 +184,32 @@ extension TabBarTransitionAnimator {
             }
         }
         
+    }
+
+}
+
+private extension UIView {
+
+    func globalPoint(baseView: UIView?) -> CGPoint {
+        var pnt = self.frame.origin
+        guard var superView = self.superview else { return pnt }
+        while superView != baseView {
+            pnt = superView.convert(pnt, to: superView.superview)
+            guard let superSuperview = superView.superview else { break }
+            superView = superSuperview
+        }
+        return superView.convert(pnt, to: baseView)
+    }
+
+    func globalFrame(baseView: UIView?) -> CGRect {
+        var pnt = self.frame
+        guard var superView = self.superview else { return pnt }
+        while superView != baseView {
+            pnt = superView.convert(pnt, to: superView.superview)
+            guard let superSuperview = superView.superview else { break }
+            superView = superSuperview
+        }
+        return superView.convert(pnt, to: baseView)
     }
 
 }
