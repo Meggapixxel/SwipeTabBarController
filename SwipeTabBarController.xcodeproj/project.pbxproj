@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC228FD3247DB2A1004C79AF /* Commit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC228FD1247DB2A1004C79AF /* Commit+CoreDataClass.swift */; };
+		BC228FD8247DBA8B004C79AF /* GithubCommistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC228FD7247DBA8B004C79AF /* GithubCommistVC.swift */; };
+		BC228FDE247DC6A3004C79AF /* Commit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC228FDA247DC6A3004C79AF /* Commit+CoreDataProperties.swift */; };
+		BC228FDF247DC6A3004C79AF /* Author+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC228FDB247DC6A3004C79AF /* Author+CoreDataClass.swift */; };
+		BC228FE0247DC6A3004C79AF /* Author+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC228FDC247DC6A3004C79AF /* Author+CoreDataProperties.swift */; };
 		BC43B3B5247B15640096427F /* UIView+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC43B3B4247B15640096427F /* UIView+Snapshot.swift */; };
 		BC6B96FB2477BE9B00764C6C /* CreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B96FA2477BE9B00764C6C /* CreditCardView.swift */; };
 		BC6B97012477BF0500764C6C /* CreditCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC6B97002477BF0500764C6C /* CreditCardView.xib */; };
@@ -36,10 +41,17 @@
 		BCC8977E2479493B00060CF9 /* P_KeyboardObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC8977D2479493B00060CF9 /* P_KeyboardObservable.swift */; };
 		BCD6B4D82475BBD300731283 /* TabBarSharedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */; };
 		BCEB51BE24769736001E366D /* AnimationOptions+AnimationCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEB51BD24769736001E366D /* AnimationOptions+AnimationCurve.swift */; };
+		BCF98920247C2C97003DE64F /* DatabaseV1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCF9891E247C2C97003DE64F /* DatabaseV1.xcdatamodeld */; };
+		BCF98923247C2D57003DE64F /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF98922247C2D57003DE64F /* CoreDataService.swift */; };
 		BCFE2C4A2476017600293574 /* P_TabBarChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE2C492476017600293574 /* P_TabBarChildViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC228FD1247DB2A1004C79AF /* Commit+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BC228FD7247DBA8B004C79AF /* GithubCommistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubCommistVC.swift; sourceTree = "<group>"; };
+		BC228FDA247DC6A3004C79AF /* Commit+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BC228FDB247DC6A3004C79AF /* Author+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Author+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BC228FDC247DC6A3004C79AF /* Author+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Author+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BC43B3B4247B15640096427F /* UIView+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Snapshot.swift"; sourceTree = "<group>"; };
 		BC6B96FA2477BE9B00764C6C /* CreditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardView.swift; sourceTree = "<group>"; };
 		BC6B97002477BF0500764C6C /* CreditCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreditCardView.xib; sourceTree = "<group>"; };
@@ -71,6 +83,8 @@
 		BCC8977D2479493B00060CF9 /* P_KeyboardObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = P_KeyboardObservable.swift; sourceTree = "<group>"; };
 		BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSharedView.swift; sourceTree = "<group>"; };
 		BCEB51BD24769736001E366D /* AnimationOptions+AnimationCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimationOptions+AnimationCurve.swift"; sourceTree = "<group>"; };
+		BCF9891F247C2C97003DE64F /* DatabaseV1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DatabaseV1.xcdatamodel; sourceTree = "<group>"; };
+		BCF98922247C2D57003DE64F /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		BCFE2C492476017600293574 /* P_TabBarChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P_TabBarChildViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +99,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC228FD5247DB2A7004C79AF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BC228FE1247DC6C9004C79AF /* Author */,
+				BC228FD6247DB2AF004C79AF /* Commit */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BC228FD6247DB2AF004C79AF /* Commit */ = {
+			isa = PBXGroup;
+			children = (
+				BC228FD1247DB2A1004C79AF /* Commit+CoreDataClass.swift */,
+				BC228FDA247DC6A3004C79AF /* Commit+CoreDataProperties.swift */,
+			);
+			path = Commit;
+			sourceTree = "<group>";
+		};
+		BC228FE1247DC6C9004C79AF /* Author */ = {
+			isa = PBXGroup;
+			children = (
+				BC228FDB247DC6A3004C79AF /* Author+CoreDataClass.swift */,
+				BC228FDC247DC6A3004C79AF /* Author+CoreDataProperties.swift */,
+			);
+			path = Author;
+			sourceTree = "<group>";
+		};
 		BC6B96FC2477BEA200764C6C /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +155,7 @@
 				BC969C1524753BE20070A065 /* AppDelegate.swift */,
 				BC969C1924753BE20070A065 /* ViewController.swift */,
 				BC969C2924753E370070A065 /* TabBarController */,
+				BC228FD7247DBA8B004C79AF /* GithubCommistVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -168,6 +210,7 @@
 		BC969C1424753BE20070A065 /* SwipeTabBarController */ = {
 			isa = PBXGroup;
 			children = (
+				BCF98921247C2D46003DE64F /* CoreData */,
 				BCC8977224793D3B00060CF9 /* Samples */,
 				BC6B96FE2477BEB600764C6C /* Controllers */,
 				BC6B96FC2477BEA200764C6C /* Views */,
@@ -233,6 +276,16 @@
 				BCC8977D2479493B00060CF9 /* P_KeyboardObservable.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		BCF98921247C2D46003DE64F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				BC228FD5247DB2A7004C79AF /* Models */,
+				BCF9891E247C2C97003DE64F /* DatabaseV1.xcdatamodeld */,
+				BCF98922247C2D57003DE64F /* CoreDataService.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,10 +360,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC228FD8247DBA8B004C79AF /* GithubCommistVC.swift in Sources */,
+				BC228FDE247DC6A3004C79AF /* Commit+CoreDataProperties.swift in Sources */,
+				BC228FD3247DB2A1004C79AF /* Commit+CoreDataClass.swift in Sources */,
+				BC228FDF247DC6A3004C79AF /* Author+CoreDataClass.swift in Sources */,
 				BC969C3324753ECB0070A065 /* TabBarController.swift in Sources */,
 				BC6B970A2477C1D900764C6C /* UIButton.swift in Sources */,
 				BCC8977124793C3300060CF9 /* String+App Version.swift in Sources */,
 				BC6B970C2477C1EC00764C6C /* UIImageView.swift in Sources */,
+				BCF98920247C2C97003DE64F /* DatabaseV1.xcdatamodeld in Sources */,
 				BC43B3B5247B15640096427F /* UIView+Snapshot.swift in Sources */,
 				BC969C1A24753BE20070A065 /* ViewController.swift in Sources */,
 				BCC89778247942B800060CF9 /* UIImage+Color.swift in Sources */,
@@ -327,6 +385,8 @@
 				BCFE2C4A2476017600293574 /* P_TabBarChildViewController.swift in Sources */,
 				BC6B970E2477C20400764C6C /* UITextField.swift in Sources */,
 				BC6B97082477C19600764C6C /* CGColor+UIColor.swift in Sources */,
+				BCF98923247C2D57003DE64F /* CoreDataService.swift in Sources */,
+				BC228FE0247DC6A3004C79AF /* Author+CoreDataProperties.swift in Sources */,
 				BCD6B4D82475BBD300731283 /* TabBarSharedView.swift in Sources */,
 				BC6B97152477C7C600764C6C /* P_XibLoadableView.swift in Sources */,
 				BC969C2B24753E460070A065 /* TabBarTransitionAnimator.swift in Sources */,
@@ -530,6 +590,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BCF9891E247C2C97003DE64F /* DatabaseV1.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BCF9891F247C2C97003DE64F /* DatabaseV1.xcdatamodel */,
+			);
+			currentVersion = BCF9891F247C2C97003DE64F /* DatabaseV1.xcdatamodel */;
+			path = DatabaseV1.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BC969C0A24753BE20070A065 /* Project object */;
 }

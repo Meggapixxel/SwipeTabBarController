@@ -49,7 +49,7 @@ final class ViewController1: BaseScrollDelegateViewController {
 
 final class ViewController2: UIViewController {
 
-    private(set) lazy var keyboardDismissGestureRecognizer: UIGestureRecognizer = UITapGestureRecognizer()
+    let keyboardDismissGestureRecognizer: UIGestureRecognizer = UITapGestureRecognizer()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -60,6 +60,7 @@ final class ViewController2: UIViewController {
         super.viewWillDisappear(animated)
         endKeyboardObserving()
     }
+    
 }
 
 extension ViewController2: P_KeyboardObservableWithDismiss {
