@@ -1,6 +1,6 @@
 import Foundation
 
-struct Reflection {
+struct SampleReflection {
     
     static func example() {
         let andy = Person(name: "Vadym Zhydenko", age: 24)
@@ -8,13 +8,13 @@ struct Reflection {
         let andyMirror = Mirror(reflecting: andy)
 
         andyMirror.children.forEach { child in
-            print("\(child.label) = \(child.value)")
+            print("\(child.label ?? "???") = \(child.value)")
         }
     }
     
 }
 
-extension Reflection {
+extension SampleReflection {
     
     struct Person {
         let name: String

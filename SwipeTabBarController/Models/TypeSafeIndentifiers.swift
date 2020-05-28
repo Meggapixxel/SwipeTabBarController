@@ -1,32 +1,32 @@
 import Foundation
 
 // MARK: - Identifier
-protocol P_Identifier {
+public protocol P_Identifier {
     associatedtype KeyType
     var wrappedValue: KeyType { get }
     init(wrappedValue: KeyType)
 }
-protocol P_Identifiable {
+public protocol P_Identifiable {
     associatedtype IdentifierType: P_Identifier
 }
 
-protocol P_IdentifierDecodable: P_Identifier, Decodable where KeyType: Decodable { }
+public protocol P_IdentifierDecodable: P_Identifier, Decodable where KeyType: Decodable { }
 extension P_IdentifierDecodable {
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let wrappedValue = try container.decode(KeyType.self)
         self.init(wrappedValue: wrappedValue)
     }
 }
-protocol P_IdentifiableDecodable: P_Identifiable where IdentifierType: P_IdentifierDecodable {
+public protocol P_IdentifiableDecodable: P_Identifiable where IdentifierType: P_IdentifierDecodable {
     
 }
 
-struct Identifier<T, KeyType: Decodable>: P_IdentifierDecodable {
+public struct Identifier<T, KeyType: Decodable>: P_IdentifierDecodable {
     
-    let wrappedValue: KeyType
+    public let wrappedValue: KeyType
     
-    init(wrappedValue: KeyType) {
+    public init(wrappedValue: KeyType) {
         self.wrappedValue = wrappedValue
     }
     

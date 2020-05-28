@@ -8,11 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		BC228FD3247DB2A1004C79AF /* Commit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC228FD1247DB2A1004C79AF /* Commit+CoreDataClass.swift */; };
-		BC228FD8247DBA8B004C79AF /* GithubCommistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC228FD7247DBA8B004C79AF /* GithubCommistVC.swift */; };
+		BC228FD8247DBA8B004C79AF /* GithubCommitsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC228FD7247DBA8B004C79AF /* GithubCommitsVC.swift */; };
 		BC228FDE247DC6A3004C79AF /* Commit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC228FDA247DC6A3004C79AF /* Commit+CoreDataProperties.swift */; };
 		BC228FDF247DC6A3004C79AF /* Author+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC228FDB247DC6A3004C79AF /* Author+CoreDataClass.swift */; };
 		BC228FE0247DC6A3004C79AF /* Author+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC228FDC247DC6A3004C79AF /* Author+CoreDataProperties.swift */; };
+		BC2E9FE8248082490052D04B /* DatabaseModelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2E9FE7248082490052D04B /* DatabaseModelService.swift */; };
 		BC43B3B5247B15640096427F /* UIView+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC43B3B4247B15640096427F /* UIView+Snapshot.swift */; };
+		BC607C08247EFE760004F9AB /* API_Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC607C07247EFE760004F9AB /* API_Author.swift */; };
+		BC607C0A247EFE8A0004F9AB /* API_Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC607C09247EFE8A0004F9AB /* API_Commit.swift */; };
+		BC6817EA247F0591007FA653 /* DatabaseCommitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6817E9247F0591007FA653 /* DatabaseCommitService.swift */; };
+		BC6817EC247F05A2007FA653 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6817EB247F05A2007FA653 /* DatabaseError.swift */; };
+		BC6817EE247F08C3007FA653 /* DatabaseAuthorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6817ED247F08C3007FA653 /* DatabaseAuthorService.swift */; };
+		BC6817F0247F2370007FA653 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6817EF247F2370007FA653 /* ApiClient.swift */; };
 		BC6B96FB2477BE9B00764C6C /* CreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B96FA2477BE9B00764C6C /* CreditCardView.swift */; };
 		BC6B97012477BF0500764C6C /* CreditCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC6B97002477BF0500764C6C /* CreditCardView.xib */; };
 		BC6B97062477C17400764C6C /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B97052477C17400764C6C /* UIView.swift */; };
@@ -31,6 +38,11 @@
 		BC969C2B24753E460070A065 /* TabBarTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C2A24753E460070A065 /* TabBarTransitionAnimator.swift */; };
 		BC969C2F24753E7A0070A065 /* TabBarInteractiveAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C2E24753E7A0070A065 /* TabBarInteractiveAnimator.swift */; };
 		BC969C3324753ECB0070A065 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C3224753ECB0070A065 /* TabBarController.swift */; };
+		BCADC32E24803FC500599CB5 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADC32D24803FC500599CB5 /* Task.swift */; };
+		BCADC3302480401C00599CB5 /* DatabaseSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADC32F2480401C00599CB5 /* DatabaseSort.swift */; };
+		BCADC3322480479300599CB5 /* Predicates.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADC3312480479300599CB5 /* Predicates.swift */; };
+		BCADC3342480503300599CB5 /* DatabasePredicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADC3332480503300599CB5 /* DatabasePredicate.swift */; };
+		BCADC3362480505700599CB5 /* NSManagedObject+KeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADC3352480505700599CB5 /* NSManagedObject+KeyPath.swift */; };
 		BCBF7A0A24795963007EA76E /* P_ClosureSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBF7A0924795963007EA76E /* P_ClosureSelector.swift */; };
 		BCC654032479AB1300FF0A65 /* UITextFieldRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC654022479AB1300FF0A65 /* UITextFieldRegex.swift */; };
 		BCC8977124793C3300060CF9 /* String+App Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC8977024793C3300060CF9 /* String+App Version.swift */; };
@@ -42,17 +54,24 @@
 		BCD6B4D82475BBD300731283 /* TabBarSharedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */; };
 		BCEB51BE24769736001E366D /* AnimationOptions+AnimationCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEB51BD24769736001E366D /* AnimationOptions+AnimationCurve.swift */; };
 		BCF98920247C2C97003DE64F /* DatabaseV1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCF9891E247C2C97003DE64F /* DatabaseV1.xcdatamodeld */; };
-		BCF98923247C2D57003DE64F /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF98922247C2D57003DE64F /* CoreDataService.swift */; };
+		BCF98923247C2D57003DE64F /* CoreDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF98922247C2D57003DE64F /* CoreDataClient.swift */; };
 		BCFE2C4A2476017600293574 /* P_TabBarChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE2C492476017600293574 /* P_TabBarChildViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BC228FD1247DB2A1004C79AF /* Commit+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataClass.swift"; sourceTree = "<group>"; };
-		BC228FD7247DBA8B004C79AF /* GithubCommistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubCommistVC.swift; sourceTree = "<group>"; };
+		BC228FD7247DBA8B004C79AF /* GithubCommitsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubCommitsVC.swift; sourceTree = "<group>"; };
 		BC228FDA247DC6A3004C79AF /* Commit+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BC228FDB247DC6A3004C79AF /* Author+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Author+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BC228FDC247DC6A3004C79AF /* Author+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Author+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BC2E9FE7248082490052D04B /* DatabaseModelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseModelService.swift; sourceTree = "<group>"; };
 		BC43B3B4247B15640096427F /* UIView+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Snapshot.swift"; sourceTree = "<group>"; };
+		BC607C07247EFE760004F9AB /* API_Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_Author.swift; sourceTree = "<group>"; };
+		BC607C09247EFE8A0004F9AB /* API_Commit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_Commit.swift; sourceTree = "<group>"; };
+		BC6817E9247F0591007FA653 /* DatabaseCommitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseCommitService.swift; sourceTree = "<group>"; };
+		BC6817EB247F05A2007FA653 /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
+		BC6817ED247F08C3007FA653 /* DatabaseAuthorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAuthorService.swift; sourceTree = "<group>"; };
+		BC6817EF247F2370007FA653 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		BC6B96FA2477BE9B00764C6C /* CreditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardView.swift; sourceTree = "<group>"; };
 		BC6B97002477BF0500764C6C /* CreditCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreditCardView.xib; sourceTree = "<group>"; };
 		BC6B97052477C17400764C6C /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -73,6 +92,11 @@
 		BC969C2A24753E460070A065 /* TabBarTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarTransitionAnimator.swift; sourceTree = "<group>"; };
 		BC969C2E24753E7A0070A065 /* TabBarInteractiveAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarInteractiveAnimator.swift; sourceTree = "<group>"; };
 		BC969C3224753ECB0070A065 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		BCADC32D24803FC500599CB5 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		BCADC32F2480401C00599CB5 /* DatabaseSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSort.swift; sourceTree = "<group>"; };
+		BCADC3312480479300599CB5 /* Predicates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predicates.swift; sourceTree = "<group>"; };
+		BCADC3332480503300599CB5 /* DatabasePredicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabasePredicate.swift; sourceTree = "<group>"; };
+		BCADC3352480505700599CB5 /* NSManagedObject+KeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+KeyPath.swift"; sourceTree = "<group>"; };
 		BCBF7A0924795963007EA76E /* P_ClosureSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = P_ClosureSelector.swift; sourceTree = "<group>"; };
 		BCC654022479AB1300FF0A65 /* UITextFieldRegex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldRegex.swift; sourceTree = "<group>"; };
 		BCC8977024793C3300060CF9 /* String+App Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+App Version.swift"; sourceTree = "<group>"; };
@@ -84,7 +108,7 @@
 		BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSharedView.swift; sourceTree = "<group>"; };
 		BCEB51BD24769736001E366D /* AnimationOptions+AnimationCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimationOptions+AnimationCurve.swift"; sourceTree = "<group>"; };
 		BCF9891F247C2C97003DE64F /* DatabaseV1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DatabaseV1.xcdatamodel; sourceTree = "<group>"; };
-		BCF98922247C2D57003DE64F /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		BCF98922247C2D57003DE64F /* CoreDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClient.swift; sourceTree = "<group>"; };
 		BCFE2C492476017600293574 /* P_TabBarChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P_TabBarChildViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +126,7 @@
 		BC228FD5247DB2A7004C79AF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BCC8977524793FD900060CF9 /* TypeSafeIndentifiers.swift */,
 				BC228FE1247DC6C9004C79AF /* Author */,
 				BC228FD6247DB2AF004C79AF /* Commit */,
 			);
@@ -113,6 +138,7 @@
 			children = (
 				BC228FD1247DB2A1004C79AF /* Commit+CoreDataClass.swift */,
 				BC228FDA247DC6A3004C79AF /* Commit+CoreDataProperties.swift */,
+				BC607C09247EFE8A0004F9AB /* API_Commit.swift */,
 			);
 			path = Commit;
 			sourceTree = "<group>";
@@ -122,8 +148,26 @@
 			children = (
 				BC228FDB247DC6A3004C79AF /* Author+CoreDataClass.swift */,
 				BC228FDC247DC6A3004C79AF /* Author+CoreDataProperties.swift */,
+				BC607C07247EFE760004F9AB /* API_Author.swift */,
 			);
 			path = Author;
+			sourceTree = "<group>";
+		};
+		BC607C05247EFE430004F9AB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BC607C0B247EFE9F0004F9AB /* API */,
+				BCF98921247C2D46003DE64F /* Database */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BC607C0B247EFE9F0004F9AB /* API */ = {
+			isa = PBXGroup;
+			children = (
+				BC6817EF247F2370007FA653 /* ApiClient.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		BC6B96FC2477BEA200764C6C /* Views */ = {
@@ -155,7 +199,7 @@
 				BC969C1524753BE20070A065 /* AppDelegate.swift */,
 				BC969C1924753BE20070A065 /* ViewController.swift */,
 				BC969C2924753E370070A065 /* TabBarController */,
-				BC228FD7247DBA8B004C79AF /* GithubCommistVC.swift */,
+				BC228FD7247DBA8B004C79AF /* GithubCommitsVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -210,7 +254,8 @@
 		BC969C1424753BE20070A065 /* SwipeTabBarController */ = {
 			isa = PBXGroup;
 			children = (
-				BCF98921247C2D46003DE64F /* CoreData */,
+				BC228FD5247DB2A7004C79AF /* Models */,
+				BC607C05247EFE430004F9AB /* Services */,
 				BCC8977224793D3B00060CF9 /* Samples */,
 				BC6B96FE2477BEB600764C6C /* Controllers */,
 				BC6B96FC2477BEA200764C6C /* Views */,
@@ -233,6 +278,18 @@
 			path = TabBarController;
 			sourceTree = "<group>";
 		};
+		BCADC3372480506500599CB5 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BCADC3352480505700599CB5 /* NSManagedObject+KeyPath.swift */,
+				BC6817EB247F05A2007FA653 /* DatabaseError.swift */,
+				BCADC32F2480401C00599CB5 /* DatabaseSort.swift */,
+				BCADC3332480503300599CB5 /* DatabasePredicate.swift */,
+				BC2E9FE7248082490052D04B /* DatabaseModelService.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		BCC8976F24793C1C00060CF9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,7 +304,8 @@
 			isa = PBXGroup;
 			children = (
 				BCC8977324793D4A00060CF9 /* Reflection.swift */,
-				BCC8977524793FD900060CF9 /* TypeSafeIndentifiers.swift */,
+				BCADC32D24803FC500599CB5 /* Task.swift */,
+				BCADC3312480479300599CB5 /* Predicates.swift */,
 			);
 			path = Samples;
 			sourceTree = "<group>";
@@ -278,14 +336,16 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		BCF98921247C2D46003DE64F /* CoreData */ = {
+		BCF98921247C2D46003DE64F /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				BC228FD5247DB2A7004C79AF /* Models */,
+				BCADC3372480506500599CB5 /* Common */,
 				BCF9891E247C2C97003DE64F /* DatabaseV1.xcdatamodeld */,
-				BCF98922247C2D57003DE64F /* CoreDataService.swift */,
+				BCF98922247C2D57003DE64F /* CoreDataClient.swift */,
+				BC6817E9247F0591007FA653 /* DatabaseCommitService.swift */,
+				BC6817ED247F08C3007FA653 /* DatabaseAuthorService.swift */,
 			);
-			path = CoreData;
+			path = Database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,12 +420,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC228FD8247DBA8B004C79AF /* GithubCommistVC.swift in Sources */,
+				BC228FD8247DBA8B004C79AF /* GithubCommitsVC.swift in Sources */,
+				BCADC3342480503300599CB5 /* DatabasePredicate.swift in Sources */,
 				BC228FDE247DC6A3004C79AF /* Commit+CoreDataProperties.swift in Sources */,
 				BC228FD3247DB2A1004C79AF /* Commit+CoreDataClass.swift in Sources */,
 				BC228FDF247DC6A3004C79AF /* Author+CoreDataClass.swift in Sources */,
 				BC969C3324753ECB0070A065 /* TabBarController.swift in Sources */,
+				BCADC3362480505700599CB5 /* NSManagedObject+KeyPath.swift in Sources */,
+				BC607C0A247EFE8A0004F9AB /* API_Commit.swift in Sources */,
 				BC6B970A2477C1D900764C6C /* UIButton.swift in Sources */,
+				BC6817EC247F05A2007FA653 /* DatabaseError.swift in Sources */,
+				BC6817F0247F2370007FA653 /* ApiClient.swift in Sources */,
 				BCC8977124793C3300060CF9 /* String+App Version.swift in Sources */,
 				BC6B970C2477C1EC00764C6C /* UIImageView.swift in Sources */,
 				BCF98920247C2C97003DE64F /* DatabaseV1.xcdatamodeld in Sources */,
@@ -374,21 +439,28 @@
 				BCC89778247942B800060CF9 /* UIImage+Color.swift in Sources */,
 				BC969C1624753BE20070A065 /* AppDelegate.swift in Sources */,
 				BCC8977424793D4A00060CF9 /* Reflection.swift in Sources */,
+				BC2E9FE8248082490052D04B /* DatabaseModelService.swift in Sources */,
 				BCC654032479AB1300FF0A65 /* UITextFieldRegex.swift in Sources */,
 				BC6B97062477C17400764C6C /* UIView.swift in Sources */,
 				BCC8977E2479493B00060CF9 /* P_KeyboardObservable.swift in Sources */,
 				BC6B97102477C24E00764C6C /* UILabel.swift in Sources */,
 				BC969C2F24753E7A0070A065 /* TabBarInteractiveAnimator.swift in Sources */,
+				BC6817EE247F08C3007FA653 /* DatabaseAuthorService.swift in Sources */,
 				BCEB51BE24769736001E366D /* AnimationOptions+AnimationCurve.swift in Sources */,
 				BCC8977B247942E200060CF9 /* UIImage+CornerRadius.swift in Sources */,
 				BC6B96FB2477BE9B00764C6C /* CreditCardView.swift in Sources */,
 				BCFE2C4A2476017600293574 /* P_TabBarChildViewController.swift in Sources */,
 				BC6B970E2477C20400764C6C /* UITextField.swift in Sources */,
 				BC6B97082477C19600764C6C /* CGColor+UIColor.swift in Sources */,
-				BCF98923247C2D57003DE64F /* CoreDataService.swift in Sources */,
+				BCADC3322480479300599CB5 /* Predicates.swift in Sources */,
+				BC607C08247EFE760004F9AB /* API_Author.swift in Sources */,
+				BCF98923247C2D57003DE64F /* CoreDataClient.swift in Sources */,
 				BC228FE0247DC6A3004C79AF /* Author+CoreDataProperties.swift in Sources */,
+				BCADC32E24803FC500599CB5 /* Task.swift in Sources */,
 				BCD6B4D82475BBD300731283 /* TabBarSharedView.swift in Sources */,
+				BCADC3302480401C00599CB5 /* DatabaseSort.swift in Sources */,
 				BC6B97152477C7C600764C6C /* P_XibLoadableView.swift in Sources */,
+				BC6817EA247F0591007FA653 /* DatabaseCommitService.swift in Sources */,
 				BC969C2B24753E460070A065 /* TabBarTransitionAnimator.swift in Sources */,
 				BCC8977624793FD900060CF9 /* TypeSafeIndentifiers.swift in Sources */,
 				BCBF7A0A24795963007EA76E /* P_ClosureSelector.swift in Sources */,
