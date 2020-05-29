@@ -1,5 +1,5 @@
 //
-//  API_Commit.swift
+//  ApiCommit.swift
 //  SwipeTabBarController
 //
 //  Created by Vadim Zhydenko on 27.05.2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct API_Commit: Decodable {
+struct ApiCommit: Decodable {
     
     enum RootKeys: String, CodingKey {
         case sha, commit, url = "html_url"
@@ -29,7 +29,7 @@ struct API_Commit: Decodable {
     let message: String
     let sha: String
     let url: String
-    let author: API_Author
+    let author: ApiAuthor
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: RootKeys.self)
@@ -42,7 +42,7 @@ struct API_Commit: Decodable {
         let committerContainer = try commitContainer.nestedContainer(keyedBy: CommitKeys.CommitterKeys.self, forKey: .committer)
         date = try committerContainer.decode(Date.self, forKey: .date)
         
-        author = try commitContainer.decode(API_Author.self, forKey: .committer)
+        author = try commitContainer.decode(ApiAuthor.self, forKey: .committer)
     }
     
 }

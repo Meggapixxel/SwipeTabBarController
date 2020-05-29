@@ -12,7 +12,7 @@ import Foundation
 protocol P_DatabaseCommitService {
     
     typealias Model = Commit
-    typealias ApiModel = API_Commit
+    typealias ApiModel = ApiCommit
     
     func getAll<T>(
         sort: DatabaseSort<Model, T>,

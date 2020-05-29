@@ -14,7 +14,7 @@ enum ApiError: Error {
 
 class ApiClient {
     
-    func fetchCommits(perPage: Int = 100, sinceDate: Date? = nil, _ completion: @escaping (Result<[API_Commit], ApiError>) -> Void) {
+    func fetchCommits(perPage: Int = 100, sinceDate: Date? = nil, _ completion: @escaping (Result<[ApiCommit], ApiError>) -> Void) {
         var urlString = "https://api.github.com/repos/apple/swift/commits?per_page=\(perPage)"
         if let sinceDate = sinceDate {
             let formattedDate = ISO8601DateFormatter().string(from: sinceDate.addingTimeInterval(1))
@@ -23,7 +23,7 @@ class ApiClient {
         guard let url = URL(string: urlString) else { return completion(.failure(.invalidUrl)) }
         
         DispatchQueue.global().async {
-            func complete(_ result: Result<[API_Commit], ApiError>) {
+            func complete(_ result: Result<[ApiCommit], ApiError>) {
                 DispatchQueue.main.async {
                     completion(result)
                 }
@@ -39,9 +39,9 @@ class ApiClient {
             let jsonDecoder = JSONDecoder()
             jsonDecoder.dateDecodingStrategy = .iso8601
             
-            let apiCommits: [API_Commit]
+            let apiCommits: [ApiCommit]
             do {
-                apiCommits = try jsonDecoder.decode([API_Commit].self, from: data)
+                apiCommits = try jsonDecoder.decode([ApiCommit].self, from: data)
             } catch {
                 return complete(.failure(.some(error)))
             }

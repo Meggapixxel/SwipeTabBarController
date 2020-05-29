@@ -11,7 +11,7 @@ import Foundation
 protocol P_DatabaseAuthorService {
     
     typealias Model = Author
-    typealias ApiModel = API_Author
+    typealias ApiModel = ApiAuthor
     
     func get(name: String, _ completion: @escaping (Result<Model, DatabaseError>) -> Void)
     

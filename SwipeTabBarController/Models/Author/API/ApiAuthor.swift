@@ -1,5 +1,5 @@
 //
-//  API_Author.swift
+//  ApiAuthor.swift
 //  SwipeTabBarController
 //
 //  Created by Vadim Zhydenko on 27.05.2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct API_Author: Decodable {
+struct ApiAuthor: Decodable {
     
     let name: String
     let email: String
