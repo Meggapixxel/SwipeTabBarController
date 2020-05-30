@@ -1,5 +1,5 @@
 //
-//  Author+CoreDataProperties.swift
+//  AuthorMO+CoreDataProperties.swift
 //  SwipeTabBarController
 //
 //  Created by Vadim Zhydenko on 27.05.2020.
@@ -7,14 +7,9 @@
 //
 //
 
-import Foundation
 import CoreData
 
-extension Author {
-
-    @nonobjc public class func createFetchRequest() -> NSFetchRequest<Author> {
-        return NSFetchRequest<Author>(entityName: "Author")
-    }
+extension AuthorMO {
 
     @NSManaged public var name: String
     @NSManaged public var email: String
@@ -23,13 +18,13 @@ extension Author {
 }
 
 // MARK: Generated accessors for commits
-extension Author {
+extension AuthorMO {
 
     @objc(addCommitsObject:)
-    @NSManaged public func addToCommits(_ value: Commit)
+    @NSManaged public func addToCommits(_ value: CommitMO)
 
     @objc(removeCommitsObject:)
-    @NSManaged public func removeFromCommits(_ value: Commit)
+    @NSManaged public func removeFromCommits(_ value: CommitMO)
 
     @objc(addCommits:)
     @NSManaged public func addToCommits(_ values: NSSet)

@@ -8,66 +8,57 @@
 
 import Foundation
 
-protocol P_DatabaseAuthorService {
+protocol P_DatabaseAuthorService: P_DatabaseModelService {
     
-    typealias Model = Author
-    typealias ApiModel = ApiAuthor
+    typealias MO = AuthorMO
+    typealias NO = AuthorNO
     
-    func get(name: String, _ completion: @escaping (Result<Model, DatabaseError>) -> Void)
+    func get(name: String, _ completion: @escaping (Result<MO?, DatabaseError>) -> Void)
     
-    func save(apiModel: ApiModel) throws -> Model
+    func save(networkObject: NO) throws -> MO
     
-    func create(apiModel: ApiModel) -> Model
+    func create(networkObject: NO) -> MO
     
 }
 
-class DatabaseAuthorService: P_DatabaseAuthorService {
+final class DatabaseAuthorService: P_DatabaseAuthorService {
     
     private let client: P_CoreDataClient
-    private let fetchQueue: DispatchQueue
+    private let operationQueue: DispatchQueue
     private let completionQueue: DispatchQueue
     
-    init(client: P_CoreDataClient, fetchQueue: DispatchQueue = .global(), completionQueue: DispatchQueue = .main) {
+    init(client: P_CoreDataClient, fetchQueue: DispatchQueue, completionQueue: DispatchQueue) {
         self.client = client
-        self.fetchQueue = fetchQueue
+        self.operationQueue = fetchQueue
         self.completionQueue = completionQueue
     }
     
-    func get(name: String, _ completion: @escaping (Result<Model, DatabaseError>) -> Void) {
-        fetchQueue.async {
-            let request = Model.createFetchRequest()
-            request.predicate = DatabasePredicate<Model>.equals(keyPath: \.name, value: name).predicate
-            
-            func finish(result: Result<Model, DatabaseError>) {
-                self.completionQueue.async {
-                    completion(result)
-                }
-            }
-            
-            let models: [Model]
-            do {
-                models = try self.client.fetch(request: request)
-            } catch {
-                return finish(result: .failure(.some(error)))
-            }
-            if let model = models.first {
-                finish(result: .success(model))
-            } else {
-                finish(result: .failure(.notExist))
+    func get(name: String, _ completion: @escaping (Result<MO?, DatabaseError>) -> Void) {
+        managedObjects(
+            client: client,
+            operationQueue: operationQueue,
+            completionQueue: completionQueue,
+            sort: nil,
+            predicate: DatabasePredicate<MO>.equals(keyPath: \.name, value: name),
+            options: [.first]
+        ) { (result: Result<[MO], DatabaseError>) in
+            switch result {
+            case .success(let models): completion(.success(models.first))
+            case .failure(let error): completion(.failure(error))
             }
         }
     }
     
-    func save(apiModel: ApiModel) throws -> Model {
-        let model = self.create(apiModel: apiModel)
+    func save(networkObject: NO) throws -> MO {
+        let model = self.create(networkObject: networkObject)
         try client.insertAndSave(model: model)
         return model
     }
     
-    func create(apiModel: ApiModel) -> Model {
-        let model = client.model(type: Author.self)
-        model.name = apiModel.name
-        model.email = apiModel.email
+    func create(networkObject: NO) -> MO {
+        let model = client.model(type: AuthorMO.self)
+        model.name = networkObject.name
+        model.email = networkObject.email
         return model
     }
     

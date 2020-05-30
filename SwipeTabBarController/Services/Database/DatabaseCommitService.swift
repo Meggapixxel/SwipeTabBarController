@@ -8,73 +8,83 @@
 
 import Foundation
 
-
-protocol P_DatabaseCommitService {
+protocol P_DatabaseCommitService: P_DatabaseModelService {
     
-    typealias Model = Commit
-    typealias ApiModel = ApiCommit
+    typealias MO = CommitMO
+    typealias NO = CommitNO
     
-    func getAll<T>(
-        sort: DatabaseSort<Model, T>,
-        predicate: DatabasePredicate<Model>?,
-        _ completion: @escaping (Result<[Model], DatabaseError>) -> Void
+    func get<T>(
+        sort: DatabaseSort<MO, T>,
+        predicate: DatabasePredicate<MO>?,
+        options: DatabaseFetchOptions,
+        _ completion: @escaping (Result<[MO], DatabaseError>) -> Void
     )
     
-    func save(apiModel: ApiModel, _ completion: @escaping (Result<Model, DatabaseError>) -> Void)
-    func save(apiModels: [ApiModel], _ completion: @escaping (Result<[Model], DatabaseError>) -> Void)
+    func save(networkObject: NO, _ completion: @escaping (Result<MO, DatabaseError>) -> Void)
+    func save(apiModels: [NO], _ completion: @escaping (Result<[MO], DatabaseError>) -> Void)
     
-    func delete(model: Model) throws
+    func delete(model: MO) throws
     
-    func latest() throws -> Model
+    func latest(_ completion: @escaping (Result<MO?, DatabaseError>) -> Void)
     
-    func create(apiModel: ApiModel) -> Model
+    func create(networkObject: NO) -> MO
+    
+}
+extension P_DatabaseCommitService {
+    
+    func get<T>(
+        sort: DatabaseSort<MO, T>,
+        predicate: DatabasePredicate<MO>?,
+        _ completion: @escaping (Result<[MO], DatabaseError>) -> Void
+    ) {
+        get(
+            sort: sort,
+            predicate: predicate,
+            options: [],
+            completion
+        )
+    }
     
 }
 
-class DatabaseCommitService: P_DatabaseCommitService {
+final class DatabaseCommitService<DatabaseAuthorService: P_DatabaseAuthorService>: P_DatabaseCommitService {
     
     private let client: P_CoreDataClient
     private let operationQueue: DispatchQueue
     private let completionQueue: DispatchQueue
+    private let authorService: DatabaseAuthorService
     
-    private let authorService: P_DatabaseAuthorService
-    
-    init(client: P_CoreDataClient, authorService: P_DatabaseAuthorService, fetchQueue: DispatchQueue = .global(), completionQueue: DispatchQueue = .main) {
+    init(client: P_CoreDataClient, fetchQueue: DispatchQueue, completionQueue: DispatchQueue) {
         self.client = client
         self.operationQueue = fetchQueue
         self.completionQueue = completionQueue
-        self.authorService = authorService
+        self.authorService = DatabaseAuthorService(client: client, fetchQueue: fetchQueue, completionQueue: completionQueue)
     }
     
-    func getAll<T>(sort: DatabaseSort<Model, T>, predicate: DatabasePredicate<Model>?, _ completion: @escaping (Result<[Model], DatabaseError>) -> Void) {
-        let request = Model.createFetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: sort.key, ascending: sort.isAscending)
-        request.sortDescriptors = [sortDescriptor]
-        request.predicate = predicate?.predicate
-        operationQueue.async {
-            
-            func finish(result: Result<[Model], DatabaseError>) {
-                self.completionQueue.async {
-                    completion(result)
-                }
-            }
-            
-            do {
-                let commits = try self.client.fetch(request: request)
-                finish(result: .success(commits))
-            } catch {
-                finish(result: .failure(.some(error)))
-            }
-        }
+    func get<T>(
+        sort: DatabaseSort<MO, T>,
+        predicate: DatabasePredicate<MO>?,
+        options: DatabaseFetchOptions,
+        _ completion: @escaping (Result<[MO], DatabaseError>) -> Void
+    ) {
+        managedObjects(
+            client: client,
+            operationQueue: operationQueue,
+            completionQueue: completionQueue,
+            sort: sort,
+            predicate: predicate,
+            options: options,
+            completion
+        )
     }
     
-    func save(apiModel: ApiModel, _ completion: @escaping (Result<Model, DatabaseError>) -> Void) {
+    func save(networkObject: NO, _ completion: @escaping (Result<MO, DatabaseError>) -> Void) {
         operationQueue.async {
-            let model = self.create(apiModel: apiModel)
+            let model = self.create(networkObject: networkObject)
             self.client.insertIfNeeded(model: model.author)
             self.client.insert(model: model)
             
-            func finish(result: Result<Model, DatabaseError>) {
+            func finish(result: Result<MO, DatabaseError>) {
                 self.completionQueue.async {
                     completion(result)
                 }
@@ -89,18 +99,18 @@ class DatabaseCommitService: P_DatabaseCommitService {
         }
     }
     
-    func save(apiModels: [ApiModel], _ completion: @escaping (Result<[Model], DatabaseError>) -> Void) {
+    func save(apiModels: [NO], _ completion: @escaping (Result<[MO], DatabaseError>) -> Void) {
         operationQueue.async {
-            var results = [Model]()
+            var results = [MO]()
             
             apiModels.enumerated().forEach { (index, apiModel) in
-                let model = self.create(apiModel: apiModel)
+                let model = self.create(networkObject: apiModel)
                 self.client.insertIfNeeded(model: model.author)
                 self.client.insert(model: model)
                 results.append(model)
             }
             
-            func finish(result: Result<[Model], DatabaseError>) {
+            func finish(result: Result<[MO], DatabaseError>) {
                 self.completionQueue.async {
                     completion(result)
                 }
@@ -115,30 +125,33 @@ class DatabaseCommitService: P_DatabaseCommitService {
         }
     }
     
-    func delete(model: Model) throws {
+    func delete(model: MO) throws {
         try client.deleteAndSave(model: model)
     }
     
-    func latest() throws -> Model {
-        let request = Commit.createFetchRequest()
-        let databaseSort = DatabaseSort<Model, Date>.desc(\.date)
-        let sort = NSSortDescriptor(key: databaseSort.key, ascending: databaseSort.isAscending)
-        request.sortDescriptors = [sort]
-        request.fetchLimit = 1
-        let models = try client.fetch(request: request)
-        guard let model = models.first else {
-            throw DatabaseError.notExist
+    func latest(_ completion: @escaping (Result<MO?, DatabaseError>) -> Void) {
+        managedObjects(
+            client: client,
+            operationQueue: operationQueue,
+            completionQueue: completionQueue,
+            sort: DatabaseSort<MO, Date>.desc(\.date),
+            predicate: nil,
+            options: [.first]
+        ) { (result: Result<[MO], DatabaseError>) in
+            switch result {
+            case .success(let models): completion(.success(models.first))
+            case .failure(let error): completion(.failure(error))
+            }
         }
-        return model
     }
     
-    func create(apiModel: ApiModel) -> Model {
-        let model = client.model(type: Commit.self)
-        model.message = apiModel.message
-        model.sha = apiModel.sha
-        model.url = apiModel.url
-        model.date = apiModel.date
-        model.author = authorService.create(apiModel: apiModel.author)
+    func create(networkObject: NO) -> MO {
+        let model = client.model(type: CommitMO.self)
+        model.message = networkObject.message
+        model.sha = networkObject.sha
+        model.url = networkObject.url
+        model.date = networkObject.date
+        model.author = authorService.create(networkObject: networkObject.author)
         return model
     }
     

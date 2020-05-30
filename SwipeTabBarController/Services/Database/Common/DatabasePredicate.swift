@@ -10,7 +10,10 @@
 
 import CoreData
 
-class DatabasePredicate<Element: NSManagedObject> {
+protocol P_DatabasePredicate {
+    var predicate: NSPredicate { get }
+}
+class DatabasePredicate<Element: NSManagedObject>: P_DatabasePredicate {
 
     private(set) var predicate: NSPredicate
     

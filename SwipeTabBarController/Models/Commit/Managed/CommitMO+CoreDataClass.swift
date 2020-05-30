@@ -1,5 +1,5 @@
 //
-//  Commit+CoreDataClass.swift
+//  CommitMO+CoreDataClass.swift
 //  SwipeTabBarController
 //
 //  Created by Vadim Zhydenko on 26.05.2020.
@@ -7,10 +7,9 @@
 //
 //
 
-import Foundation
 import CoreData
 
 @objc(Commit)
-public class Commit: NSManagedObject {
+final public class CommitMO: NSManagedObject {
 
 }

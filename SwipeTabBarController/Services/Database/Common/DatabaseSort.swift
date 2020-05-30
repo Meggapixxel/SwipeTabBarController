@@ -8,10 +8,20 @@
 
 import CoreData
 
-enum DatabaseSort<Element: NSManagedObject, T: Comparable> {
+protocol P_DatabaseSort {
+    var descriptor: NSSortDescriptor { get }
+}
+
+enum DatabaseSort<Element: NSManagedObject, T: Comparable>: P_DatabaseSort {
     
     case asc(KeyPath<Element, T>)
     case desc(KeyPath<Element, T>)
+    
+    var descriptor: NSSortDescriptor { NSSortDescriptor(key: key, ascending: isAscending) }
+    
+}
+
+private extension DatabaseSort {
     
     var key: String {
         switch self {
@@ -24,13 +34,6 @@ enum DatabaseSort<Element: NSManagedObject, T: Comparable> {
         switch self {
         case .asc: return true
         case .desc: return false
-        }
-    }
-    
-    var isDescending: Bool {
-        switch self {
-        case .asc: return false
-        case .desc: return true
         }
     }
     
