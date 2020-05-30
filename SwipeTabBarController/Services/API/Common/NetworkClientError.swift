@@ -1,5 +1,5 @@
 //
-//  AuthorMO+P_DatabaseModel.swift
+//  NetworkClientError.swift
 //  SwipeTabBarController
 //
 //  Created by Vadim Zhydenko on 30.05.2020.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-extension AuthorMO: P_DatabaseModel {
-    
+enum NetworkClientError: Error {
+    case some(Error), invalidUrl
 }

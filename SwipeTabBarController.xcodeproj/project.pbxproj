@@ -14,13 +14,14 @@
 		BC228FDF247DC6A3004C79AF /* AuthorMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC228FDB247DC6A3004C79AF /* AuthorMO+CoreDataClass.swift */; };
 		BC228FE0247DC6A3004C79AF /* AuthorMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC228FDC247DC6A3004C79AF /* AuthorMO+CoreDataProperties.swift */; };
 		BC2E9FE8248082490052D04B /* P_DatabaseModelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2E9FE7248082490052D04B /* P_DatabaseModelService.swift */; };
+		BC311B8B2482971E00A2E20C /* NetworkCommitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC311B8A2482971E00A2E20C /* NetworkCommitService.swift */; };
 		BC43B3B5247B15640096427F /* UIView+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC43B3B4247B15640096427F /* UIView+Snapshot.swift */; };
 		BC607C08247EFE760004F9AB /* AuthorNO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC607C07247EFE760004F9AB /* AuthorNO.swift */; };
 		BC607C0A247EFE8A0004F9AB /* CommitNO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC607C09247EFE8A0004F9AB /* CommitNO.swift */; };
 		BC6817EA247F0591007FA653 /* DatabaseCommitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6817E9247F0591007FA653 /* DatabaseCommitService.swift */; };
 		BC6817EC247F05A2007FA653 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6817EB247F05A2007FA653 /* DatabaseError.swift */; };
 		BC6817EE247F08C3007FA653 /* DatabaseAuthorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6817ED247F08C3007FA653 /* DatabaseAuthorService.swift */; };
-		BC6817F0247F2370007FA653 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6817EF247F2370007FA653 /* ApiClient.swift */; };
+		BC6817F0247F2370007FA653 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6817EF247F2370007FA653 /* NetworkClient.swift */; };
 		BC6B96FB2477BE9B00764C6C /* CreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B96FA2477BE9B00764C6C /* CreditCardView.swift */; };
 		BC6B97012477BF0500764C6C /* CreditCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC6B97002477BF0500764C6C /* CreditCardView.xib */; };
 		BC6B97062477C17400764C6C /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B97052477C17400764C6C /* UIView.swift */; };
@@ -35,6 +36,8 @@
 		BC75B27A24827ADD008DD933 /* AuthorMO+P_DatabaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC75B27924827ADD008DD933 /* AuthorMO+P_DatabaseModel.swift */; };
 		BC75B27C24827AF9008DD933 /* CommitMO+P_DatabaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC75B27B24827AF9008DD933 /* CommitMO+P_DatabaseModel.swift */; };
 		BC75B27E2482803A008DD933 /* DatabaseFetchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC75B27D2482803A008DD933 /* DatabaseFetchOptions.swift */; };
+		BC75B28024828CA5008DD933 /* MultiFormDataRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC75B27F24828CA5008DD933 /* MultiFormDataRequestConvertible.swift */; };
+		BC75B28224828CCD008DD933 /* NetworkClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC75B28124828CCD008DD933 /* NetworkClientError.swift */; };
 		BC969C1624753BE20070A065 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C1524753BE20070A065 /* AppDelegate.swift */; };
 		BC969C1A24753BE20070A065 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C1924753BE20070A065 /* ViewController.swift */; };
 		BC969C1D24753BE20070A065 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC969C1B24753BE20070A065 /* Main.storyboard */; };
@@ -59,7 +62,7 @@
 		BCD6B4D82475BBD300731283 /* TabBarSharedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */; };
 		BCEB51BE24769736001E366D /* AnimationOptions+AnimationCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEB51BD24769736001E366D /* AnimationOptions+AnimationCurve.swift */; };
 		BCF98920247C2C97003DE64F /* DatabaseV1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCF9891E247C2C97003DE64F /* DatabaseV1.xcdatamodeld */; };
-		BCF98923247C2D57003DE64F /* CoreDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF98922247C2D57003DE64F /* CoreDataClient.swift */; };
+		BCF98923247C2D57003DE64F /* DatabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF98922247C2D57003DE64F /* DatabaseClient.swift */; };
 		BCFE2C4A2476017600293574 /* P_TabBarChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE2C492476017600293574 /* P_TabBarChildViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,13 +73,14 @@
 		BC228FDB247DC6A3004C79AF /* AuthorMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthorMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BC228FDC247DC6A3004C79AF /* AuthorMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthorMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BC2E9FE7248082490052D04B /* P_DatabaseModelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P_DatabaseModelService.swift; sourceTree = "<group>"; };
+		BC311B8A2482971E00A2E20C /* NetworkCommitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCommitService.swift; sourceTree = "<group>"; };
 		BC43B3B4247B15640096427F /* UIView+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Snapshot.swift"; sourceTree = "<group>"; };
 		BC607C07247EFE760004F9AB /* AuthorNO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorNO.swift; sourceTree = "<group>"; };
 		BC607C09247EFE8A0004F9AB /* CommitNO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitNO.swift; sourceTree = "<group>"; };
 		BC6817E9247F0591007FA653 /* DatabaseCommitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseCommitService.swift; sourceTree = "<group>"; };
 		BC6817EB247F05A2007FA653 /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		BC6817ED247F08C3007FA653 /* DatabaseAuthorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAuthorService.swift; sourceTree = "<group>"; };
-		BC6817EF247F2370007FA653 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		BC6817EF247F2370007FA653 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		BC6B96FA2477BE9B00764C6C /* CreditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardView.swift; sourceTree = "<group>"; };
 		BC6B97002477BF0500764C6C /* CreditCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreditCardView.xib; sourceTree = "<group>"; };
 		BC6B97052477C17400764C6C /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 		BC75B27924827ADD008DD933 /* AuthorMO+P_DatabaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthorMO+P_DatabaseModel.swift"; sourceTree = "<group>"; };
 		BC75B27B24827AF9008DD933 /* CommitMO+P_DatabaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommitMO+P_DatabaseModel.swift"; sourceTree = "<group>"; };
 		BC75B27D2482803A008DD933 /* DatabaseFetchOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseFetchOptions.swift; sourceTree = "<group>"; };
+		BC75B27F24828CA5008DD933 /* MultiFormDataRequestConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiFormDataRequestConvertible.swift; sourceTree = "<group>"; };
+		BC75B28124828CCD008DD933 /* NetworkClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientError.swift; sourceTree = "<group>"; };
 		BC969C1224753BE20070A065 /* SwipeTabBarController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeTabBarController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC969C1524753BE20070A065 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC969C1924753BE20070A065 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,7 +123,7 @@
 		BCD6B4D72475BBD300731283 /* TabBarSharedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSharedView.swift; sourceTree = "<group>"; };
 		BCEB51BD24769736001E366D /* AnimationOptions+AnimationCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimationOptions+AnimationCurve.swift"; sourceTree = "<group>"; };
 		BCF9891F247C2C97003DE64F /* DatabaseV1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DatabaseV1.xcdatamodel; sourceTree = "<group>"; };
-		BCF98922247C2D57003DE64F /* CoreDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClient.swift; sourceTree = "<group>"; };
+		BCF98922247C2D57003DE64F /* DatabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseClient.swift; sourceTree = "<group>"; };
 		BCFE2C492476017600293574 /* P_TabBarChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P_TabBarChildViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,64 +143,64 @@
 			isa = PBXGroup;
 			children = (
 				BCC8977524793FD900060CF9 /* TypeSafeIndentifiers.swift */,
-				BC228FE1247DC6C9004C79AF /* Author */,
-				BC228FD6247DB2AF004C79AF /* Commit */,
+				BC311B8D2482992500A2E20C /* Database */,
+				BC311B8C2482991D00A2E20C /* Network */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		BC228FD6247DB2AF004C79AF /* Commit */ = {
+		BC311B8C2482991D00A2E20C /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				BC505C782480D4750064128A /* Network */,
-				BC505C772480D46C0064128A /* Managed */,
+				BC311B912482994F00A2E20C /* Commit */,
+				BC311B8F2482993800A2E20C /* Author */,
 			);
-			path = Commit;
+			path = Network;
 			sourceTree = "<group>";
 		};
-		BC228FE1247DC6C9004C79AF /* Author */ = {
+		BC311B8D2482992500A2E20C /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				BC505C792480D48A0064128A /* Network */,
-				BC505C762480D45F0064128A /* Managed */,
+				BC311B902482994B00A2E20C /* Commit */,
+				BC311B8E2482993000A2E20C /* Author */,
 			);
-			path = Author;
+			path = Database;
 			sourceTree = "<group>";
 		};
-		BC505C762480D45F0064128A /* Managed */ = {
+		BC311B8E2482993000A2E20C /* Author */ = {
 			isa = PBXGroup;
 			children = (
 				BC228FDB247DC6A3004C79AF /* AuthorMO+CoreDataClass.swift */,
 				BC228FDC247DC6A3004C79AF /* AuthorMO+CoreDataProperties.swift */,
 				BC75B27924827ADD008DD933 /* AuthorMO+P_DatabaseModel.swift */,
 			);
-			path = Managed;
+			path = Author;
 			sourceTree = "<group>";
 		};
-		BC505C772480D46C0064128A /* Managed */ = {
+		BC311B8F2482993800A2E20C /* Author */ = {
+			isa = PBXGroup;
+			children = (
+				BC607C07247EFE760004F9AB /* AuthorNO.swift */,
+			);
+			path = Author;
+			sourceTree = "<group>";
+		};
+		BC311B902482994B00A2E20C /* Commit */ = {
 			isa = PBXGroup;
 			children = (
 				BC228FD1247DB2A1004C79AF /* CommitMO+CoreDataClass.swift */,
 				BC228FDA247DC6A3004C79AF /* CommitMO+CoreDataProperties.swift */,
 				BC75B27B24827AF9008DD933 /* CommitMO+P_DatabaseModel.swift */,
 			);
-			path = Managed;
+			path = Commit;
 			sourceTree = "<group>";
 		};
-		BC505C782480D4750064128A /* Network */ = {
+		BC311B912482994F00A2E20C /* Commit */ = {
 			isa = PBXGroup;
 			children = (
 				BC607C09247EFE8A0004F9AB /* CommitNO.swift */,
 			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		BC505C792480D48A0064128A /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				BC607C07247EFE760004F9AB /* AuthorNO.swift */,
-			);
-			path = Network;
+			path = Commit;
 			sourceTree = "<group>";
 		};
 		BC607C05247EFE430004F9AB /* Services */ = {
@@ -209,7 +215,9 @@
 		BC607C0B247EFE9F0004F9AB /* API */ = {
 			isa = PBXGroup;
 			children = (
-				BC6817EF247F2370007FA653 /* ApiClient.swift */,
+				BC75B28324828CD1008DD933 /* Common */,
+				BC6817EF247F2370007FA653 /* NetworkClient.swift */,
+				BC311B8A2482971E00A2E20C /* NetworkCommitService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -279,6 +287,15 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		BC75B28324828CD1008DD933 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BC75B28124828CCD008DD933 /* NetworkClientError.swift */,
+				BC75B27F24828CA5008DD933 /* MultiFormDataRequestConvertible.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		BC969C0924753BE20070A065 = {
 			isa = PBXGroup;
 			children = (
@@ -298,9 +315,9 @@
 		BC969C1424753BE20070A065 /* SwipeTabBarController */ = {
 			isa = PBXGroup;
 			children = (
-				BC228FD5247DB2A7004C79AF /* Models */,
-				BC607C05247EFE430004F9AB /* Services */,
 				BCC8977224793D3B00060CF9 /* Samples */,
+				BC607C05247EFE430004F9AB /* Services */,
+				BC228FD5247DB2A7004C79AF /* Models */,
 				BC6B96FE2477BEB600764C6C /* Controllers */,
 				BC6B96FC2477BEA200764C6C /* Views */,
 				BCC8977F2479495200060CF9 /* Protocols */,
@@ -387,7 +404,7 @@
 			children = (
 				BCADC3372480506500599CB5 /* Common */,
 				BCF9891E247C2C97003DE64F /* DatabaseV1.xcdatamodeld */,
-				BCF98922247C2D57003DE64F /* CoreDataClient.swift */,
+				BCF98922247C2D57003DE64F /* DatabaseClient.swift */,
 				BC6817E9247F0591007FA653 /* DatabaseCommitService.swift */,
 				BC6817ED247F08C3007FA653 /* DatabaseAuthorService.swift */,
 			);
@@ -483,16 +500,18 @@
 				BC607C0A247EFE8A0004F9AB /* CommitNO.swift in Sources */,
 				BC6B970A2477C1D900764C6C /* UIButton.swift in Sources */,
 				BC6817EC247F05A2007FA653 /* DatabaseError.swift in Sources */,
-				BC6817F0247F2370007FA653 /* ApiClient.swift in Sources */,
+				BC6817F0247F2370007FA653 /* NetworkClient.swift in Sources */,
 				BCC8977124793C3300060CF9 /* String+App Version.swift in Sources */,
 				BC6B970C2477C1EC00764C6C /* UIImageView.swift in Sources */,
 				BCF98920247C2C97003DE64F /* DatabaseV1.xcdatamodeld in Sources */,
 				BC43B3B5247B15640096427F /* UIView+Snapshot.swift in Sources */,
 				BC969C1A24753BE20070A065 /* ViewController.swift in Sources */,
+				BC75B28024828CA5008DD933 /* MultiFormDataRequestConvertible.swift in Sources */,
 				BCC89778247942B800060CF9 /* UIImage+Color.swift in Sources */,
 				BC969C1624753BE20070A065 /* AppDelegate.swift in Sources */,
 				BCC8977424793D4A00060CF9 /* Reflection.swift in Sources */,
 				BC75B27824827A6A008DD933 /* P_DatabaseModel.swift in Sources */,
+				BC75B28224828CCD008DD933 /* NetworkClientError.swift in Sources */,
 				BC2E9FE8248082490052D04B /* P_DatabaseModelService.swift in Sources */,
 				BCC654032479AB1300FF0A65 /* UITextFieldRegex.swift in Sources */,
 				BC6B97062477C17400764C6C /* UIView.swift in Sources */,
@@ -510,11 +529,12 @@
 				BCADC3322480479300599CB5 /* Predicates.swift in Sources */,
 				BC607C08247EFE760004F9AB /* AuthorNO.swift in Sources */,
 				BC75B27E2482803A008DD933 /* DatabaseFetchOptions.swift in Sources */,
-				BCF98923247C2D57003DE64F /* CoreDataClient.swift in Sources */,
+				BCF98923247C2D57003DE64F /* DatabaseClient.swift in Sources */,
 				BC228FE0247DC6A3004C79AF /* AuthorMO+CoreDataProperties.swift in Sources */,
 				BCADC32E24803FC500599CB5 /* Task.swift in Sources */,
 				BCD6B4D82475BBD300731283 /* TabBarSharedView.swift in Sources */,
 				BCADC3302480401C00599CB5 /* DatabaseSort.swift in Sources */,
+				BC311B8B2482971E00A2E20C /* NetworkCommitService.swift in Sources */,
 				BC6B97152477C7C600764C6C /* P_XibLoadableView.swift in Sources */,
 				BC6817EA247F0591007FA653 /* DatabaseCommitService.swift in Sources */,
 				BC969C2B24753E460070A065 /* TabBarTransitionAnimator.swift in Sources */,

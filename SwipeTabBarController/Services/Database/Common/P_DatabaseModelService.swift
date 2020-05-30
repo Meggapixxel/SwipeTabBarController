@@ -13,18 +13,18 @@ protocol P_DatabaseModelService: class {
 //    associatedtype MO: P_DatabaseModel
 //    associatedtype NO: Decodable
     
-    init(client: P_CoreDataClient, fetchQueue: DispatchQueue, completionQueue: DispatchQueue)
+    init(client: P_DatabaseClient, fetchQueue: DispatchQueue, completionQueue: DispatchQueue)
     
 }
 
 extension P_DatabaseModelService {
     
-    init(client: P_CoreDataClient, fetchQueue: DispatchQueue = .global(), completionQueue: DispatchQueue = .main) {
+    init(client: P_DatabaseClient, fetchQueue: DispatchQueue = .global(), completionQueue: DispatchQueue = .main) {
         self.init(client: client, fetchQueue: fetchQueue, completionQueue: completionQueue)
     }
     
     func managedObjects<MO: P_DatabaseModel>(
-        client: P_CoreDataClient,
+        client: P_DatabaseClient,
         operationQueue: DispatchQueue,
         completionQueue: DispatchQueue,
         sort: P_DatabaseSort?,

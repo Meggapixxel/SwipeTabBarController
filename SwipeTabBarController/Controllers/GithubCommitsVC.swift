@@ -12,17 +12,19 @@ final class GithubCommitsVC: UITableViewController {
 
     private let fetchApiCommitsRefreshControl = UIRefreshControl()
     
-    private lazy var coreDataClient = CoreDataClient()
-    private lazy var authorDatabaseService: P_DatabaseAuthorService = DatabaseAuthorService(
-        client: coreDataClient
+    private let databaseClient = DatabaseClient()
+    private lazy var databaseAuthorService: P_DatabaseAuthorService = DatabaseAuthorService(
+        client: databaseClient
     )
-    private lazy var commitsDatabaseService: P_DatabaseCommitService = DatabaseCommitService<DatabaseAuthorService>(
-        client: coreDataClient
+    private lazy var databaseCommitService: P_DatabaseCommitService = DatabaseCommitService<DatabaseAuthorService>(
+        client: databaseClient
     )
-    private lazy var apiClient = ApiClient()
     
-    private var commits = [CommitMO]()
-    private var databasePredicate: DatabasePredicate<CommitMO>? {
+    private let networkClient = NetworkClient()
+    private lazy var networkCommitService: P_NetworkCommitService = NetworkCommitService(networkClient: networkClient)
+    
+    private var commits = [CommitDO]()
+    private var databasePredicate: DatabasePredicate<CommitDO>? {
         didSet { loadSavedData() }
     }
     
@@ -61,7 +63,7 @@ final class GithubCommitsVC: UITableViewController {
         guard editingStyle == .delete else { return }
         let commit = commits[indexPath.row]
         do {
-            try commitsDatabaseService.delete(model: commit)
+            try databaseCommitService.delete(model: commit)
         } catch {
             return print(error)
         }
@@ -92,7 +94,7 @@ private extension GithubCommitsVC {
 private extension GithubCommitsVC {
     
     @objc func loadSavedData() {
-        commitsDatabaseService.get(sort: .desc(\.date), predicate: databasePredicate) { [weak self] (result) in
+        databaseCommitService.get(sort: .desc(\.date), predicate: databasePredicate) { [weak self] (result) in
             self?.fetchApiCommitsRefreshControl.endRefreshing()
             switch result {
             case .success(let commits):
@@ -109,7 +111,7 @@ private extension GithubCommitsVC {
         let ac = UIAlertController(title: "Filter commits…", message: nil, preferredStyle: .actionSheet)
 
         ac.addAction(UIAlertAction(title: "Ignore Pull Requests", style: .default) { [weak self] _ in
-            self?.databasePredicate = DatabasePredicate<CommitMO>.not(.beginsWith(keyPath: \.message, value: "Merge pull request", option: .caseSensitive))
+            self?.databasePredicate = DatabasePredicate<CommitDO>.not(.beginsWith(keyPath: \.message, value: "Merge pull request", option: .caseSensitive))
         })
         ac.addAction(UIAlertAction(title: "Fixes", style: .default) { [weak self] _ in
             self?.databasePredicate = .contains(keyPath: \.message, value: "fix", option: .caseInsensitive)
@@ -120,7 +122,7 @@ private extension GithubCommitsVC {
         })
         ac.addAction(UIAlertAction(title: "Recent fixes", style: .default) { [weak self] _ in
             let twelveHoursAgo = Date().addingTimeInterval(-43200)
-            self?.databasePredicate = DatabasePredicate<CommitMO>.greater(keyPath: \.date, value: twelveHoursAgo)
+            self?.databasePredicate = DatabasePredicate<CommitDO>.greater(keyPath: \.date, value: twelveHoursAgo)
                 .and(.contains(keyPath: \.message, value: "fix", option: .caseInsensitive))
         })
         ac.addAction(UIAlertAction(title: "Durian commits", style: .default) { [weak self] _ in
@@ -136,14 +138,14 @@ private extension GithubCommitsVC {
     }
     
     @objc func fetchApiCommits() {
-        commitsDatabaseService.latest { result in
+        databaseCommitService.latest { result in
             switch result {
             case .success(let newestCommit):
-                self.apiClient.fetchCommits(sinceDate: newestCommit?.date) { (result) in
+                self.networkCommitService.fetchCommits(sinceDate: newestCommit?.date) { (result) in
                     switch result {
                     case .success(let apiCommits):
                         print("Received \(apiCommits.count) new commits.")
-                        self.commitsDatabaseService.save(apiModels: apiCommits) { (result) in
+                        self.databaseCommitService.save(apiModels: apiCommits) { (result) in
                             DispatchQueue.main.async { [unowned self] in
                                 switch result {
                                 case .success(_):
@@ -170,7 +172,7 @@ class GithubCommitVC: UIViewController {
     
     @IBOutlet private weak var detailLabel: UILabel!
     
-    var commit: CommitMO?
+    var commit: CommitDO?
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -1,5 +1,5 @@
 //
-//  AuthorMO+CoreDataProperties.swift
+//  AuthorDO+CoreDataProperties.swift
 //  SwipeTabBarController
 //
 //  Created by Vadim Zhydenko on 27.05.2020.
@@ -9,7 +9,7 @@
 
 import CoreData
 
-extension AuthorMO {
+extension AuthorDO {
 
     @NSManaged public var name: String
     @NSManaged public var email: String
@@ -18,13 +18,13 @@ extension AuthorMO {
 }
 
 // MARK: Generated accessors for commits
-extension AuthorMO {
+extension AuthorDO {
 
     @objc(addCommitsObject:)
-    @NSManaged public func addToCommits(_ value: CommitMO)
+    @NSManaged public func addToCommits(_ value: CommitDO)
 
     @objc(removeCommitsObject:)
-    @NSManaged public func removeFromCommits(_ value: CommitMO)
+    @NSManaged public func removeFromCommits(_ value: CommitDO)
 
     @objc(addCommits:)
     @NSManaged public func addToCommits(_ values: NSSet)

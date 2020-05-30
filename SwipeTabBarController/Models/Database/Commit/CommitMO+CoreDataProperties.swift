@@ -1,5 +1,5 @@
 //
-//  CommitMO+CoreDataProperties.swift
+//  CommitDO+CoreDataProperties.swift
 //  SwipeTabBarController
 //
 //  Created by Vadim Zhydenko on 27.05.2020.
@@ -9,12 +9,12 @@
 
 import CoreData
 
-extension CommitMO {
+extension CommitDO {
 
     @NSManaged public var date: Date
     @NSManaged public var message: String
     @NSManaged public var sha: String
     @NSManaged public var url: String
-    @NSManaged public var author: AuthorMO
+    @NSManaged public var author: AuthorDO
 
 }

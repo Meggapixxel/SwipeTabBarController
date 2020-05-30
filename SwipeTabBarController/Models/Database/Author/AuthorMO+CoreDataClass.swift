@@ -1,5 +1,5 @@
 //
-//  AuthorMO+CoreDataClass.swift
+//  AuthorDO+CoreDataClass.swift
 //  SwipeTabBarController
 //
 //  Created by Vadim Zhydenko on 27.05.2020.
@@ -10,6 +10,6 @@
 import CoreData
 
 @objc(Author)
-final public class AuthorMO: NSManagedObject {
+final public class AuthorDO: NSManagedObject {
 
 }

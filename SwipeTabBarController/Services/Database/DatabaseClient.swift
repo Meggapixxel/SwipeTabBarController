@@ -10,7 +10,9 @@ import CoreData
 
 // 'Entity' checkbox 'Optional' for attribute - determines whether the objects that Core Data stores are required to have a value or not.
 
-protocol P_CoreDataClient {
+protocol P_DatabaseClient {
+    
+    init(container: NSPersistentContainer)
     
     func saveContext() throws
     func fetch<T: NSManagedObject>(request: NSFetchRequest<T>) throws -> [T]
@@ -27,7 +29,7 @@ protocol P_CoreDataClient {
     
 }
 
-extension P_CoreDataClient {
+extension P_DatabaseClient {
     
     func insertAndSave<T: NSManagedObject>(models: [T]) throws {
         insertIfNeeded(models: models)
@@ -44,11 +46,12 @@ extension P_CoreDataClient {
     
 }
 
-class CoreDataClient: P_CoreDataClient {
+final class DatabaseClient: P_DatabaseClient {
     
-    private let container = NSPersistentContainer(name: "DatabaseV1")
+    private let container: NSPersistentContainer
     
-    init() {
+    init(container: NSPersistentContainer = NSPersistentContainer(name: "DatabaseV1")) {
+        self.container = container
         container.loadPersistentStores { storeDescription, error in
             if let error = error {
                 print("Unresolved error \(error)")
@@ -68,7 +71,7 @@ class CoreDataClient: P_CoreDataClient {
     
 }
 
-extension CoreDataClient {
+extension DatabaseClient {
     
     func fetch<T: NSManagedObject>(request: NSFetchRequest<T>) throws -> [T] {
         try container.viewContext.fetch(request)
@@ -76,7 +79,7 @@ extension CoreDataClient {
     
 }
 
-extension CoreDataClient {
+extension DatabaseClient {
     
     func insertAndSave<T: NSManagedObject>(model: T) throws {
         insert(model: model)
@@ -94,7 +97,7 @@ extension CoreDataClient {
     
 }
 
-extension CoreDataClient {
+extension DatabaseClient {
     
     func delete<T: NSManagedObject>(model: T) {
         container.viewContext.delete(model)
@@ -107,7 +110,7 @@ extension CoreDataClient {
     
 }
 
-extension CoreDataClient {
+extension DatabaseClient {
 
     func entityDescription<T: NSManagedObject>(type: T.Type) -> NSEntityDescription {
         NSEntityDescription.entity(forEntityName: String(describing: type), in: container.viewContext)!

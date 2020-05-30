@@ -1,5 +1,5 @@
 //
-//  CommitMO+P_DatabaseModel.swift
+//  CommitDO+P_DatabaseModel.swift
 //  SwipeTabBarController
 //
 //  Created by Vadim Zhydenko on 30.05.2020.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-extension CommitMO: P_DatabaseModel {
+extension CommitDO: P_DatabaseModel {
     
 }
