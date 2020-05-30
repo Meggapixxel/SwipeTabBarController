@@ -9,7 +9,7 @@
 
 import CoreData
 
-@objc(Author)
+@objc(AuthorDO)
 final public class AuthorDO: NSManagedObject {
 
 }

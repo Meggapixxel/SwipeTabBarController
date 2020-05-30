@@ -9,7 +9,7 @@
 
 import CoreData
 
-@objc(Commit)
+@objc(CommitDO)
 final public class CommitDO: NSManagedObject {
 
 }

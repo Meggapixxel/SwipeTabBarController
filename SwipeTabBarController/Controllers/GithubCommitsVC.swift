@@ -12,20 +12,26 @@ final class GithubCommitsVC: UITableViewController {
 
     private let fetchApiCommitsRefreshControl = UIRefreshControl()
     
-    private let databaseClient = DatabaseClient()
-    private lazy var databaseAuthorService: P_DatabaseAuthorService = DatabaseAuthorService(
-        client: databaseClient
-    )
-    private lazy var databaseCommitService: P_DatabaseCommitService = DatabaseCommitService<DatabaseAuthorService>(
-        client: databaseClient
-    )
-    
-    private let networkClient = NetworkClient()
-    private lazy var networkCommitService: P_NetworkCommitService = NetworkCommitService(networkClient: networkClient)
+    private let databaseCommitService: P_DatabaseCommitService
+    private let networkCommitService: P_NetworkCommitService
     
     private var commits = [CommitDO]()
     private var databasePredicate: DatabasePredicate<CommitDO>? {
         didSet { loadSavedData() }
+    }
+    
+    required init(
+        databaseCommitService: P_DatabaseCommitService,
+        networkCommitService: P_NetworkCommitService
+    ) {
+        self.databaseCommitService = databaseCommitService
+        self.networkCommitService = networkCommitService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(iOS, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -54,7 +60,7 @@ final class GithubCommitsVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "GithubCommitVC") as? GithubCommitVC else { return }
+        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GithubCommitVC") as? GithubCommitVC else { return }
         vc.commit = commits[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }

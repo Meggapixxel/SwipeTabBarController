@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="AuthorDO" representedClassName="AuthorDO" syncable="YES">
+    <entity name="AuthorDO" representedClassName=".AuthorDO" syncable="YES">
         <attribute name="email" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="commits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CommitDO" inverseName="author" inverseEntity="CommitDO"/>
@@ -8,7 +8,7 @@
             <fetchIndexElement property="name" type="Binary" order="ascending"/>
         </fetchIndex>
     </entity>
-    <entity name="CommitDO" representedClassName="CommitDO" syncable="YES">
+    <entity name="CommitDO" representedClassName=".CommitDO" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="message" optional="YES" attributeType="String"/>
         <attribute name="sha" optional="YES" attributeType="String"/>
@@ -21,7 +21,7 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="AuthorDO" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="CommitDO" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="AuthorDO" positionX="0" positionY="0" width="128" height="88"/>
+        <element name="CommitDO" positionX="0" positionY="0" width="128" height="118"/>
     </elements>
 </model>

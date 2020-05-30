@@ -12,10 +12,8 @@ import CoreData
 
 protocol P_DatabaseClient {
     
-    init(container: NSPersistentContainer)
-    
     func saveContext() throws
-    func fetch<T: NSManagedObject>(request: NSFetchRequest<T>) throws -> [T]
+    func fetch<T: P_DatabaseModel>(request: NSFetchRequest<T>) throws -> [T]
     
     func insertAndSave<T: NSManagedObject>(model: T) throws
     func insert<T: NSManagedObject>(model: T)
@@ -48,18 +46,21 @@ extension P_DatabaseClient {
 
 final class DatabaseClient: P_DatabaseClient {
     
+    typealias InitResult = Result<DatabaseClient, DatabaseError>
+    
     private let container: NSPersistentContainer
     
-    init(container: NSPersistentContainer = NSPersistentContainer(name: "DatabaseV1")) {
+    init(container: NSPersistentContainer = NSPersistentContainer(name: "DatabaseV1"), _ completion: @escaping (InitResult) -> Void) {
         self.container = container
         container.loadPersistentStores { storeDescription, error in
             if let error = error {
-                print("Unresolved error \(error)")
+                completion(.failure(.some(error)))
             } else {
                 // if an object exists in its data store with message A,
                 // and an object with the same unique constraint exists in memory with message B,
                 // the in-memory version "trumps" (overwrites) the data store version.
                 self.container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+                completion(.success(self))
             }
         }
     }
@@ -73,8 +74,8 @@ final class DatabaseClient: P_DatabaseClient {
 
 extension DatabaseClient {
     
-    func fetch<T: NSManagedObject>(request: NSFetchRequest<T>) throws -> [T] {
-        try container.viewContext.fetch(request)
+    func fetch<T: P_DatabaseModel>(request: NSFetchRequest<T>) throws -> [T] {
+        return try container.viewContext.fetch(request)
     }
     
 }

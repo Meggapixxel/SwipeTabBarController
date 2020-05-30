@@ -9,10 +9,7 @@
 import Foundation
 
 protocol P_DatabaseModelService: class {
-    
-//    associatedtype MO: P_DatabaseModel
-//    associatedtype NO: Decodable
-    
+
     init(client: P_DatabaseClient, fetchQueue: DispatchQueue, completionQueue: DispatchQueue)
     
 }
