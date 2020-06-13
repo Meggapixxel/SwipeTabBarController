@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 
 protocol P_MultipartFormData {
     var data: Data { get }

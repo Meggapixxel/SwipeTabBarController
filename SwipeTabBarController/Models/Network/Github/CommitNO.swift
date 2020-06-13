@@ -1,5 +1,5 @@
 //
-//  CommitNO.swift
+//  GithubCommitNO.swift
 //  SwipeTabBarController
 //
 //  Created by Vadim Zhydenko on 27.05.2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CommitNO: Decodable {
+struct GithubCommitNO: Decodable {
     
     enum RootKeys: String, CodingKey {
         case sha, commit, url = "html_url"
@@ -29,7 +29,7 @@ struct CommitNO: Decodable {
     let message: String
     let sha: String
     let url: String
-    let author: AuthorNO
+    let author: GithubCommitAuthorNO
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: RootKeys.self)
@@ -42,7 +42,7 @@ struct CommitNO: Decodable {
         let committerContainer = try commitContainer.nestedContainer(keyedBy: CommitKeys.CommitterKeys.self, forKey: .committer)
         date = try committerContainer.decode(Date.self, forKey: .date)
         
-        author = try commitContainer.decode(AuthorNO.self, forKey: .committer)
+        author = try commitContainer.decode(GithubCommitAuthorNO.self, forKey: .committer)
     }
     
 }

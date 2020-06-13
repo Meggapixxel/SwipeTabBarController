@@ -10,20 +10,26 @@ import UIKit
 
 final class GithubCommitsVC: UITableViewController {
 
+    // MARK: - UI elements
     private let fetchApiCommitsRefreshControl = UIRefreshControl()
     
+    // MARK: - Private properties
     private let databaseCommitService: P_DatabaseCommitService
-    private let networkCommitService: P_NetworkCommitService
+    private let networkCommitService: P_GithubCommitsService
     
+    private let repository: GithubRepositoryNO
     private var commits = [CommitDO]()
     private var databasePredicate: DatabasePredicate<CommitDO>? {
         didSet { loadSavedData() }
     }
     
+    // MARK: - Init
     required init(
+        repository: GithubRepositoryNO,
         databaseCommitService: P_DatabaseCommitService,
-        networkCommitService: P_NetworkCommitService
+        networkCommitService: P_GithubCommitsService
     ) {
+        self.repository = repository
         self.databaseCommitService = databaseCommitService
         self.networkCommitService = networkCommitService
         super.init(nibName: nil, bundle: nil)
@@ -34,6 +40,7 @@ final class GithubCommitsVC: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,6 +48,8 @@ final class GithubCommitsVC: UITableViewController {
         performSelector(inBackground: #selector(fetchApiCommits), with: nil)
     }
     
+    
+    // MARK: - UITableView
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -60,7 +69,7 @@ final class GithubCommitsVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GithubCommitVC") as? GithubCommitVC else { return }
+        guard let vc = UIStoryboard(name: "Github", bundle: nil).instantiateViewController(withIdentifier: "GithubAuthorCommitVC") as? GithubAuthorCommitVC else { return }
         vc.commit = commits[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -147,7 +156,7 @@ private extension GithubCommitsVC {
         databaseCommitService.latest { result in
             switch result {
             case .success(let newestCommit):
-                self.networkCommitService.fetchCommits(sinceDate: newestCommit?.date) { (result) in
+                self.networkCommitService.get(user: "apple", repository: "swift", sinceDate: newestCommit?.date) { (result) in
                     switch result {
                     case .success(let apiCommits):
                         print("Received \(apiCommits.count) new commits.")
@@ -173,16 +182,3 @@ private extension GithubCommitsVC {
     
 }
 extension Date: CVarArg { }
-
-class GithubCommitVC: UIViewController {
-    
-    @IBOutlet private weak var detailLabel: UILabel!
-    
-    var commit: CommitDO?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        detailLabel.text = commit?.message
-    }
-    
-}

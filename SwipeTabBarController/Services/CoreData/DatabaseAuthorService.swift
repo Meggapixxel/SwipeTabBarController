@@ -11,7 +11,7 @@ import Foundation
 protocol P_DatabaseAuthorService: P_DatabaseModelService {
     
     typealias DO = AuthorDO
-    typealias NO = AuthorNO
+    typealias NO = GithubCommitAuthorNO
     
     func get(name: String, _ completion: @escaping (Result<DO?, DatabaseError>) -> Void)
     

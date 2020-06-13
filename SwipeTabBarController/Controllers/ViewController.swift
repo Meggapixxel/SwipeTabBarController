@@ -61,24 +61,12 @@ final class ViewController2: UIViewController {
         endKeyboardObserving()
     }
     
-    let database = CoreDataClient { result in
-        switch result {
-        case .success(let client):
-            break
-        case .failure(let error):
-            print(error)
-        }
-    }
-    
 }
 
 private extension ViewController2 {
     
-    @IBAction func openCommitsVC() {
-        let vc = GithubCommitsVC(
-            databaseCommitService: DatabaseCommitService<DatabaseAuthorService>(client: database),
-            networkCommitService: GithubService(networkClient: NetworkClient())
-        )
+    @IBAction func openGithubUsersVC() {
+        let vc = GithubUsersVC(githubUsersService: GithubUsersService(networkClient: NetworkClient()))
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }

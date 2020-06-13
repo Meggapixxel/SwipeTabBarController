@@ -1,5 +1,5 @@
 //
-//  AuthorNO.swift
+//  GithubCommitAuthorNO.swift
 //  SwipeTabBarController
 //
 //  Created by Vadim Zhydenko on 27.05.2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AuthorNO: Decodable {
+struct GithubCommitAuthorNO: Decodable {
     
     let name: String
     let email: String

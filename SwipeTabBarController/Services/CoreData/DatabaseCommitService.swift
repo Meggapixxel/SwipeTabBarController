@@ -11,7 +11,7 @@ import Foundation
 protocol P_DatabaseCommitService: P_DatabaseModelService {
     
     typealias DO = CommitDO
-    typealias NO = CommitNO
+    typealias NO = GithubCommitNO
     
     func get<T>(
         sort: DatabaseSort<DO, T>,

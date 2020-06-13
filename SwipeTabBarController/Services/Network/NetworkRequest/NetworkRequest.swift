@@ -53,7 +53,7 @@ final class Request<PATH: P_NetworkRequestPath>: P_NetworkRequest {
         host: String,
         method: NetworkRequestMethod,
         path: PATH,
-        query: NetworkRequestQueryParameters?,
+        query: NetworkRequestQueryParameters? = nil,
         body: NetworkRequestBodyParameters = .none
     ) {
         self.scheme = scheme
