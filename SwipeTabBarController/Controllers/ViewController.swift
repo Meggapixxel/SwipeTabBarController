@@ -77,9 +77,19 @@ private extension ViewController2 {
     @IBAction func openCommitsVC() {
         let vc = GithubCommitsVC(
             databaseCommitService: DatabaseCommitService<DatabaseAuthorService>(client: database),
-            networkCommitService: NetworkCommitService(networkClient: NetworkClient())
+            networkCommitService: GithubService(networkClient: NetworkClient())
         )
         vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction private func pushViewController3() {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController3")
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction private func pushViewController4() {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController4")
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -90,3 +100,4 @@ extension ViewController2: P_KeyboardObservableWithDismiss {
     var keyboardObserveOptions: KeyboardObservableOptions { .showHide }
     
 }
+

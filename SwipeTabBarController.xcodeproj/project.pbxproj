@@ -14,7 +14,7 @@
 		BC228FDF247DC6A3004C79AF /* AuthorMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC228FDB247DC6A3004C79AF /* AuthorMO+CoreDataClass.swift */; };
 		BC228FE0247DC6A3004C79AF /* AuthorMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC228FDC247DC6A3004C79AF /* AuthorMO+CoreDataProperties.swift */; };
 		BC2E9FE8248082490052D04B /* P_DatabaseModelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2E9FE7248082490052D04B /* P_DatabaseModelService.swift */; };
-		BC311B8B2482971E00A2E20C /* NetworkCommitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC311B8A2482971E00A2E20C /* NetworkCommitService.swift */; };
+		BC311B8B2482971E00A2E20C /* GithubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC311B8A2482971E00A2E20C /* GithubService.swift */; };
 		BC43B3B5247B15640096427F /* UIView+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC43B3B4247B15640096427F /* UIView+Snapshot.swift */; };
 		BC607C08247EFE760004F9AB /* AuthorNO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC607C07247EFE760004F9AB /* AuthorNO.swift */; };
 		BC607C0A247EFE8A0004F9AB /* CommitNO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC607C09247EFE8A0004F9AB /* CommitNO.swift */; };
@@ -22,6 +22,7 @@
 		BC6817EC247F05A2007FA653 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6817EB247F05A2007FA653 /* DatabaseError.swift */; };
 		BC6817EE247F08C3007FA653 /* DatabaseAuthorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6817ED247F08C3007FA653 /* DatabaseAuthorService.swift */; };
 		BC6817F0247F2370007FA653 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6817EF247F2370007FA653 /* NetworkClient.swift */; };
+		BC69E3352483D492005D9EAD /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC69E3342483D492005D9EAD /* NetworkRequest.swift */; };
 		BC6B96FB2477BE9B00764C6C /* CreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B96FA2477BE9B00764C6C /* CreditCardView.swift */; };
 		BC6B97012477BF0500764C6C /* CreditCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC6B97002477BF0500764C6C /* CreditCardView.xib */; };
 		BC6B97062477C17400764C6C /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B97052477C17400764C6C /* UIView.swift */; };
@@ -36,7 +37,7 @@
 		BC75B27A24827ADD008DD933 /* AuthorMO+P_DatabaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC75B27924827ADD008DD933 /* AuthorMO+P_DatabaseModel.swift */; };
 		BC75B27C24827AF9008DD933 /* CommitMO+P_DatabaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC75B27B24827AF9008DD933 /* CommitMO+P_DatabaseModel.swift */; };
 		BC75B27E2482803A008DD933 /* DatabaseFetchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC75B27D2482803A008DD933 /* DatabaseFetchOptions.swift */; };
-		BC75B28024828CA5008DD933 /* MultiFormDataRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC75B27F24828CA5008DD933 /* MultiFormDataRequestConvertible.swift */; };
+		BC75B28024828CA5008DD933 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC75B27F24828CA5008DD933 /* MultipartFormData.swift */; };
 		BC75B28224828CCD008DD933 /* NetworkClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC75B28124828CCD008DD933 /* NetworkClientError.swift */; };
 		BC969C1624753BE20070A065 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C1524753BE20070A065 /* AppDelegate.swift */; };
 		BC969C1A24753BE20070A065 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC969C1924753BE20070A065 /* ViewController.swift */; };
@@ -51,6 +52,13 @@
 		BCADC3322480479300599CB5 /* Predicates.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADC3312480479300599CB5 /* Predicates.swift */; };
 		BCADC3342480503300599CB5 /* DatabasePredicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADC3332480503300599CB5 /* DatabasePredicate.swift */; };
 		BCADC3362480505700599CB5 /* NSManagedObject+KeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADC3352480505700599CB5 /* NSManagedObject+KeyPath.swift */; };
+		BCAE9B52249535E4006334BE /* UmicoNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAE9B51249535E4006334BE /* UmicoNavigationController.swift */; };
+		BCAE9B552495363A006334BE /* ViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAE9B542495363A006334BE /* ViewController3.swift */; };
+		BCAE9B572495364C006334BE /* ViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAE9B562495364C006334BE /* ViewController4.swift */; };
+		BCAE9B59249549A5006334BE /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAE9B58249549A5006334BE /* Path.swift */; };
+		BCAE9B5B249549C5006334BE /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAE9B5A249549C5006334BE /* Method.swift */; };
+		BCAE9B5D249549F2006334BE /* BodyParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAE9B5C249549F2006334BE /* BodyParameters.swift */; };
+		BCAE9B5F24954A14006334BE /* QueryParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAE9B5E24954A14006334BE /* QueryParameters.swift */; };
 		BCBF7A0A24795963007EA76E /* P_ClosureSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBF7A0924795963007EA76E /* P_ClosureSelector.swift */; };
 		BCC654032479AB1300FF0A65 /* UITextFieldRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC654022479AB1300FF0A65 /* UITextFieldRegex.swift */; };
 		BCC8977124793C3300060CF9 /* String+App Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC8977024793C3300060CF9 /* String+App Version.swift */; };
@@ -73,7 +81,7 @@
 		BC228FDB247DC6A3004C79AF /* AuthorMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthorMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BC228FDC247DC6A3004C79AF /* AuthorMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthorMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BC2E9FE7248082490052D04B /* P_DatabaseModelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P_DatabaseModelService.swift; sourceTree = "<group>"; };
-		BC311B8A2482971E00A2E20C /* NetworkCommitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCommitService.swift; sourceTree = "<group>"; };
+		BC311B8A2482971E00A2E20C /* GithubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubService.swift; sourceTree = "<group>"; };
 		BC43B3B4247B15640096427F /* UIView+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Snapshot.swift"; sourceTree = "<group>"; };
 		BC607C07247EFE760004F9AB /* AuthorNO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorNO.swift; sourceTree = "<group>"; };
 		BC607C09247EFE8A0004F9AB /* CommitNO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitNO.swift; sourceTree = "<group>"; };
@@ -81,6 +89,7 @@
 		BC6817EB247F05A2007FA653 /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		BC6817ED247F08C3007FA653 /* DatabaseAuthorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAuthorService.swift; sourceTree = "<group>"; };
 		BC6817EF247F2370007FA653 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		BC69E3342483D492005D9EAD /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		BC6B96FA2477BE9B00764C6C /* CreditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardView.swift; sourceTree = "<group>"; };
 		BC6B97002477BF0500764C6C /* CreditCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreditCardView.xib; sourceTree = "<group>"; };
 		BC6B97052477C17400764C6C /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -95,7 +104,7 @@
 		BC75B27924827ADD008DD933 /* AuthorMO+P_DatabaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthorMO+P_DatabaseModel.swift"; sourceTree = "<group>"; };
 		BC75B27B24827AF9008DD933 /* CommitMO+P_DatabaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommitMO+P_DatabaseModel.swift"; sourceTree = "<group>"; };
 		BC75B27D2482803A008DD933 /* DatabaseFetchOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseFetchOptions.swift; sourceTree = "<group>"; };
-		BC75B27F24828CA5008DD933 /* MultiFormDataRequestConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiFormDataRequestConvertible.swift; sourceTree = "<group>"; };
+		BC75B27F24828CA5008DD933 /* MultipartFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormData.swift; sourceTree = "<group>"; };
 		BC75B28124828CCD008DD933 /* NetworkClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientError.swift; sourceTree = "<group>"; };
 		BC969C1224753BE20070A065 /* SwipeTabBarController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeTabBarController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC969C1524753BE20070A065 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +121,13 @@
 		BCADC3312480479300599CB5 /* Predicates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predicates.swift; sourceTree = "<group>"; };
 		BCADC3332480503300599CB5 /* DatabasePredicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabasePredicate.swift; sourceTree = "<group>"; };
 		BCADC3352480505700599CB5 /* NSManagedObject+KeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+KeyPath.swift"; sourceTree = "<group>"; };
+		BCAE9B51249535E4006334BE /* UmicoNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UmicoNavigationController.swift; sourceTree = "<group>"; };
+		BCAE9B542495363A006334BE /* ViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController3.swift; sourceTree = "<group>"; };
+		BCAE9B562495364C006334BE /* ViewController4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController4.swift; sourceTree = "<group>"; };
+		BCAE9B58249549A5006334BE /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
+		BCAE9B5A249549C5006334BE /* Method.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
+		BCAE9B5C249549F2006334BE /* BodyParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyParameters.swift; sourceTree = "<group>"; };
+		BCAE9B5E24954A14006334BE /* QueryParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryParameters.swift; sourceTree = "<group>"; };
 		BCBF7A0924795963007EA76E /* P_ClosureSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = P_ClosureSelector.swift; sourceTree = "<group>"; };
 		BCC654022479AB1300FF0A65 /* UITextFieldRegex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldRegex.swift; sourceTree = "<group>"; };
 		BCC8977024793C3300060CF9 /* String+App Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+App Version.swift"; sourceTree = "<group>"; };
@@ -215,9 +231,10 @@
 		BC607C0B247EFE9F0004F9AB /* API */ = {
 			isa = PBXGroup;
 			children = (
+				BCAE9B6024954A1F006334BE /* NetworkRequest */,
 				BC75B28324828CD1008DD933 /* Common */,
 				BC6817EF247F2370007FA653 /* NetworkClient.swift */,
-				BC311B8A2482971E00A2E20C /* NetworkCommitService.swift */,
+				BC311B8A2482971E00A2E20C /* GithubService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -248,6 +265,7 @@
 		BC6B96FE2477BEB600764C6C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BCAE9B5324953621006334BE /* NavigationController+Options */,
 				BC969C1524753BE20070A065 /* AppDelegate.swift */,
 				BC969C1924753BE20070A065 /* ViewController.swift */,
 				BC969C2924753E370070A065 /* TabBarController */,
@@ -291,7 +309,6 @@
 			isa = PBXGroup;
 			children = (
 				BC75B28124828CCD008DD933 /* NetworkClientError.swift */,
-				BC75B27F24828CA5008DD933 /* MultiFormDataRequestConvertible.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -351,6 +368,29 @@
 				BC75B27D2482803A008DD933 /* DatabaseFetchOptions.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		BCAE9B5324953621006334BE /* NavigationController+Options */ = {
+			isa = PBXGroup;
+			children = (
+				BCAE9B51249535E4006334BE /* UmicoNavigationController.swift */,
+				BCAE9B542495363A006334BE /* ViewController3.swift */,
+				BCAE9B562495364C006334BE /* ViewController4.swift */,
+			);
+			path = "NavigationController+Options";
+			sourceTree = "<group>";
+		};
+		BCAE9B6024954A1F006334BE /* NetworkRequest */ = {
+			isa = PBXGroup;
+			children = (
+				BC69E3342483D492005D9EAD /* NetworkRequest.swift */,
+				BCAE9B58249549A5006334BE /* Path.swift */,
+				BCAE9B5A249549C5006334BE /* Method.swift */,
+				BCAE9B5C249549F2006334BE /* BodyParameters.swift */,
+				BCAE9B5E24954A14006334BE /* QueryParameters.swift */,
+				BC75B27F24828CA5008DD933 /* MultipartFormData.swift */,
+			);
+			path = NetworkRequest;
 			sourceTree = "<group>";
 		};
 		BCC8976F24793C1C00060CF9 /* Extensions */ = {
@@ -498,6 +538,7 @@
 				BC969C3324753ECB0070A065 /* TabBarController.swift in Sources */,
 				BCADC3362480505700599CB5 /* NSManagedObject+KeyPath.swift in Sources */,
 				BC607C0A247EFE8A0004F9AB /* CommitNO.swift in Sources */,
+				BCAE9B52249535E4006334BE /* UmicoNavigationController.swift in Sources */,
 				BC6B970A2477C1D900764C6C /* UIButton.swift in Sources */,
 				BC6817EC247F05A2007FA653 /* DatabaseError.swift in Sources */,
 				BC6817F0247F2370007FA653 /* NetworkClient.swift in Sources */,
@@ -505,22 +546,28 @@
 				BC6B970C2477C1EC00764C6C /* UIImageView.swift in Sources */,
 				BCF98920247C2C97003DE64F /* DatabaseV1.xcdatamodeld in Sources */,
 				BC43B3B5247B15640096427F /* UIView+Snapshot.swift in Sources */,
+				BCAE9B59249549A5006334BE /* Path.swift in Sources */,
 				BC969C1A24753BE20070A065 /* ViewController.swift in Sources */,
-				BC75B28024828CA5008DD933 /* MultiFormDataRequestConvertible.swift in Sources */,
+				BC75B28024828CA5008DD933 /* MultipartFormData.swift in Sources */,
 				BCC89778247942B800060CF9 /* UIImage+Color.swift in Sources */,
 				BC969C1624753BE20070A065 /* AppDelegate.swift in Sources */,
 				BCC8977424793D4A00060CF9 /* Reflection.swift in Sources */,
 				BC75B27824827A6A008DD933 /* P_DatabaseModel.swift in Sources */,
 				BC75B28224828CCD008DD933 /* NetworkClientError.swift in Sources */,
+				BCAE9B5B249549C5006334BE /* Method.swift in Sources */,
 				BC2E9FE8248082490052D04B /* P_DatabaseModelService.swift in Sources */,
+				BCAE9B552495363A006334BE /* ViewController3.swift in Sources */,
 				BCC654032479AB1300FF0A65 /* UITextFieldRegex.swift in Sources */,
 				BC6B97062477C17400764C6C /* UIView.swift in Sources */,
 				BCC8977E2479493B00060CF9 /* P_KeyboardObservable.swift in Sources */,
+				BC69E3352483D492005D9EAD /* NetworkRequest.swift in Sources */,
+				BCAE9B572495364C006334BE /* ViewController4.swift in Sources */,
 				BC6B97102477C24E00764C6C /* UILabel.swift in Sources */,
 				BC969C2F24753E7A0070A065 /* TabBarInteractiveAnimator.swift in Sources */,
 				BC6817EE247F08C3007FA653 /* DatabaseAuthorService.swift in Sources */,
 				BCEB51BE24769736001E366D /* AnimationOptions+AnimationCurve.swift in Sources */,
 				BCC8977B247942E200060CF9 /* UIImage+CornerRadius.swift in Sources */,
+				BCAE9B5D249549F2006334BE /* BodyParameters.swift in Sources */,
 				BC75B27C24827AF9008DD933 /* CommitMO+P_DatabaseModel.swift in Sources */,
 				BC6B96FB2477BE9B00764C6C /* CreditCardView.swift in Sources */,
 				BCFE2C4A2476017600293574 /* P_TabBarChildViewController.swift in Sources */,
@@ -534,9 +581,10 @@
 				BCADC32E24803FC500599CB5 /* Task.swift in Sources */,
 				BCD6B4D82475BBD300731283 /* TabBarSharedView.swift in Sources */,
 				BCADC3302480401C00599CB5 /* DatabaseSort.swift in Sources */,
-				BC311B8B2482971E00A2E20C /* NetworkCommitService.swift in Sources */,
+				BC311B8B2482971E00A2E20C /* GithubService.swift in Sources */,
 				BC6B97152477C7C600764C6C /* P_XibLoadableView.swift in Sources */,
 				BC6817EA247F0591007FA653 /* DatabaseCommitService.swift in Sources */,
+				BCAE9B5F24954A14006334BE /* QueryParameters.swift in Sources */,
 				BC969C2B24753E460070A065 /* TabBarTransitionAnimator.swift in Sources */,
 				BCC8977624793FD900060CF9 /* TypeSafeIndentifiers.swift in Sources */,
 				BCBF7A0A24795963007EA76E /* P_ClosureSelector.swift in Sources */,

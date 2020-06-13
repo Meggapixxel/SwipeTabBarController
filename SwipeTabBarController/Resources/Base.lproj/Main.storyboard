@@ -144,11 +144,34 @@
                                     <action selector="openCommitsVC" destination="cU4-b9-iRH" eventType="touchUpInside" id="z8m-od-0N8"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Hw8-Wx-0SN">
+                                <rect key="frame" x="152" y="172" width="110" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7w-W7-AdP">
+                                        <rect key="frame" x="0.0" y="0.0" width="110" height="30"/>
+                                        <state key="normal" title="ViewController3"/>
+                                        <connections>
+                                            <action selector="pushViewController3" destination="cU4-b9-iRH" eventType="touchUpInside" id="IzW-pe-OgU"/>
+                                            <action selector="pushViewController3" destination="pMq-p0-GDG" eventType="touchUpInside" id="ShF-Hv-ukd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SJz-sF-x1A">
+                                        <rect key="frame" x="0.0" y="30" width="110" height="30"/>
+                                        <state key="normal" title="ViewController4"/>
+                                        <connections>
+                                            <action selector="pushViewController4" destination="cU4-b9-iRH" eventType="touchUpInside" id="ZiY-Ze-8vn"/>
+                                            <action selector="pushViewController4" destination="pMq-p0-GDG" eventType="touchUpInside" id="rQD-27-pAA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Hw8-Wx-0SN" firstAttribute="top" secondItem="COI-Qg-fHl" secondAttribute="bottom" constant="20" id="0pD-Gx-jrt"/>
                             <constraint firstItem="tb5-fl-Rr0" firstAttribute="trailing" secondItem="COI-Qg-fHl" secondAttribute="trailing" constant="20" id="1s4-bh-TqO"/>
                             <constraint firstItem="zgM-9t-eQC" firstAttribute="leading" secondItem="tb5-fl-Rr0" secondAttribute="leading" constant="20" id="ANl-d6-H5N"/>
+                            <constraint firstItem="Hw8-Wx-0SN" firstAttribute="centerX" secondItem="kyY-wc-1jQ" secondAttribute="centerX" id="UcJ-KD-8HM"/>
                             <constraint firstItem="tb5-fl-Rr0" firstAttribute="bottom" secondItem="zgM-9t-eQC" secondAttribute="bottom" constant="20" id="a3J-Tb-wyV"/>
                             <constraint firstItem="COI-Qg-fHl" firstAttribute="top" secondItem="tb5-fl-Rr0" secondAttribute="top" constant="20" id="cPP-NU-c1n"/>
                             <constraint firstItem="COI-Qg-fHl" firstAttribute="leading" secondItem="tb5-fl-Rr0" secondAttribute="leading" constant="20" id="caw-Wr-Qhd"/>
@@ -194,10 +217,50 @@
             </objects>
             <point key="canvasLocation" x="2935" y="138"/>
         </scene>
+        <!--View Controller3-->
+        <scene sceneID="Bct-Wg-n8w">
+            <objects>
+                <viewController restorationIdentifier="ViewController3" storyboardIdentifier="ViewController3" id="pMq-p0-GDG" customClass="ViewController3" customModule="SwipeTabBarController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OoI-is-YIh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="o5c-vV-irz">
+                                <rect key="frame" x="152" y="418" width="110" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBX-Si-DHw">
+                                        <rect key="frame" x="0.0" y="0.0" width="110" height="30"/>
+                                        <state key="normal" title="ViewController3"/>
+                                        <connections>
+                                            <action selector="pushViewController3" destination="pMq-p0-GDG" eventType="touchUpInside" id="9E2-hC-Nkv"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cne-i2-LzR">
+                                        <rect key="frame" x="0.0" y="30" width="110" height="30"/>
+                                        <state key="normal" title="ViewController4"/>
+                                        <connections>
+                                            <action selector="pushViewController4" destination="pMq-p0-GDG" eventType="touchUpInside" id="qO9-k4-gVF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="o5c-vV-irz" firstAttribute="centerX" secondItem="OoI-is-YIh" secondAttribute="centerX" id="GuB-nY-fUk"/>
+                            <constraint firstItem="o5c-vV-irz" firstAttribute="centerY" secondItem="OoI-is-YIh" secondAttribute="centerY" id="hCo-qh-uQP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2Gd-ar-r9S"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GIU-fy-sXz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3899" y="138"/>
+        </scene>
         <!--Item 2-->
         <scene sceneID="iap-Dg-Gkp">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="v48-aU-FCd" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="v48-aU-FCd" customClass="UmicoNavigationController" customModule="SwipeTabBarController" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 2" id="Hde-iH-uXQ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="E0j-XB-QJ7">
@@ -250,6 +313,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rXy-9j-qM4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1216" y="850"/>
+        </scene>
+        <!--View Controller4-->
+        <scene sceneID="Z4N-f8-SDh">
+            <objects>
+                <viewController restorationIdentifier="ViewController4" storyboardIdentifier="ViewController4" id="S79-Ua-MBK" customClass="ViewController4" customModule="SwipeTabBarController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tDr-K3-ibF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="v0j-ga-TVH">
+                                <rect key="frame" x="152" y="418" width="110" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGx-2j-Lda">
+                                        <rect key="frame" x="0.0" y="0.0" width="110" height="30"/>
+                                        <state key="normal" title="ViewController3"/>
+                                        <connections>
+                                            <action selector="pushViewController3" destination="S79-Ua-MBK" eventType="touchUpInside" id="ffo-Dw-iNr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O8O-Nb-B7D">
+                                        <rect key="frame" x="0.0" y="30" width="110" height="30"/>
+                                        <state key="normal" title="ViewController4"/>
+                                        <connections>
+                                            <action selector="pushViewController4" destination="S79-Ua-MBK" eventType="touchUpInside" id="ISY-qb-9eq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="v0j-ga-TVH" firstAttribute="centerY" secondItem="tDr-K3-ibF" secondAttribute="centerY" id="Q8O-Pf-htN"/>
+                            <constraint firstItem="v0j-ga-TVH" firstAttribute="centerX" secondItem="tDr-K3-ibF" secondAttribute="centerX" id="ejl-T1-jnE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="OUg-eB-NDX"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yCe-Sl-5UP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4626" y="138"/>
         </scene>
     </scenes>
 </document>
