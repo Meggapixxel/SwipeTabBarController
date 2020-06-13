@@ -10,6 +10,10 @@ import CoreData
 
 // 'Entity' checkbox 'Optional' for attribute - determines whether the objects that Core Data stores are required to have a value or not.
 
+// https://swifting.io/blog/2016/11/27/28-better-coredata-with-swift-generics/
+// https://medium.com/better-programming/reusable-generic-database-layer-in-swift-7950d604883b
+// https://medium.com/ios-os-x-development/10-core-principles-to-use-coredata-without-blowing-your-head-off-5ed11c623c6b
+
 protocol P_CoreDataClient {
     
     func saveContext() throws
