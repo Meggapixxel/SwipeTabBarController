@@ -49,12 +49,12 @@ extension P_DatabaseCommitService {
 
 final class DatabaseCommitService<DatabaseAuthorService: P_DatabaseAuthorService>: P_DatabaseCommitService {
     
-    private let client: P_DatabaseClient
+    private let client: P_CoreDataClient
     private let operationQueue: DispatchQueue
     private let completionQueue: DispatchQueue
     private let authorService: DatabaseAuthorService
     
-    init(client: P_DatabaseClient, fetchQueue: DispatchQueue, completionQueue: DispatchQueue) {
+    init(client: P_CoreDataClient, fetchQueue: DispatchQueue, completionQueue: DispatchQueue) {
         self.client = client
         self.operationQueue = fetchQueue
         self.completionQueue = completionQueue

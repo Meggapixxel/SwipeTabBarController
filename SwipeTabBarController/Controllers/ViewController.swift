@@ -61,7 +61,7 @@ final class ViewController2: UIViewController {
         endKeyboardObserving()
     }
     
-    let database = DatabaseClient { result in
+    let database = CoreDataClient { result in
         switch result {
         case .success(let client):
             break

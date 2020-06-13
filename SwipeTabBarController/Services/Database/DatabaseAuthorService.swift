@@ -23,11 +23,11 @@ protocol P_DatabaseAuthorService: P_DatabaseModelService {
 
 final class DatabaseAuthorService: P_DatabaseAuthorService {
     
-    private let client: P_DatabaseClient
+    private let client: P_CoreDataClient
     private let operationQueue: DispatchQueue
     private let completionQueue: DispatchQueue
     
-    init(client: P_DatabaseClient, fetchQueue: DispatchQueue, completionQueue: DispatchQueue) {
+    init(client: P_CoreDataClient, fetchQueue: DispatchQueue, completionQueue: DispatchQueue) {
         self.client = client
         self.operationQueue = fetchQueue
         self.completionQueue = completionQueue

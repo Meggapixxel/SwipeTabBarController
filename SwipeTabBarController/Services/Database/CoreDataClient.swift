@@ -1,5 +1,5 @@
 //
-//  CoreDataService.swift
+//  CoreDataClient.swift
 //  SwipeTabBarController
 //
 //  Created by Vadim Zhydenko on 25.05.2020.
@@ -10,7 +10,7 @@ import CoreData
 
 // 'Entity' checkbox 'Optional' for attribute - determines whether the objects that Core Data stores are required to have a value or not.
 
-protocol P_DatabaseClient {
+protocol P_CoreDataClient {
     
     func saveContext() throws
     func fetch<T: P_DatabaseModel>(request: NSFetchRequest<T>) throws -> [T]
@@ -27,7 +27,7 @@ protocol P_DatabaseClient {
     
 }
 
-extension P_DatabaseClient {
+extension P_CoreDataClient {
     
     func insertAndSave<T: NSManagedObject>(models: [T]) throws {
         insertIfNeeded(models: models)
@@ -44,9 +44,9 @@ extension P_DatabaseClient {
     
 }
 
-final class DatabaseClient: P_DatabaseClient {
+final class CoreDataClient: P_CoreDataClient {
     
-    typealias InitResult = Result<DatabaseClient, DatabaseError>
+    typealias InitResult = Result<CoreDataClient, DatabaseError>
     
     private let container: NSPersistentContainer
     
@@ -72,7 +72,7 @@ final class DatabaseClient: P_DatabaseClient {
     
 }
 
-extension DatabaseClient {
+extension CoreDataClient {
     
     func fetch<T: P_DatabaseModel>(request: NSFetchRequest<T>) throws -> [T] {
         return try container.viewContext.fetch(request)
@@ -80,7 +80,7 @@ extension DatabaseClient {
     
 }
 
-extension DatabaseClient {
+extension CoreDataClient {
     
     func insertAndSave<T: NSManagedObject>(model: T) throws {
         insert(model: model)
@@ -98,7 +98,7 @@ extension DatabaseClient {
     
 }
 
-extension DatabaseClient {
+extension CoreDataClient {
     
     func delete<T: NSManagedObject>(model: T) {
         container.viewContext.delete(model)
@@ -111,7 +111,7 @@ extension DatabaseClient {
     
 }
 
-extension DatabaseClient {
+extension CoreDataClient {
 
     func entityDescription<T: NSManagedObject>(type: T.Type) -> NSEntityDescription {
         NSEntityDescription.entity(forEntityName: String(describing: type), in: container.viewContext)!

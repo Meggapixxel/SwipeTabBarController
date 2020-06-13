@@ -11,11 +11,11 @@ import Foundation
 typealias DatabaseFetchOptions = Set<DatabaseFetchOption>
 enum DatabaseFetchOption {
     
-    case fetchLimit(Int)
-    case fetchOffset(Int)
-    case fetchBatchSize(Int)
+    case limit(Int)
+    case offset(Int)
+    case batchSize(Int)
     
-    static var first: DatabaseFetchOption { .fetchLimit(1) }
+    static var first: DatabaseFetchOption { .limit(1) }
     
 }
 
@@ -23,9 +23,9 @@ extension DatabaseFetchOption: Hashable {
     
     private var developerHashValue: Int {
         switch self {
-        case .fetchLimit: return 0
-        case .fetchOffset: return 1
-        case .fetchBatchSize: return 2
+        case .limit: return 0
+        case .offset: return 1
+        case .batchSize: return 2
         }
     }
     
@@ -42,11 +42,11 @@ extension DatabaseFetchOption {
     
     func set<MO: NSManagedObject>(in fetchRequest: NSFetchRequest<MO>) {
         switch self {
-        case .fetchLimit(let value):
+        case .limit(let value):
             fetchRequest.fetchLimit = value
-        case .fetchOffset(let value):
+        case .offset(let value):
             fetchRequest.fetchOffset = value
-        case .fetchBatchSize(let value):
+        case .batchSize(let value):
             fetchRequest.fetchBatchSize = value
         }
     }

@@ -79,14 +79,26 @@ extension DatabasePredicate {
         return self
     }
     
+    func and(databasePredicate: () -> (DatabasePredicate)) -> DatabasePredicate {
+        return and(databasePredicate())
+    }
+    
     func or(_ databasePredicate: DatabasePredicate) -> DatabasePredicate {
         predicate = NSCompoundPredicate(type: .or, subpredicates: [self.predicate, databasePredicate.predicate])
         return self
     }
     
+    func or(databasePredicate: () -> (DatabasePredicate)) -> DatabasePredicate {
+        return or(databasePredicate())
+    }
+    
     func not(_ databasePredicate: DatabasePredicate) -> DatabasePredicate {
         predicate = NSCompoundPredicate(type: .not, subpredicates: [self.predicate, databasePredicate.predicate])
         return self
+    }
+    
+    func not(databasePredicate: () -> (DatabasePredicate)) -> DatabasePredicate {
+        return not(databasePredicate())
     }
     
     static func not(_ databasePredicate: DatabasePredicate) -> DatabasePredicate {
